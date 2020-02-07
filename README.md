@@ -1,10 +1,10 @@
-# Project Title
+# FoodZebra
 
 > Order-for-pickup app that uses SMS to keep customers notified of progress
 
 ## User Stories
 
-#### MVP
+### MVP
 
 As a customer I can...
 
@@ -21,9 +21,9 @@ As a operator, I can...
 - view all orders
 - view single order
 - send SMS notifications
-  - select time estimate
+  - input time estimate
 
-#### Stretch
+### Stretch
 
 As a user, I can...
 
