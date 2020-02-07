@@ -1,0 +1,26 @@
+{
+  "name": "foodzebra",
+  "version": "1.0.0",
+  "description": "Order-for-pickup app that uses SMS to keep customers notified of progress",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bryce-mcmath/foodzebra.git"
+  },
+  "keywords": [
+    "food",
+    "ordering",
+    "orders",
+    "service",
+    "app"
+  ],
+  "author": "Wilson Wong, Bryce McMath",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bryce-mcmath/foodzebra/issues"
+  },
+  "homepage": "https://github.com/bryce-mcmath/foodzebra#readme"
+}
