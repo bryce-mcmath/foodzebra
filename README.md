@@ -1,6 +1,6 @@
 # Project Title
 
-> Short blurb about what your project does. This is just a template Wilson
+> Order-for-pickup app that uses SMS to keep customers notified of progress
 
 ## User Stories
 
@@ -39,6 +39,32 @@ As a operator, I can...
 - send SMS notification of completion
 - send custom SMS notifications
 - view orders history
+
+## Routes
+
+- = stretch
+
+* /
+  - GET -> render homepage
+* /menu
+  - GET -> retrieve menu items
+  - POST -> add menu item\*
+* /menu/:id
+  - POST -> update menu item
+  - POST -> delete menu item
+  - DELETE -> delete menu item\*
+* /login
+  - POST -> sets cookie, redirects
+* /logout
+  - POST -> removes cookie, redirects
+* /orders
+  - GET -> retrieves all orders
+  - POST -> add order to db
+* /orders/:id
+  - GET -> retrieves specific order
+  - POST -> update order, delete order
+  - UPDATE -> update order\*
+  - DELETE -> delete order\*
 
 <!-- Badges -->
 
