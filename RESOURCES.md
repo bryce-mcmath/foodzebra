@@ -2,16 +2,20 @@
 
 ### Tool References
 
+- [Moqups](https://app.moqups.com/)
 - [Postgres Docs](https://www.postgresql.org/docs/)
-- [Fomantic](https://fomantic-ui.com/)
+- [Parcel Vue Config](https://parceljs.org/vue.html)
+- [semantic-ui-vue](https://semantic-ui-vue.github.io/)
+- [Semantic UI Docs](https://semantic-ui.com/)
 - [Twilio](https://www.twilio.com/)
 - [Heroku With Node and Postgres](https://devcenter.heroku.com/articles/heroku-postgresql#connecting-in-node-js)
+- [Sass Syntax](https://sass-lang.com/documentation/syntax)
 
 ### Guides
 
 - [JSDoc](https://devdocs.io/jsdoc/)
 - [BEM Methodology](http://getbem.com/)
-- [jQuery SPA](https://tutorialzine.com/2015/02/single-page-app-without-a-framework)
+- [Vue](https://vuejs.org/v2/guide/)
 
 ### Inspo
 

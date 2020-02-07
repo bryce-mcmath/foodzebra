@@ -2,6 +2,44 @@
 
 > Short blurb about what your project does. This is just a template Wilson
 
+## User Stories
+
+#### MVP
+
+As a customer I can...
+
+- select menu items
+- add/delete menu items to my cart
+- view my cart
+- add a pickup name and note to my cart
+- checkout my cart
+- recieve SMS notification of order acceptance
+
+As a operator, I can...
+
+- log in
+- view all orders
+- view single order
+- send SMS notifications
+  - select time estimate
+
+#### Stretch
+
+As a user, I can...
+
+- search for menu items (by category as well as text)
+- register/login
+- recieve SMS notification of order completion
+- choose whether or not to recieve completion SMS notification
+
+As a operator, I can...
+
+- register/login
+- add/remove menu items
+- send SMS notification of completion
+- send custom SMS notifications
+- view orders history
+
 <!-- Badges -->
 
 [![NPM Version][npm-image]][npm-url]
