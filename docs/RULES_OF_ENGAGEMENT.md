@@ -6,3 +6,4 @@
   - repo/issue/issue-name
 - no work done on master
 - merge only after review
+- add any resources you use to RESOURCES.md
