@@ -16,6 +16,7 @@
 - [JSDoc](https://devdocs.io/jsdoc/)
 - [BEM Methodology](http://getbem.com/)
 - [Vue](https://vuejs.org/v2/guide/)
+- [Vue With Parcel](https://alligator.io/vuejs/vue-parceljs/)
 
 ### Inspo
 
