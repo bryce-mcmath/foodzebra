@@ -25,10 +25,13 @@ app.get('/', (req, res) => {
   res.render('index.html');
 });
 
-// Uncomment when these routes have been built out
-// app.use('/menu', require('./routes/menu'));
-// app.use('/login', require('./routes/login'));
-// app.use('/logout', require('./routes/logout'));
-// app.use('/orders', require('./routes/orders'));
+app.use('/menu', require('./routes/menu'));
+app.use('/login', require('./routes/login'));
+app.use('/logout', require('./routes/logout'));
+app.use('/orders', require('./routes/orders'));
+
+app.get('/*', (req, res) => {
+  res.send('You went to a route we have not yet handled');
+});
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
