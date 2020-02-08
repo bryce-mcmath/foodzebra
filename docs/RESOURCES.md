@@ -8,7 +8,6 @@
 - [semantic-ui-vue](https://semantic-ui-vue.github.io/)
 - [Semantic UI Docs](https://semantic-ui.com/)
 - [Twilio](https://www.twilio.com/)
-- [Heroku With Node and Postgres](https://devcenter.heroku.com/articles/heroku-postgresql#connecting-in-node-js)
 - [Sass Syntax](https://sass-lang.com/documentation/syntax)
 
 ### Guides
@@ -17,6 +16,7 @@
 - [BEM Methodology](http://getbem.com/)
 - [Vue](https://vuejs.org/v2/guide/)
 - [Vue With Parcel](https://alligator.io/vuejs/vue-parceljs/)
+- [Heroku With Node and Postgres](https://devcenter.heroku.com/articles/heroku-postgresql#connecting-in-node-js)
 
 ### Inspo
 
