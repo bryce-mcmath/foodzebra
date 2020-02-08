@@ -2,104 +2,13 @@
 
 > Order-for-pickup app that uses SMS to keep customers notified of progress
 
-## User Stories
-
-### MVP
-
-As a customer I can...
-
-- select menu items
-- add/delete menu items to my cart
-- view my cart
-- add a pickup name and note to my cart
-- checkout my cart
-- recieve SMS notification of order acceptance
-- recieve SMS notification of order completion
-- view my current order and details (via unique url)
-
-As a operator, I can...
-
-- log in
-- view all orders
-- view single order
-- send SMS notifications on acceptance and completion
-  - input time estimate
-
-### Stretch
-
-As a user, I can...
-
-- search for menu items (by category as well as text)
-- register/login
-- choose whether or not to recieve completion SMS notification
-
-As a operator, I can...
-
-- register/login
-- add/remove menu items
-- send custom SMS notifications
-- view orders history
-
-## Routes
-
-\* = stretch
-
-- /
-  - GET -> render homepage
-- /menu
-  - GET -> retrieve menu items
-  - POST -> add menu item\*
-- /menu/:id
-  - PUT -> update menu item
-  - DELETE -> delete menu item
-- /login
-  - POST -> sets cookie, redirects
-- /logout
-  - DELETE -> removes cookie, redirects
-- /orders
-  - GET -> retrieves all orders
-  - POST -> add order to db
-- /orders/:id
-  - GET -> retrieves specific order
-  - PUT -> update order
-  - DELETE -> delete order
-
-## Wireframes
-
-### MVP
-
-- Customer
-  - Landing
-  - Menu item modal
-  - Cart modal
-  - Payment modal
-- Operator
-  - Landing shows orders
-  - Order modal
-
-### Stretch
-
-- Common
-  - Register modal
-  - Login modal
-- Customer
-  - Profile modal
-- Operator
-  - Menu page
-  - Add menu item modal
-  - Edit menu item modal
-
 <!-- Badges -->
 
-[![NPM Version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
-[![Downloads Stats][npm-downloads]][npm-url]
+[![Build Status](https://travis-ci.com/bryce-mcmath/foodzebra.svg?branch=master)](https://travis-ci.com/bryce-mcmath/foodzebra)
 
-One or two short paragraph statements about your product and what it does.
+FoodZebra is a fullstack application made to model a restaurants online ordering process, from both the user's view and the restaurants. It uses the Twilio API to notify both parties of changes in the order's status via SMS.
 
-<!-- Screenshot -->
-
-![Hover Text](https://upload.wikimedia.org/wikipedia/commons/5/57/Bootstrap-3.1.1-screenshot-jumbotron-example.png)
+To learn more and see it in action, read further.
 
 ## Table of contents
 
@@ -113,10 +22,7 @@ One or two short paragraph statements about your product and what it does.
 - [Deployment](#deployment)
 - [Built with](#built-with)
 - [Contributing](#contributing)
-- [Versioning](#versioning)
-- [Release history](#release-history)
 - [Meta](#meta)
-- [License](#license)
 - [Known issues / bugs](#known-issues-/-bugs)
 - [Feature roadmap](#feature-roadmap)
   - [In the works](#in-the-works)
@@ -125,9 +31,11 @@ One or two short paragraph statements about your product and what it does.
 
 ## Usage
 
-A few motivating and useful examples of how your product can be used. Spice this up with code blocks and potentially more screenshots.
+<!-- Gif -->
 
-_For more examples and usage, please refer to the [Wiki][wiki]._
+![Hover Text](https://upload.wikimedia.org/wikipedia/commons/5/57/Bootstrap-3.1.1-screenshot-jumbotron-example.png)
+
+The above gif demonstrates basic usage. For more gifs, screenshots, and an outline of the plan this project was made from, please navigate to the /docs directory from the root of this repo.
 
 ## Getting started
 
@@ -161,39 +69,7 @@ npm run dev
 
 End with an example of getting some data out of the system or using it for a little demo
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-Add the following section to your `package.json`:
-
-```json
-{
-  "scripts": {
-    "test": "jest"
-  }
-}
-```
-
-### End to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### Coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
 ## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built with
 
@@ -204,46 +80,17 @@ Add additional notes about how to deploy this on a live system
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-<!-- OR -->
-
-1. Fork it (<https://github.com/yourname/yourproject/fork>)
-2. Create your feature branch (`git checkout -b feature/fooBar`)
-3. Commit your changes (`git commit -am 'Add some fooBar'`)
+1. Fork it (<https://github.com/bryce-mcmath/foodzebra/fork>)
+2. Create your feature branch (`git checkout -b feature/fooBar`) or issue branch (`git checkout -b issue/brokenThing`)
+3. Commit your changes (`git commit -m 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
-5. Create a new Pull Request
-
-## Versioning
-
-[SemVer](http://semver.org/) is being used for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
-
-## Release history
-
-- 0.2.1
-  - CHANGE: Update docs (module code remains unchanged)
-- 0.2.0
-  - CHANGE: Remove `setDefaultXYZ()`
-  - ADD: Add `init()`
-- 0.1.1
-  - FIX: Crash when calling `baz()` (Thanks @GenerousContributorName!)
-- 0.1.0
-  - The first proper release
-  - CHANGE: Rename `foo()` to `bar()`
-- 0.0.1
-  - Work in progress
+5. Create a new PR
 
 ## Meta
 
-Your Name – [@YourTwitter](https://twitter.com/your_handle) – YourEmail@example.com
+Wilson Wong – [wilwong89](https://github.com/wilwong89) – YourEmail@example.com
 
-Distributed under the XYZ license. See `LICENSE.md` for more information.
-
-[https://github.com/yourname](https://github.com/yourname)
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+Bryce McMath – [bryce-mcmath](https://github.com/bryce-mcmath) – bryce.j.mcmath@gmail.com
 
 ## Known issues / bugs
 
@@ -273,12 +120,3 @@ _If you'd like to add a feature yourself, please see the [Contributing](#contrib
 - etc
 
 ---
-
-<!-- Markdown link & img definitions -->
-
-[npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/datadog-metrics
-[npm-downloads]: https://img.shields.io/npm/dm/datadog-metrics.svg?style=flat-square
-[travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
-[travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
-[wiki]: https://github.com/yourname/yourproject/wiki
