@@ -6,7 +6,7 @@
   "scripts": {
     "start": "parcel ./public/index.html",
     "build": "parcel build ./public/index.html",
-    "server": "nodemon server.js"
+    "server": "nodemon --watch ./routes --watch server.js"
   },
   "repository": {
     "type": "git",
