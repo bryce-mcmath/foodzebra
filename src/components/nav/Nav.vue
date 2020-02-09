@@ -1,7 +1,7 @@
 <template>
   <div class="nav">
-    <img src="../../../public/foodzebralogo.PNG" />
-    <img src="../../../public/foodzebrabrand.PNG" />
+    <img class="nav-image logo" src="../../../public/foodzebralogo.PNG" />
+    <img class="nav-image brand" src="../../../public/foodzebrabrand.PNG" />
   </div>
 </template>
 
