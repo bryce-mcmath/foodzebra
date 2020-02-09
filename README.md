@@ -8,7 +8,7 @@
 
 FoodZebra is a fullstack application made to model a restaurants online ordering process, from both the user's view and the restaurants. It uses the Twilio API to notify both parties of changes in the order's status via SMS.
 
-To learn more and see it in action, read further.
+To learn more and see it in action, read further. Or visit it [live](https://ancient-woodland-75923.herokuapp.com/)
 
 ## Table of contents
 
