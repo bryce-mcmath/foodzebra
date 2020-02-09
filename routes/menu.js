@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const { getAllMenuItems, getMenuItem } = require("../api/queries.js");
+const { getAllMenuItem, getMenuItemById } = require("../api/queries.js");
 
 // Routes: /
 
 // Queries DB for all menu items. Takes no args, returns array w/ objs inside
 router.get("/", (req, res) => {
-  getAllMenuItems()
+  getAllMenuItem()
     .then(function(result) {
       if (result.rows) {
         res.send(result.rows);
@@ -31,7 +31,7 @@ router.get("/:id", (req, res) => {
   const id = req.params.id;
 
   if (typeof id === "string") {
-    getMenuItem(id)
+    getMenuItemById(id)
       .then(function(result) {
         res.send(result.rows);
       })
