@@ -1,3 +1,6 @@
+require('dotenv').config();
+const { Pool } = require('pg');
+
 let dbParams = {};
 if (process.env.DB_URL) {
   dbParams.connectionString = process.env.DB_URL;
@@ -11,6 +14,8 @@ if (process.env.DB_URL) {
   };
 }
 
+const pool = new Pool(dbParams);
+
 module.exports = {
-  dbParams
+  query: (text, params) => pool.query(text, params)
 };

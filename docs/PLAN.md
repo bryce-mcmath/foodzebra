@@ -27,6 +27,7 @@ As a operator, I can...
 
 As a user, I can...
 
+- view menu items by category (mains, appetizers, etc.)
 - search for menu items (by category as well as text)
 - register/login
 - choose whether or not to recieve completion SMS notification
