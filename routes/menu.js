@@ -1,16 +1,18 @@
 const express = require("express");
 const router = express.Router();
-// const { getAllMenuItems } = require("../../api/queries.js");
-const getAllMenuItems = function() {
-  return null;
-}; // dummy to prevent errors
+const { getAllMenuItems, getMenuItem } = require("../api/queries.js");
 
 // Routes: /
 
+// Queries DB for all menu items. Takes no args, returns array w/ objs inside
 router.get("/", (req, res) => {
   getAllMenuItems()
     .then(function(result) {
-      res.send(result);
+      if (result.rows) {
+        res.send(result.rows);
+      } else {
+        throw new Error("No rows in menu items");
+      }
     })
     .catch(err => {
       console.log(err);
@@ -24,13 +26,14 @@ router.post("/", (req, res) => {
 
 // Routes: /menu/:id params
 
+// Queries DB for a menu item. Takes one id arg, returns array w/ obj inside
 router.get("/:id", (req, res) => {
   const id = req.params.id;
 
   if (typeof id === "string") {
-    getAllMenuItems()
+    getMenuItem(id)
       .then(function(result) {
-        res.send(result);
+        res.send(result.rows);
       })
       .catch(err => {
         console.log(err);
