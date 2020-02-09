@@ -10,3 +10,6 @@ dist
 
 # dotfiles
 .env
+
+# log
+npm-debug.log
