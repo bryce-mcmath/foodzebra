@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+<<<<<<< HEAD
 // Web server config
 const PORT = process.env.PORT || 8080;
 const ENV = process.env.ENV || "development";
@@ -12,7 +13,20 @@ const ENV = process.env.ENV || "development";
 const express = require("express");
 const helmet = require("helmet");
 const xss = require("xss-clean");
+=======
+// Imports
+const { Pool } = require('pg');
+const express = require('express');
+const helmet = require('helmet');
+const xss = require('xss-clean');
+>>>>>>> 49d38ed955217c45d2fdc5627aba33a08494b6be
 const app = express();
+
+// Web server config
+const PORT = process.env.PORT || 8080;
+const { dbParams } = require('./dbSetup.js');
+const db = new Pool(dbParams);
+db.connect();
 
 // Initialize middleware
 app.use(helmet());
