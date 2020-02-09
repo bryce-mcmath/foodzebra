@@ -1,11 +1,21 @@
 const express = require("express");
 const router = express.Router();
-const dummyMenu = require("../src/dummyData/menuItems");
+// const { getAllMenuItems } = require("../../api/queries.js");
+const getAllMenuItems = function() {
+  return null;
+}; // dummy to prevent errors
 
 // Routes: /
 
 router.get("/", (req, res) => {
-  res.send(dummyMenu);
+  getAllMenuItems()
+    .then(function(result) {
+      res.send(result);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(400);
+    });
 });
 
 router.post("/", (req, res) => {
@@ -16,16 +26,16 @@ router.post("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
   const id = req.params.id;
-  let returnData = null;
 
   if (typeof id === "string") {
-    for (let i = 0; i < dummyMenu.length; i++) {
-      if (dummyMenu[i].id === id) {
-        returnData = dummyMenu[i];
-      }
-    }
-
-    res.send(returnData);
+    getAllMenuItems()
+      .then(function(result) {
+        res.send(result);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(400);
+      });
   } else {
     res.status(400);
   }
