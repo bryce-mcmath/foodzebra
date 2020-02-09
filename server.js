@@ -1,7 +1,6 @@
 require('dotenv').config();
 
 // Imports
-const { Pool } = require('pg');
 const express = require('express');
 const helmet = require('helmet');
 const xss = require('xss-clean');
@@ -9,9 +8,7 @@ const app = express();
 
 // Web server config
 const PORT = process.env.PORT || 8080;
-const { dbParams } = require('./dbSetup.js');
-const db = new Pool(dbParams);
-db.connect();
+const db = require('./db');
 
 // Initialize middleware
 app.use(helmet());
