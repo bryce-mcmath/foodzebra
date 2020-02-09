@@ -9,7 +9,7 @@ const app = express();
 
 // Web server config
 const PORT = process.env.PORT || 8080;
-const { dbParams } = require('./config.js');
+const { dbParams } = require('./dbSetup.js');
 const db = new Pool(dbParams);
 db.connect();
 
