@@ -17,6 +17,5 @@ jobs:
         provider: heroku
         api_key:
           secure: 78656e67-d3cf-4b4b-bcc2-dab682982bde
-        run: 'node server.js'
         app: ancient-woodland-75923
         skip_cleanup: true
