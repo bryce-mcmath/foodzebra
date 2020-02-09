@@ -1,5 +1,4 @@
 require('dotenv').config();
-console.log('Hello Dan');
 
 // Imports
 const { Pool } = require('pg');
