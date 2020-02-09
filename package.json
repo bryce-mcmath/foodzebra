@@ -4,9 +4,10 @@
   "description": "Order-for-pickup app that uses SMS to keep customers notified of progress",
   "main": "server.js",
   "scripts": {
-    "start": "parcel ./public/index.html",
+    "start": "node server.js",
+    "parc": "parcel ./public/index.html",
     "build": "parcel build ./public/index.html",
-    "server": "nodemon server.js"
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "helmet": "^3.21.2",
     "moment": "^2.24.0",
     "node-sass": "^4.13.0",
+    "pg": "^7.18.1",
     "uuid": "^3.3.3",
     "vue": "^2.6.11",
     "vue-hot-reload-api": "^2.3.4",
