@@ -11,12 +11,13 @@
 </template>
 
 <script>
-import Nav from './components/nav/Nav.vue';
-import Hero from './components/hero/Hero.vue';
-import Footer from './components/footer/Footer.vue';
-import MenuItems from './components/menu_items/MenuItems.vue';
+import Nav from "./components/nav/Nav.vue";
+import Hero from "./components/hero/Hero.vue";
+import Footer from "./components/footer/Footer.vue";
+import MenuItems from "./components/menu_items/MenuItems.vue";
+
 export default {
-  name: 'app',
+  name: "app",
   components: {
     Nav,
     Hero,
@@ -27,15 +28,20 @@ export default {
     return {
       cart: {
         items: [],
-        mobile: '',
-        customer_note: '',
-        pickup_name: ''
+        mobile: "",
+        customer_note: "",
+        pickup_name: ""
       }
     };
+  },
+  methods: {
+    customEvent: function(payload) {
+      console.log("custom", payload);
+    }
   }
 };
 </script>
 
 <style lang="scss">
-@import './app.scss';
+@import "./app.scss";
 </style>
