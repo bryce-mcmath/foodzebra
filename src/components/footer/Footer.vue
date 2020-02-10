@@ -11,6 +11,7 @@
         <p>314 Delphi Street</p>
         <p>Victoria, BC V9A 4E6</p>
         <p>Contact Us | 888.888.8888</p>
+        <p>hello@foodzebra.co.uk</p>
       </div>
       <div class="mailing flex">
         <h3 class="footer-header">Join Our Mailing List</h3>
@@ -24,14 +25,20 @@
       <div class="follow flex">
         <h3 class="footer-header">Follow Us</h3>
         <div class="social flex">
-          <i class="fab fa-instagram fa-2x"></i>
-          <i class="fab fa-twitter fa-2x"></i>
-          <i class="fab fa-facebook fa-2x"></i>
+          <div class="insta flex">
+            <i class="fab fa-instagram fa-2x"></i>
+          </div>
+          <div class="twitter flex">
+            <i class="fab fa-twitter fa-2x"></i>
+          </div>
+          <div class="facebook flex">
+            <i class="fab fa-facebook-f fa-2x"></i>
+          </div>
         </div>
       </div>
     </section>
     <div class="copyright">
-      &copy;2020 | Privacy Policy | Github
+      &copy;2020 | <span>Privacy Policy</span> | <span>Github</span>
     </div>
   </footer>
 </template>

@@ -3,6 +3,7 @@
   background: #222;
   flex-direction: column;
   justify-content: center;
+  font-weight: bold;
 
   .footer-brand {
     margin-top: 24px;
@@ -29,6 +30,7 @@
     grid-template-columns: 1fr 1fr 1fr;
     width: 80%;
     margin: 24px auto;
+    font-weight: inherit;
 
     > * {
       padding: 0 16px;
@@ -38,7 +40,8 @@
       flex-direction: column;
 
       > * {
-        color: red;
+        color: #555;
+        font-weight: inherit;
       }
     }
 
@@ -62,6 +65,7 @@
         > .ui.button {
           background: #555;
           color: #ccc;
+          padding: 8px 16px;
         }
       }
     }
@@ -71,6 +75,24 @@
         width: 100%;
         justify-content: space-around;
         align-items: center;
+        color: red;
+
+        > * {
+          justify-content: center;
+          align-items: center;
+          border: 2px solid red;
+          border-radius: 50%;
+          height: 48px;
+          width: 48px;
+          background: transparent;
+          transition: all 0.5s;
+        }
+
+        > *:hover {
+          background: red;
+          color: #222;
+          transition: all 0.5s;
+        }
       }
     }
 
@@ -82,5 +104,9 @@
   .copyright {
     margin: 16px;
     text-align: center;
+    color: #555;
+    > span {
+      color: red;
+    }
   }
 }
