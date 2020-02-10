@@ -27,5 +27,19 @@
     grid-template-columns: 1fr 1fr 1fr;
     height: 400px;
     width: 80%;
+
+    .location-contact {
+      flex-direction: column;
+    }
+
+    .mailing {
+    }
+
+    .social {
+    }
+
+    .footer-header {
+      color: white;
+    }
   }
 }

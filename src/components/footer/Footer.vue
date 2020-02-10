@@ -19,6 +19,14 @@
           <input type="submit" value="Sign Up" class="ui button" />
         </form>
       </div>
+      <div class="follow flex">
+        <h3 class="footer-header">Join Our Mailing List</h3>
+        <div class="social flex">
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-facebook"></i>
+        </div>
+      </div>
     </section>
     <div class="copyright">
       &copy;2020 | Privacy Policy | Github
