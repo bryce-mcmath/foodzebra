@@ -3,7 +3,7 @@
     <nav class="nav flex" v-bind:class="{ transparent: !isScrolled }">
       <ul class="nav-left flex">
         <li>
-          <a shref="#menu">Menu</a>
+          <a href="#menu">Menu</a>
         </li>
         <li>
           <a href="#">Events</a>
