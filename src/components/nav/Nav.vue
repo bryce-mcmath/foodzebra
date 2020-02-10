@@ -1,24 +1,54 @@
 <template>
   <div>
-    <div class="nav transparent"></div>
-    <div class="nav visible">
-      <div class="fl">
-        <img class="nav-image logo" src="../../../public/foodzebralogo.PNG" />
-        <img class="nav-image brand" src="../../../public/foodzebrabrand.PNG" />
-      </div>
-      <div class="fr">
-        <sui-button primary>Primary</sui-button>
-        <sui-button secondary>Secondary</sui-button>
-      </div>
-    </div>
+    <nav v-on:scroll="handleScroll()" class="nav flex" v-bind:class="{ transparent: !isScrolled }">
+      {{isScrolled}}
+      <ul class="nav-left flex">
+        <li>
+          <a href="#menu">Menu</a>
+        </li>
+        <li>
+          <a href="#">Events</a>
+        </li>
+      </ul>
+      <a href="/" class="brand">
+        <img src="../../../public/foodzebrabrand.png" alt="foodzebra" />
+      </a>
+      <ul class="nav-right flex">
+        <li>
+          <a href="#footer">Hours</a>
+        </li>
+        <li>
+          <a href="#footer">Contact</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="nav-underlay"></div>
   </div>
 </template>
 
 <script>
 module.exports = {
+  methods: {
+    handleScroll: () => {
+      console.log("HandleScroll was called");
+      if (window.scrollY > 72) {
+        this.isScrolled = true;
+        console.log("isScrolled was set to true");
+      } else {
+        this.isScrolled = false;
+        console.log("isScrolled was set to false");
+      }
+    }
+  },
+  created() {
+    window.addEventListener("scroll", this.handleScroll);
+  },
+  destroyed() {
+    window.removeEventListener("scroll", this.handleScroll);
+  },
   data: function() {
     return {
-      testText: "Hello?"
+      isScrolled: false
     };
   }
 };

@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Nav></Nav>
+    <div style="height: 300vh"><div>
   </div>
 </template>
 
@@ -13,17 +14,11 @@ export default {
     Nav
   },
   data() {
-    return {
-      msg: "Welcome to Your Vue.js App!"
-    };
+    return {};
   }
 };
 </script>
 
 <style lang="scss">
 @import "./app.scss";
-
-#app {
-  color: #56b983;
-}
 </style>
