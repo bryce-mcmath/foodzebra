@@ -3,7 +3,7 @@
     <nav class="nav flex" v-bind:class="{ transparent: !isScrolled }">
       <ul class="nav-left flex">
         <li>
-          <a @click="retrieveMenu" href="#menu">Menu</a>
+          <a shref="#menu">Menu</a>
         </li>
         <li>
           <a href="#">Events</a>
@@ -32,8 +32,6 @@
 </template>
 
 <script>
-import ajaxCalls from "../../api/ajaxCalls";
-
 export default {
   name: "Nav",
   methods: {
@@ -43,9 +41,6 @@ export default {
       } else {
         this.isScrolled = false;
       }
-    },
-    retrieveMenu: function() {
-      ajaxCalls.getAllMenuItems().then(response => console.log(response));
     }
   },
   created() {

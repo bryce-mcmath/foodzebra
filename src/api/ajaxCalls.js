@@ -1,7 +1,10 @@
 import axios from "axios";
 
-export default {
-  getAllMenuItems() {
-    return axios.get("/menu").then(response => response);
+module.exports = {
+  getAllMenuItems: () => {
+    return axios.get("/menu").then(response => response.data);
+  },
+  getMenuItems: id => {
+    return axios.get(`/menu/${id}`).then(response => response.data);
   }
 };
