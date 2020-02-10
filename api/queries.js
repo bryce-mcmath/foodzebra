@@ -31,6 +31,36 @@ const getUserById = (id = "") => {
   return db.query(query, [id]);
 };
 
+const getUserByEmail = (inputParam = "") => {
+  if (!inputParam) Promise.reject("email required");
+
+  let query = `
+  SELECT * FROM "User"
+  WHERE email = $1;`;
+
+  return db.query(query, [inputParam]);
+};
+
+const getUserByName = (inputParam = "") => {
+  if (!inputParam) Promise.reject("name required");
+
+  let query = `
+  SELECT * FROM "User"
+  WHERE name = $1;`;
+
+  return db.query(query, [inputParam]);
+};
+
+const getUserByMobile = (inputParam = "") => {
+  if (!inputParam) Promise.reject("mobile required");
+
+  let query = `
+  SELECT * FROM "User"
+  WHERE mobile = $1;`;
+
+  return db.query(query, [inputParam]);
+};
+
 const getAllOrder = () => {
   let query = `
   SELECT * FROM "Order"
@@ -60,12 +90,77 @@ const getOrderItemByOrderId = (id = "") => {
   return db.query(query, [id]);
 };
 
+const getOrderByPickupName = (inputParam = "") => {
+  if (!inputParam) Promise.reject("pickup_name required");
+
+  let query = `
+  SELECT * FROM "Order"
+  WHERE pickup_name = $1;`;
+
+  return db.query(query, [inputParam]);
+};
+
+const getOrderByCreatedTime = (after = "", before = "") => {
+  if (!after) Promise.reject("time 'estimate' in seconds required");
+
+  let values = [after];
+  let query = `
+  SELECT * FROM "Order"
+  WHERE created_at > $1`;
+
+  if (before) query += `AND created_at < $2`;
+
+  query += ";";
+  values.push(before);
+
+  return db.query(query, values);
+};
+
+const getOrderByEstimateTime = (after = "", before = "") => {
+  if (!after) Promise.reject("time 'estimate' in seconds required");
+
+  let values = [after];
+  let query = `
+  SELECT * FROM "Order"
+  WHERE estimate > $1`;
+
+  if (before) query += `AND estimate < $2`;
+
+  query += ";";
+  values.push(before);
+
+  return db.query(query, values);
+};
+
+const getOrderByAcceptedTime = (after = "", before = "") => {
+  if (!after) Promise.reject("time 'estimate' in seconds required");
+
+  let values = [after];
+  let query = `
+  SELECT * FROM "Order"
+  WHERE accepted_at > $1`;
+
+  if (before) query += `AND accepted_at < $2`;
+
+  query += ";";
+  values.push(before);
+
+  return db.query(query, values);
+};
+
 module.exports = {
   getAllMenuItem,
   getMenuItemById,
   getAllUser,
   getUserById,
+  getUserByEmail,
+  getUserByName,
+  getUserByMobile,
   getAllOrder,
   getOrderById,
-  getOrderItemByOrderId
+  getOrderItemByOrderId,
+  getOrderByPickupName,
+  getOrderByCreatedTime,
+  getOrderByEstimateTime,
+  getOrderByAcceptedTime
 };
