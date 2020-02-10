@@ -10,7 +10,7 @@
         </li>
       </ul>
       <a href="/" class="brand flex">
-        <img src="../../../public/foodzebralogo.PNG" alt="logo" />
+        <img src="../../../public/foodzebralogo,png" alt="logo" />
         <span>food</span>zebra
       </a>
       <ul class="nav-right flex">
