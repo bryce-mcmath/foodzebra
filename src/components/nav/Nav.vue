@@ -10,7 +10,7 @@
         </li>
       </ul>
       <a href="/" class="brand">
-        <img src="../../../public/foodzebrabrand.png" alt="foodzebra" />
+        <img src="../../../public/foodzebrabrand.PNG" alt="foodzebra" />
       </a>
       <ul class="nav-right flex">
         <li>
@@ -29,14 +29,10 @@
 module.exports = {
   methods: {
     handleScroll: function() {
-      console.log("HandleScroll was called");
-      console.log("isScrolled is: ", this.isScrolled);
       if (window.scrollY > 120) {
         this.isScrolled = true;
-        console.log("isScrolled was set to true");
       } else {
         this.isScrolled = false;
-        console.log("isScrolled was set to false");
       }
     }
   },
