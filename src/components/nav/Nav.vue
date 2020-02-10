@@ -9,8 +9,9 @@
           <a href="#">Events</a>
         </li>
       </ul>
-      <a href="/" class="brand">
-        <img src="../../../public/foodzebrabrand.PNG" alt="foodzebra" />
+      <a href="/" class="brand flex">
+        <img src="../../../public/foodzebralogo.png" alt="logo" />
+        <span>food</span>zebra
       </a>
       <ul class="nav-right flex">
         <li>
@@ -21,12 +22,12 @@
         </li>
       </ul>
     </nav>
-    <div class="nav-underlay"></div>
   </div>
 </template>
 
 <script>
-module.exports = {
+export default {
+  name: "Nav",
   methods: {
     handleScroll: function() {
       if (window.scrollY > 120) {

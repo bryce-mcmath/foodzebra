@@ -6,7 +6,7 @@
   justify-content: space-between;
   padding: 8px;
   background: white;
-  z-index: 1;
+  z-index: 2;
   color: #222;
   min-height: 64px;
   transition: all 0.5s;
@@ -16,12 +16,6 @@
   background: transparent;
   min-height: 120px;
   transition: all 0.5s;
-}
-
-.nav-underlay {
-  width: 100vw;
-  height: 64px;
-  z-index: 0;
 }
 
 .nav-left,
@@ -37,8 +31,26 @@
   font-size: 32px;
   font-family: inherit;
   color: #222;
+  transition: all 0.25s;
 }
 
-.nav img {
-  height: 56px;
+.nav-left *:hover,
+.nav-right *:hover {
+  color: red;
+  transition: all 0.25s;
+}
+
+.nav .brand {
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+  font-family: $primary-font;
+  font-weight: bold;
+  color: #222;
+  > span {
+    color: red;
+  }
+  > img {
+    height: 56px;
+  }
 }

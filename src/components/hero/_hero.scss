@@ -1,0 +1,55 @@
+.hero {
+  position: absolute;
+  top: 0;
+  min-height: 544px;
+  max-height: 100vh;
+  width: 100%;
+
+  > .hero-img {
+    background: center center no-repeat url('../public/hero.PNG');
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+  }
+
+  > .hero-content {
+    margin-top: 144px;
+    margin-left: 16vw;
+    flex-direction: column;
+    width: 56vw;
+    height: calc(100% - 144px);
+    z-index: 1;
+
+    > h1 {
+      font-family: $secondary-font;
+      font-size: 80px;
+      color: red;
+    }
+
+    > p {
+      font-size: 24px;
+    }
+
+    > a > .ui.button {
+      background: red;
+    }
+
+    > a > .ui.button:hover {
+      background: darkred;
+      color: white;
+    }
+  }
+
+  > .hero-overlay {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: #fff;
+    opacity: 50%;
+    z-index: -1;
+  }
+}

@@ -1,6 +1,7 @@
 @charset 'utf-8';
-@import "./variables", "./reset", "./utilities", "./mixins", "./functions";
-@import "./components/nav/nav", "./components/footer/footer",
-  "./components/landing/landing", "./components/cart/cart",
-  "./components/menu/menu", "./components/menu_item/menu_item",
-  "./components/orders/orders", "./components/order/order";
+@import './variables', './reset', './utilities', './mixins', './functions';
+@import './components/nav/nav', './components/footer/footer',
+  './components/landing/landing', './components/hero/hero',
+  './components/cart/cart', './components/menu/menu',
+  './components/menu_item/menu_item', './components/orders/orders',
+  './components/order/order';
