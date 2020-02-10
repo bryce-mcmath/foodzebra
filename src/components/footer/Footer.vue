@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer">
+  <footer class="footer flex">
     <div class="footer-brand flex">
       <hr />
       <div class="brand"><span>food</span>zebra</div>
@@ -14,17 +14,19 @@
       </div>
       <div class="mailing flex">
         <h3 class="footer-header">Join Our Mailing List</h3>
-        <form action="#" class="flex">
-          <input type="text" placeholder="Email Address" />
+        <form action="#" class="flex ui form">
+          <div class="ui input">
+            <input type="text" placeholder="Email Address" />
+          </div>
           <input type="submit" value="Sign Up" class="ui button" />
         </form>
       </div>
       <div class="follow flex">
-        <h3 class="footer-header">Join Our Mailing List</h3>
+        <h3 class="footer-header">Follow Us</h3>
         <div class="social flex">
-          <i class="fab fa-instagram"></i>
-          <i class="fab fa-twitter"></i>
-          <i class="fab fa-facebook"></i>
+          <i class="fab fa-instagram fa-2x"></i>
+          <i class="fab fa-twitter fa-2x"></i>
+          <i class="fab fa-facebook fa-2x"></i>
         </div>
       </div>
     </section>

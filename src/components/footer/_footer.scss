@@ -1,9 +1,11 @@
 .footer {
   width: 100vw;
   background: #222;
+  flex-direction: column;
+  justify-content: center;
 
   .footer-brand {
-    margin-top: 64px;
+    margin-top: 24px;
     font-size: 48px;
     font-weight: bold;
     justify-content: space-around;
@@ -25,21 +27,60 @@
 
   .footer-content {
     grid-template-columns: 1fr 1fr 1fr;
-    height: 400px;
     width: 80%;
+    margin: 24px auto;
+
+    > * {
+      padding: 0 16px;
+    }
 
     .location-contact {
       flex-direction: column;
+
+      > * {
+        color: red;
+      }
     }
 
     .mailing {
-    }
+      flex-direction: column;
 
-    .social {
+      form {
+        width: 100%;
+        justify-content: space-around;
+        align-items: center;
+
+        > * {
+          height: 100%;
+        }
+
+        > .ui.input {
+          width: 100%;
+          padding-right: 8px;
+        }
+
+        > .ui.button {
+          background: #555;
+          color: #ccc;
+        }
+      }
+    }
+    .follow {
+      flex-direction: column;
+      .social {
+        width: 100%;
+        justify-content: space-around;
+        align-items: center;
+      }
     }
 
     .footer-header {
-      color: white;
+      color: #555;
     }
+  }
+
+  .copyright {
+    margin: 16px;
+    text-align: center;
   }
 }
