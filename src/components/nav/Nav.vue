@@ -1,7 +1,6 @@
 <template>
   <div>
-    <nav v-on:scroll="handleScroll()" class="nav flex" v-bind:class="{ transparent: !isScrolled }">
-      {{isScrolled}}
+    <nav class="nav flex" v-bind:class="{ transparent: !isScrolled }">
       <ul class="nav-left flex">
         <li>
           <a href="#menu">Menu</a>
@@ -29,9 +28,10 @@
 <script>
 module.exports = {
   methods: {
-    handleScroll: () => {
+    handleScroll: function() {
       console.log("HandleScroll was called");
-      if (window.scrollY > 72) {
+      console.log("isScrolled is: ", this.isScrolled);
+      if (window.scrollY > 120) {
         this.isScrolled = true;
         console.log("isScrolled was set to true");
       } else {

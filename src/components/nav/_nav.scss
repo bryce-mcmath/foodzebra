@@ -6,13 +6,16 @@
   justify-content: space-between;
   padding: 8px;
   background: white;
-  height: 64px;
   z-index: 1;
   color: #222;
+  min-height: 64px;
+  transition: all 0.5s;
 }
 
 .nav.transparent {
   background: transparent;
+  min-height: 120px;
+  transition: all 0.5s;
 }
 
 .nav-underlay {
