@@ -26,8 +26,13 @@ app.use("/login", require("./routes/login"));
 app.use("/logout", require("./routes/logout"));
 app.use("/orders", require("./routes/orders"));
 
+<<<<<<< HEAD
 app.get("/*", (req, res) => {
   res.send("You went to a route we have not yet handled");
+=======
+app.get('/*', (req, res) => {
+  res.redirect('/');
+>>>>>>> origin
 });
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
