@@ -54,8 +54,8 @@ const getOrderItemByOrderId = (id = "") => {
 
   let query = `
   SELECT * FROM "OrderItem"
-  JOIN "Order" ON "Order.id" = "OrderItem.order_id"
-  WHERE "Order.id" = $1;`;
+  JOIN "Order" ON "Order".id = "OrderItem".order_id
+  WHERE "Order".id = $1;`;
 
   return db.query(query, [id]);
 };
