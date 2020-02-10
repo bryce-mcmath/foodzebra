@@ -33,7 +33,7 @@ To learn more and see it in action, read further. Or visit it [live](https://anc
 
 <!-- Gif -->
 
-![Hover Text](https://upload.wikimedia.org/wikipedia/commons/5/57/Bootstrap-3.1.1-screenshot-jumbotron-example.png)
+![Hover Text](https://upload.wikimedia.org/wikipedia/commons/5/57/Bootstrap-3.1.1-screenshot-jumbotron-example.PNG)
 
 The above gif demonstrates basic usage. For more gifs, screenshots, and an outline of the plan this project was made from, please navigate to the /docs directory from the root of this repo.
 

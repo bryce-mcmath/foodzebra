@@ -10,7 +10,7 @@
         </li>
       </ul>
       <a href="/" class="brand flex">
-        <img src="../../../public/foodzebralogo.png" alt="logo" />
+        <img src="../../../public/foodzebralogo.PNG" alt="logo" />
         <span>food</span>zebra
       </a>
       <ul class="nav-right flex">
@@ -33,7 +33,7 @@
 
 <script>
 export default {
-  name: "Nav",
+  name: 'Nav',
   methods: {
     handleScroll: function() {
       if (window.scrollY > 80) {
@@ -44,10 +44,10 @@ export default {
     }
   },
   created() {
-    window.addEventListener("scroll", this.handleScroll);
+    window.addEventListener('scroll', this.handleScroll);
   },
   destroyed() {
-    window.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener('scroll', this.handleScroll);
   },
   data: function() {
     return {
