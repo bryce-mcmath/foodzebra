@@ -41,7 +41,7 @@ As a operator, I can...
 
 ## Entity Relationship Diagram
 
-![ERD](https://raw.githubusercontent.com/bryce-mcmath/foodzebra/master/docs/ERD,png)
+![ERD](https://raw.githubusercontent.com/bryce-mcmath/foodzebra/master/docs/ERD.png)
 
 ## Routes
 
