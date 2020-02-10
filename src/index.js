@@ -1,11 +1,13 @@
 import Vue from "vue";
 import App from "./App.vue";
 import axios from "axios";
+import SuiVue from "semantic-ui-vue";
+import "semantic-ui-css/semantic.min.css";
 
-console.log(process.env.BUILD_ENV);
+Vue.use(SuiVue);
 
+// To set base URL for axios calls
 let baseURL = window.location.origin;
-
 if (process.env.BUILD_ENV === "production") {
   Vue.config.productionTip = false;
 }

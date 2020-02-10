@@ -1,29 +1,41 @@
 <template>
   <div id="app">
     <Nav></Nav>
+    <!-- if on / -->
+    <Hero></Hero>
+    <MenuItems></MenuItems>
+    <!-- if on /orders as operator -->
+    <!-- <Orders /> -->
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
-import Nav from "./components/nav/Nav.vue";
-
+import Nav from './components/nav/Nav.vue';
+import Hero from './components/hero/Hero.vue';
+import Footer from './components/footer/Footer.vue';
+import MenuItems from './components/menu_items/MenuItems.vue';
 export default {
-  name: "app",
+  name: 'app',
   components: {
-    Nav
+    Nav,
+    Hero,
+    MenuItems,
+    Footer
   },
   data() {
     return {
-      msg: "Welcome to Your Vue.js App!"
+      cart: {
+        items: [],
+        mobile: '',
+        customer_note: '',
+        pickup_name: ''
+      }
     };
   }
 };
 </script>
 
-<style lang="css">
-@import "./app.scss";
-
-#app {
-  color: #56b983;
-}
+<style lang="scss">
+@import './app.scss';
 </style>

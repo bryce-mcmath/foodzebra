@@ -1,10 +1,84 @@
 .nav {
-  background-color: $background;
-  color: $primary-color;
+  width: 100vw;
   position: fixed;
-  width: 100%;
-  height: 152px;
-  line-height: 152px;
-  margin: 8px;
-  vertical-align: center;
+  top: 0;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  background: white;
+  z-index: 2;
+  color: #222;
+  min-height: 88px;
+  transition: all 0.5s;
+
+  .nav-left,
+  .nav-right {
+    width: 30%;
+    align-items: center;
+    justify-content: space-around;
+    padding: 8px;
+  }
+
+  .nav-left *,
+  .nav-right * {
+    font-size: 32px;
+    font-weight: bold;
+    font-family: inherit;
+    color: #222;
+    transition: all 0.25s;
+  }
+  .nav-left *:hover,
+  .nav-right *:hover {
+    color: red;
+    transition: all 0.25s;
+  }
+
+  .brand {
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+    font-family: $primary-font;
+    font-weight: bold;
+    color: #222;
+    > span {
+      color: red;
+    }
+    > img {
+      height: 56px;
+    }
+  }
+
+  .cart {
+    position: relative;
+    margin-right: 16px;
+    background: red;
+    border-radius: 25%;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    min-width: 56px;
+    min-height: 56px;
+
+    > i {
+      font-size: 24px;
+    }
+
+    > .count {
+      background: #222;
+      border-radius: 50%;
+      width: 50%;
+      height: 50%;
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+.nav.transparent {
+  background: transparent;
+  min-height: 120px;
+  transition: all 0.5s;
 }
