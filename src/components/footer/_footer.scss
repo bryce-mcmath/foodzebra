@@ -1,0 +1,29 @@
+.footer {
+  width: 100vw;
+  background: #222;
+
+  .footer-brand {
+    margin-top: 64px;
+    font-size: 48px;
+    font-weight: bold;
+    justify-content: space-around;
+    align-items: center;
+
+    > .brand {
+      color: #555;
+
+      > span {
+        color: red;
+      }
+    }
+
+    > hr {
+      border: 2px solid #555;
+      width: 30%;
+    }
+  }
+
+  .footer-content {
+    height: 400px;
+  }
+}
