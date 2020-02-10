@@ -19,7 +19,7 @@
     margin-top: 144px;
     margin-left: 16vw;
     flex-direction: column;
-    width: 56vw;
+    width: 48vw;
     height: calc(100% - 144px);
     z-index: 1;
 
@@ -31,13 +31,21 @@
 
     > p {
       font-size: 24px;
+      font-weight: bold;
     }
 
-    > a > .ui.button {
+    > .ui.button {
       background: red;
+      width: 40%;
+
+      > a {
+        width: 100%;
+        height: 100%;
+        color: inherit;
+      }
     }
 
-    > a > .ui.button:hover {
+    > .ui.button:hover {
       background: darkred;
       color: white;
     }
@@ -49,7 +57,7 @@
     height: 100%;
     width: 100%;
     background: #fff;
-    opacity: 50%;
+    opacity: 75%;
     z-index: -1;
   }
 }

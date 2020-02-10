@@ -21,7 +21,14 @@ export default {
     Hero
   },
   data() {
-    return {};
+    return {
+      cart: {
+        items: [],
+        mobile: "",
+        customer_note: "",
+        pickup_name: ""
+      }
+    };
   }
 };
 </script>

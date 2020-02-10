@@ -21,6 +21,12 @@
           <a href="#footer">Contact</a>
         </li>
       </ul>
+      <div class="cart flex">
+        <i class="fas fa-shopping-cart fa-2x"></i>
+        <div class="count flex">
+          <span>3</span>
+        </div>
+      </div>
     </nav>
   </div>
 </template>
@@ -30,7 +36,7 @@ export default {
   name: "Nav",
   methods: {
     handleScroll: function() {
-      if (window.scrollY > 120) {
+      if (window.scrollY > 80) {
         this.isScrolled = true;
       } else {
         this.isScrolled = false;
