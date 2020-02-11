@@ -15,14 +15,14 @@ const isValidVarChar = inputString => {
 };
 
 const isValidInt = inputNum => {
-  if (isNaN(inputNum) && Math.abs(inpuinputNumtString) <= intLimit) {
+  if (!Number.isNaN(inputNum) && Math.abs(inputNum) <= intLimit) {
     return true;
   }
   return false;
 };
 
 const isValidSmallInt = inputNum => {
-  if (isNaN(inputNum) && Math.abs(inpuinputNumtString) <= smallIntLimit) {
+  if (!isNaN(inputNum) && Math.abs(inputNum) <= smallIntLimit) {
     return true;
   }
   return false;
@@ -69,11 +69,11 @@ const customerAddOrder = options => {
   let values = [pickup_name, customer_note, estimate, total_price, user_id];
   let invalidReason = false;
 
-  if (isValidVarChar(pickup_name)) invalidReason = 'pickup_name';
-  if (isValidVarChar(customer_note)) invalidReason = 'customer_note';
-  if (isValidInt(estimate)) invalidReason = 'estimate';
-  if (isValidSmallInt(total_price)) invalidReason = 'total_price';
-  if (isValidVarChar(user_id)) invalidReason = 'user_id';
+  if (!isValidVarChar(pickup_name)) invalidReason = 'pickup_name';
+  if (!isValidVarChar(customer_note)) invalidReason = 'customer_note';
+  if (!isValidInt(estimate)) invalidReason = 'estimate';
+  if (!isValidSmallInt(total_price)) invalidReason = 'total_price';
+  if (!isValidVarChar(user_id)) invalidReason = 'user_id';
 
   if (invalidReason) throw new Error(`${invalidReason} is not valid`);
 
@@ -95,25 +95,26 @@ const customerAddOrder = options => {
 };
 
 const addMenuItem = options => {
-  let { name, desc, price, img_url, category } = options;
+  const { name, desc, price, img_url, category } = options;
+  const values = [name, desc, price, img_url, category];
   let invalidReason = '';
 
-  if (isValidVarChar(name)) invalidReason = 'name';
-  if (isValidVarChar(desc)) invalidReason = 'desc';
-  if (isValidSmallInt(price)) invalidReason = 'price';
-  if (isValidVarChar(img_url)) invalidReason = 'img_url';
-  if (isValidVarChar(category)) invalidReason = 'category';
+  if (!isValidVarChar(name)) invalidReason = 'name';
+  if (!isValidVarChar(desc)) invalidReason = 'desc';
+  if (!isValidSmallInt(price) || price <= 0) invalidReason = 'price';
+  if (!isValidVarChar(img_url)) invalidReason = 'img_url';
+  if (!isValidVarChar(category)) invalidReason = 'category';
 
   if (invalidReason) throw new Error(`${invalidReason} is not valid`);
 
   let query = `
   INSERT INTO "MenuItem" (
-    "name" VARCHAR(255) NOT NULL,
-    "desc" TEXT NOT NULL,
-    "price" SMALLINT NOT NULL,
-    "img_url" VARCHAR(255),
-    "category" VARCHAR(255),
-  );
+    "name",
+    "desc",
+    "price",
+    "img_url",
+    "category"
+  )
   VALUES 
   ($1, $2, $3, $4, $5)
   RETURNING *;`;
