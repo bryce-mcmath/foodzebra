@@ -94,7 +94,35 @@ const customerAddOrder = options => {
   return db.query(query, values);
 };
 
+const addMenuItem = options => {
+  let { name, desc, price, img_url, category } = options;
+  let invalidReason = "";
+
+  if (isValidVarChar(name)) invalidReason = "name";
+  if (isValidVarChar(desc)) invalidReason = "desc";
+  if (isValidSmallInt(price)) invalidReason = "price";
+  if (isValidVarChar(img_url)) invalidReason = "img_url";
+  if (isValidVarChar(category)) invalidReason = "category";
+
+  if (invalidReason) return Promise.reject(`${invalidReason} is not valid`);
+
+  let query = `
+  INSERT INTO "MenuItem" (
+    "name" VARCHAR(255) NOT NULL,
+    "desc" TEXT NOT NULL,
+    "price" SMALLINT NOT NULL,
+    "img_url" VARCHAR(255),
+    "category" VARCHAR(255),
+  );
+  VALUES 
+  ($1, $2, $3, $4, $5)
+  RETURNING *;`;
+
+  return db.query(query, values);
+};
+
 module.exports = {
   addUser,
-  customerAddOrder
+  customerAddOrder,
+  addMenuItem
 };

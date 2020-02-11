@@ -3,7 +3,7 @@
     <nav class="nav flex" v-bind:class="{ transparent: !isScrolled }">
       <ul class="nav-left flex">
         <li>
-          <a href="#menu">Menu</a>
+          <a @click="handleClick('testText')" href="#menu">Menu</a>
         </li>
         <li>
           <a href="#">Events</a>
@@ -32,6 +32,8 @@
 </template>
 
 <script>
+import { testCall } from "../../api/ajaxCalls";
+
 export default {
   name: "Nav",
   methods: {
@@ -41,6 +43,12 @@ export default {
       } else {
         this.isScrolled = false;
       }
+    },
+    handleClick: function(input) {
+      console.log("handlClick", input);
+      testCall(input).then(function(response) {
+        console.log(response);
+      });
     }
   },
   created() {
