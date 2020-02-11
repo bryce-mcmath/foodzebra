@@ -6,6 +6,10 @@
     <MenuItems @addItem="addItemToCard"></MenuItems>
     <!-- if on /orders as operator -->
     <!-- <Orders /> -->
+    <MenuModal
+      @closeMenuModal="closeMenuModal"
+      :modalOpen="modalOpen"
+    ></MenuModal>
     <Footer></Footer>
   </div>
 </template>
@@ -15,6 +19,7 @@ import Nav from "./components/nav/Nav.vue";
 import Hero from "./components/hero/Hero.vue";
 import Footer from "./components/footer/Footer.vue";
 import MenuItems from "./components/menu_items/MenuItems.vue";
+import MenuModal from "./components/menu_modal/MenuModal.vue";
 
 export default {
   name: "app",
@@ -22,6 +27,7 @@ export default {
     Nav,
     Hero,
     MenuItems,
+    MenuModal,
     Footer
   },
   data() {
@@ -31,13 +37,20 @@ export default {
         mobile: "",
         customer_note: "",
         pickup_name: ""
-      }
+      },
+      modalOpen: false
     };
   },
   methods: {
     addItemToCard: function(payload) {
       this.cart.items.push(payload.id);
-      console.log("App.vue", this.cart.items);
+      this.modalOpen = true;
+      setTimeout(() => {
+        this.modalOpen = false;
+      }, 3000);
+    },
+    closeMenuModal: function() {
+      this.modalOpen = false;
     }
   }
 };

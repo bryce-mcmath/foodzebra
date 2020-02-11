@@ -62,7 +62,11 @@ export default {
       return this.tabSelected === tab;
     },
     emitAddToCart: function(item) {
+      this.toggleModal();
       this.$emit("addItem", item);
+    },
+    toggleModal() {
+      this.modalOpen = !this.modalOpen;
     }
   },
   mounted() {
@@ -74,7 +78,8 @@ export default {
       appetizers: [],
       mains: [],
       drinks: [],
-      tabSelected: "all"
+      tabSelected: "all",
+      modalOpen: false
     };
   },
   computed: {
