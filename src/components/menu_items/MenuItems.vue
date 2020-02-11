@@ -1,12 +1,14 @@
 <template>
-  <section class="menu-items flex">
+  <section id="menu" class="flex">
     <div class="menu-header flex">Menu</div>
     <div class="menu-separator"></div>
     <section class="menu-section flex">
       <h2>Appetizers</h2>
       <sui-card-group class="appetizer-container grid">
-        <sui-card v-for="appetizer in appetizers" :key="appetizer.id">
-          <sui-image :src="appetizer.img_url"></sui-image>
+        <sui-card v-for="appetizer in appetizers" :key="appetizer.id" class="card">
+          <div class="card-img-wrapper">
+            <sui-image :src="appetizer.img_url" class="card-img"></sui-image>
+          </div>
           <sui-card-content>
             <sui-card-header>{{appetizer.name}}</sui-card-header>
             <sui-card-meta>Appetizer</sui-card-meta>
@@ -23,8 +25,10 @@
     <section class="menu-section flex">
       <h2>Mains</h2>
       <sui-card-group class="main-container grid">
-        <sui-card v-for="main in mains" :key="main.id">
-          <sui-image :src="main.img_url"></sui-image>
+        <sui-card v-for="main in mains" :key="main.id" class="card">
+          <div class="card-img-wrapper">
+            <sui-image :src="main.img_url" class="card-img"></sui-image>
+          </div>
           <sui-card-content>
             <sui-card-header>{{main.name}}</sui-card-header>
             <sui-card-meta>Appetizer</sui-card-meta>
@@ -41,8 +45,10 @@
     <section class="menu-section flex">
       <h2>Drinks</h2>
       <sui-card-group class="drink-container grid">
-        <sui-card v-for="drink in drinks" :key="drink.id">
-          <sui-image :src="drink.img_url"></sui-image>
+        <sui-card v-for="drink in drinks" :key="drink.id" class="card">
+          <div class="card-img-wrapper">
+            <sui-image :src="drink.img_url" class="card-img"></sui-image>
+          </div>
           <sui-card-content>
             <sui-card-header>{{drink.name}}</sui-card-header>
             <sui-card-meta>Appetizer</sui-card-meta>

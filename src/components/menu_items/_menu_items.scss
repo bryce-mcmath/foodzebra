@@ -1,4 +1,4 @@
-.menu-items {
+#menu {
   margin-top: 544px;
   width: 100vw;
   flex-direction: column;
@@ -33,6 +33,18 @@
       grid-template-columns: 1fr 1fr 1fr;
       column-gap: 16px;
       margin: 16px auto;
+
+      .card {
+        .card-img-wrapper {
+          height: 200px;
+          width: 100%;
+          .card-img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
     }
 
     > .appetizer-container {

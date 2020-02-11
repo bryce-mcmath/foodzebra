@@ -33,6 +33,7 @@
     "uuid": "^3.3.3",
     "vue": "^2.6.11",
     "vue-hot-reload-api": "^2.3.4",
+    "vue2-smooth-scroll": "^1.2.0",
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {

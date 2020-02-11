@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer flex">
+  <footer id="footer" class="footer flex">
     <div class="footer-brand flex">
       <hr />
       <div class="brand"><span>food</span>zebra</div>
