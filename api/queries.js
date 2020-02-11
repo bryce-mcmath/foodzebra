@@ -1,12 +1,12 @@
-const db = require("../db");
+const db = require('../db');
 
 const getAllMenuItem = () => {
   let query = `SELECT * FROM "MenuItem";`;
   return db.query(query);
 };
 
-const getMenuItemById = (id = "") => {
-  if (!id) Promise.reject("Id required");
+const getMenuItemById = (id = '') => {
+  if (!id) throw new Error('Id required');
 
   let query = `
   SELECT * FROM "MenuItem"
@@ -21,8 +21,8 @@ const getAllUser = () => {
   return db.query(query);
 };
 
-const getUserById = (id = "") => {
-  if (!id) Promise.reject("Id required");
+const getUserById = (id = '') => {
+  if (!id) throw new Error('Id required');
 
   let query = `
   SELECT * FROM "User"
@@ -31,8 +31,9 @@ const getUserById = (id = "") => {
   return db.query(query, [id]);
 };
 
-const getUserByEmail = (inputParam = "") => {
-  if (!inputParam) Promise.reject("email required");
+const getUserByEmail = (inputParam = '') => {
+  console.log('Input param is: ', inputParam);
+  if (!inputParam) throw new Error('email required');
 
   let query = `
   SELECT * FROM "User"
@@ -41,8 +42,8 @@ const getUserByEmail = (inputParam = "") => {
   return db.query(query, [inputParam]);
 };
 
-const getUserByName = (inputParam = "") => {
-  if (!inputParam) Promise.reject("name required");
+const getUserByName = (inputParam = '') => {
+  if (!inputParam) throw new Error('name required');
 
   let query = `
   SELECT * FROM "User"
@@ -51,8 +52,8 @@ const getUserByName = (inputParam = "") => {
   return db.query(query, [inputParam]);
 };
 
-const getUserByMobile = (inputParam = "") => {
-  if (!inputParam) Promise.reject("mobile required");
+const getUserByMobile = (inputParam = '') => {
+  if (!inputParam) throw new Error('mobile required');
 
   let query = `
   SELECT * FROM "User"
@@ -69,8 +70,8 @@ const getAllOrder = () => {
   return db.query(query);
 };
 
-const getOrderById = (id = "") => {
-  if (!id) Promise.reject("Id required");
+const getOrderById = (id = '') => {
+  if (!id) throw new Error('Id required');
 
   let query = `
   SELECT * FROM "Order"
@@ -79,8 +80,8 @@ const getOrderById = (id = "") => {
   return db.query(query, [id]);
 };
 
-const getOrderItemByOrderId = (id = "") => {
-  if (!id) Promise.reject("Order id required");
+const getOrderItemByOrderId = (id = '') => {
+  if (!id) throw new Error('Order id required');
 
   let query = `
   SELECT * FROM "OrderItem"
@@ -90,8 +91,8 @@ const getOrderItemByOrderId = (id = "") => {
   return db.query(query, [id]);
 };
 
-const getOrderByPickupName = (inputParam = "") => {
-  if (!inputParam) Promise.reject("pickup_name required");
+const getOrderByPickupName = (inputParam = '') => {
+  if (!inputParam) throw new Error('pickup_name required');
 
   let query = `
   SELECT * FROM "Order"
@@ -100,8 +101,8 @@ const getOrderByPickupName = (inputParam = "") => {
   return db.query(query, [inputParam]);
 };
 
-const getOrderByCreatedTime = (after = "", before = "") => {
-  if (!after) Promise.reject("time 'estimate' in seconds required");
+const getOrderByCreatedTime = (after = '', before = '') => {
+  if (!after) throw new Error("time 'estimate' in seconds required");
 
   let values = [after];
   let query = `
@@ -110,14 +111,14 @@ const getOrderByCreatedTime = (after = "", before = "") => {
 
   if (before) query += `AND created_at < $2`;
 
-  query += ";";
+  query += ';';
   values.push(before);
 
   return db.query(query, values);
 };
 
-const getOrderByEstimateTime = (after = "", before = "") => {
-  if (!after) Promise.reject("time 'estimate' in seconds required");
+const getOrderByEstimateTime = (after = '', before = '') => {
+  if (!after) throw new Error("time 'estimate' in seconds required");
 
   let values = [after];
   let query = `
@@ -126,14 +127,14 @@ const getOrderByEstimateTime = (after = "", before = "") => {
 
   if (before) query += `AND estimate < $2`;
 
-  query += ";";
+  query += ';';
   values.push(before);
 
   return db.query(query, values);
 };
 
-const getOrderByAcceptedTime = (after = "", before = "") => {
-  if (!after) Promise.reject("time 'estimate' in seconds required");
+const getOrderByAcceptedTime = (after = '', before = '') => {
+  if (!after) throw new Error("time 'estimate' in seconds required");
 
   let values = [after];
   let query = `
@@ -142,7 +143,7 @@ const getOrderByAcceptedTime = (after = "", before = "") => {
 
   if (before) query += `AND accepted_at < $2`;
 
-  query += ";";
+  query += ';';
   values.push(before);
 
   return db.query(query, values);

@@ -1,4 +1,4 @@
-const db = require("../db");
+const db = require('../db');
 const varCharMaxLength = 255;
 const smallIntLimit = 32767;
 const intLimit = 2147483647;
@@ -6,7 +6,7 @@ const intLimit = 2147483647;
 // Helper functions to be called
 const isValidVarChar = inputString => {
   if (
-    typeof inputString === "string" &&
+    typeof inputString === 'string' &&
     inputString.length <= varCharMaxLength
   ) {
     return true;
@@ -33,13 +33,13 @@ const addUser = options => {
   let values = [name, email, role, mobile, password];
   let invalidReason = false;
 
-  if (!isValidVarChar(name)) invalidReason = "name";
-  if (!isValidVarChar(email)) invalidReason = "email";
-  if (!isValidVarChar(role)) invalidReason = "role";
-  if (!isValidVarChar(mobile)) invalidReason = "mobile";
-  if (!isValidVarChar(password)) invalidReason = "password";
+  if (!isValidVarChar(name)) invalidReason = 'name';
+  if (!isValidVarChar(email)) invalidReason = 'email';
+  if (!isValidVarChar(role)) invalidReason = 'role';
+  if (!isValidVarChar(mobile)) invalidReason = 'mobile';
+  if (!isValidVarChar(password)) invalidReason = 'password';
 
-  if (invalidReason) return Promise.reject(`${invalidReason} is not valid`);
+  if (invalidReason) throw new Error(`${invalidReason} is not valid`);
 
   let query = `
   INSERT INTO "User" (
@@ -69,13 +69,13 @@ const customerAddOrder = options => {
   let values = [pickup_name, customer_note, estimate, total_price, user_id];
   let invalidReason = false;
 
-  if (isValidVarChar(pickup_name)) invalidReason = "pickup_name";
-  if (isValidVarChar(customer_note)) invalidReason = "customer_note";
-  if (isValidInt(estimate)) invalidReason = "estimate";
-  if (isValidSmallInt(total_price)) invalidReason = "total_price";
-  if (isValidVarChar(user_id)) invalidReason = "user_id";
+  if (isValidVarChar(pickup_name)) invalidReason = 'pickup_name';
+  if (isValidVarChar(customer_note)) invalidReason = 'customer_note';
+  if (isValidInt(estimate)) invalidReason = 'estimate';
+  if (isValidSmallInt(total_price)) invalidReason = 'total_price';
+  if (isValidVarChar(user_id)) invalidReason = 'user_id';
 
-  if (invalidReason) return Promise.reject(`${invalidReason} is not valid`);
+  if (invalidReason) throw new Error(`${invalidReason} is not valid`);
 
   let query = `
   INSERT INTO "Order" (
@@ -96,15 +96,15 @@ const customerAddOrder = options => {
 
 const addMenuItem = options => {
   let { name, desc, price, img_url, category } = options;
-  let invalidReason = "";
+  let invalidReason = '';
 
-  if (isValidVarChar(name)) invalidReason = "name";
-  if (isValidVarChar(desc)) invalidReason = "desc";
-  if (isValidSmallInt(price)) invalidReason = "price";
-  if (isValidVarChar(img_url)) invalidReason = "img_url";
-  if (isValidVarChar(category)) invalidReason = "category";
+  if (isValidVarChar(name)) invalidReason = 'name';
+  if (isValidVarChar(desc)) invalidReason = 'desc';
+  if (isValidSmallInt(price)) invalidReason = 'price';
+  if (isValidVarChar(img_url)) invalidReason = 'img_url';
+  if (isValidVarChar(category)) invalidReason = 'category';
 
-  if (invalidReason) return Promise.reject(`${invalidReason} is not valid`);
+  if (invalidReason) throw new Error(`${invalidReason} is not valid`);
 
   let query = `
   INSERT INTO "MenuItem" (
