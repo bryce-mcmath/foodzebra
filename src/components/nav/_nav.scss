@@ -4,7 +4,7 @@
   top: 0;
   align-items: center;
   justify-content: space-between;
-  padding: 8px;
+  padding: 0 128px;
   background: white;
   z-index: 2;
   color: #222;
@@ -21,22 +21,22 @@
 
   .nav-left *,
   .nav-right * {
-    font-size: 32px;
+    font-size: 24px;
     font-weight: bold;
     font-family: inherit;
     color: #222;
-    transition: all 0.25s;
+    transition: all 0.5s;
   }
   .nav-left *:hover,
   .nav-right *:hover {
     color: red;
-    transition: all 0.25s;
+    transition: all 0.5s;
   }
 
   .brand {
     align-items: center;
     justify-content: center;
-    font-size: 64px;
+    font-size: 48px;
     font-family: $primary-font;
     font-weight: bold;
     color: #222;
@@ -47,34 +47,56 @@
       height: 56px;
     }
   }
+}
 
-  .cart {
-    position: relative;
-    margin-right: 24px;
+.cart {
+  position: fixed;
+  top: 32px;
+  right: 24px;
+  background: transparent;
+  border: 2px solid #333;
+  border-left: 4px solid #333;
+  border-bottom: 8px solid #333;
+  border-radius: 25%;
+  color: #333;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  z-index: 3;
+  transition: all 0.5s;
+
+  > i {
+    font-size: 24px;
+  }
+
+  > .count {
     background: red;
-    border-radius: 25%;
-    color: #fff;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: -16px;
+    right: -16px;
     align-items: center;
     justify-content: center;
-    min-width: 56px;
-    min-height: 56px;
-
-    > i {
-      font-size: 24px;
-    }
-
-    > .count {
-      background: #222;
-      border-radius: 50%;
-      width: 50%;
-      height: 50%;
-      position: absolute;
-      top: -15px;
-      right: -15px;
-      align-items: center;
-      justify-content: center;
-    }
+    color: white;
   }
+}
+
+.cart.cart-up {
+  top: 24px;
+}
+
+.cart:hover {
+  background: #555;
+  color: white;
+  transition: all 0.25s;
+  cursor: pointer;
+}
+
+.cart:active {
+  border: 2px solid #333;
 }
 
 .nav.transparent {
