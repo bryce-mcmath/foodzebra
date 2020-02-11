@@ -33,6 +33,11 @@ export default {
         pickup_name: ""
       }
     };
+  },
+  methods: {
+    customEvent: function(payload) {
+      console.log("custom", payload);
+    }
   }
 };
 </script>
