@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { getAllMenuItem, getMenuItemById } = require("../api/queries.js");
+const { addMenuItem } = require("../api/inserts.js");
 
 // Routes: /
 
@@ -44,9 +45,31 @@ router.get("/:id", (req, res) => {
   }
 });
 
-router.put("/:id", (req, res) => {
-  console.log("menu params:", req.params);
-  res.send(req.params);
+router.post("/:id", (req, res) => {
+  res.send("You are posting a menu item");
+});
+
+router.post("/:id", (req, res) => {
+  let {
+    name = "Unnamed Menu Item",
+    desc = "N/A",
+    price = "",
+    img_url = "",
+    category = ""
+  } = req.params;
+
+  if (!price) {
+    res.status(400).send("Need Price");
+  } else {
+    addMenuItem({ name, desc, price, img_url, category })
+      .then(response => {
+        res.send(response);
+      })
+      .catch(err => {
+        console.log(err);
+        res.send(400);
+      });
+  }
 });
 
 router.delete("/:id", (req, res) => {
