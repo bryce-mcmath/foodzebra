@@ -1,55 +1,35 @@
 <template>
-  <section class="menu-items flex">
+  <section class="menu-items">
     <div class="menu-header flex">Menu</div>
     <div class="menu-separator"></div>
+    <sui-menu class="fl-row" :widths="4">
+      <sui-menu-item @click="selectTab('all')" :active="isActive('all')"
+        >All</sui-menu-item
+      >
+      <sui-menu-item
+        @click="selectTab('appetizer')"
+        :active="isActive('appetizer')"
+        >Appetizers</sui-menu-item
+      >
+      <sui-menu-item @click="selectTab('main')" :active="isActive('main')"
+        >Mains</sui-menu-item
+      >
+      <sui-menu-item @click="selectTab('drink')" :active="isActive('drink')"
+        >Drinks</sui-menu-item
+      >
+    </sui-menu>
     <section class="menu-section flex">
-      <h2>Appetizers</h2>
+      <h2>{{ tabSelected | capitalize }}</h2>
       <sui-card-group class="appetizer-container grid">
-        <sui-card v-for="appetizer in appetizers" :key="appetizer.id">
-          <sui-image :src="appetizer.img_url"></sui-image>
+        <sui-card v-for="item in selectedMenu" :key="item.id">
+          <sui-image :src="item.img_url"></sui-image>
           <sui-card-content>
-            <sui-card-header>{{appetizer.name}}</sui-card-header>
-            <sui-card-meta>Appetizer</sui-card-meta>
-            <sui-card-description>{{appetizer.desc}}</sui-card-description>
+            <sui-card-header>{{ item.name }}</sui-card-header>
+            <sui-card-meta>All</sui-card-meta>
+            <sui-card-description>{{ item.desc }}</sui-card-description>
           </sui-card-content>
           <sui-card-content extra>
-            <div class="price">${{appetizer.price | priceProcess}}</div>
-            <button class="ui button">Add to Cart</button>
-          </sui-card-content>
-        </sui-card>
-      </sui-card-group>
-    </section>
-    <div class="menu-separator"></div>
-    <section class="menu-section flex">
-      <h2>Mains</h2>
-      <sui-card-group class="main-container grid">
-        <sui-card v-for="main in mains" :key="main.id">
-          <sui-image :src="main.img_url"></sui-image>
-          <sui-card-content>
-            <sui-card-header>{{main.name}}</sui-card-header>
-            <sui-card-meta>Appetizer</sui-card-meta>
-            <sui-card-description>{{main.desc}}</sui-card-description>
-          </sui-card-content>
-          <sui-card-content extra>
-            <div class="price">${{main.price | priceProcess}}</div>
-            <button class="ui button">Add to Cart</button>
-          </sui-card-content>
-        </sui-card>
-      </sui-card-group>
-    </section>
-    <div class="menu-separator"></div>
-    <section class="menu-section flex">
-      <h2>Drinks</h2>
-      <sui-card-group class="drink-container grid">
-        <sui-card v-for="drink in drinks" :key="drink.id">
-          <sui-image :src="drink.img_url"></sui-image>
-          <sui-card-content>
-            <sui-card-header>{{drink.name}}</sui-card-header>
-            <sui-card-meta>Appetizer</sui-card-meta>
-            <sui-card-description>{{drink.desc}}</sui-card-description>
-          </sui-card-content>
-          <sui-card-content extra>
-            <div class="price">${{drink.price | priceProcess}}</div>
+            <div class="price">${{ item.price | priceProcess }}</div>
             <button class="ui button">Add to Cart</button>
           </sui-card-content>
         </sui-card>
@@ -67,15 +47,16 @@ export default {
     getItems: function() {
       getAllMenuItems().then(res => {
         this.items = res;
-        this.appetizers = [
-          ...res.filter(item => item.category === "appetizer")
-        ];
-        this.mains = [...res.filter(item => item.category === "main")];
-        this.drinks = [...res.filter(item => item.category === "drink")];
       });
+    },
+    selectTab: function(tabClicked) {
+      this.tabSelected = tabClicked;
+    },
+    isActive: function(tab) {
+      return this.tabSelected === tab;
     }
   },
-  created() {
+  mounted() {
     this.getItems();
   },
   data: function() {
@@ -83,12 +64,30 @@ export default {
       items: [],
       appetizers: [],
       mains: [],
-      drinks: []
+      drinks: [],
+      tabSelected: "all"
     };
+  },
+  computed: {
+    selectedMenu: function() {
+      if (!this.items) return [];
+
+      return this.items.filter(item => {
+        if (this.tabSelected === "all") return true;
+
+        return item.category === this.tabSelected;
+      });
+    }
   },
   filters: {
     priceProcess: function(p) {
+      if (!p) return "nope";
       return (p / 100).toFixed(2);
+    },
+    capitalize: function(value) {
+      if (!value) return "what";
+      value = value.toString();
+      return value.charAt(0).toUpperCase() + value.slice(1);
     }
   }
 };
