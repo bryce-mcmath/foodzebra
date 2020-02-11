@@ -29,7 +29,7 @@
       font-size: 32px;
     }
 
-    > [class*='-container'] {
+    > [class*="-container"] {
       grid-template-columns: 1fr 1fr 1fr;
       column-gap: 16px;
       margin: 16px auto;
@@ -56,4 +56,8 @@
     > .drink-container {
     }
   }
+}
+
+.fl-row {
+  flex-direction: row;
 }
