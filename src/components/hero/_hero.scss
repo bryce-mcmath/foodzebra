@@ -36,20 +36,25 @@
       font-weight: bold;
     }
 
-    > .ui.button {
-      background: red;
+    > a > .ui.button {
+      background: transparent;
+      border: 1px solid red;
+      border-left: 4px solid red;
+      border-bottom: 8px solid red;
+      padding: 8px 16px;
       width: 40%;
-
-      > a {
-        width: 100%;
-        height: 100%;
-        color: inherit;
-      }
+      color: #222;
     }
 
-    > .ui.button:hover {
-      background: darkred;
-      color: white;
+    > a > .ui.button:hover {
+      background: white;
+      transition: all 0.25s;
+      cursor: pointer;
+    }
+
+    > a > .ui.button:active {
+      border: 2px solid red;
+      transition: none;
     }
   }
 

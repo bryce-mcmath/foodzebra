@@ -2,30 +2,32 @@
   <section id="menu">
     <div class="menu-header flex">Menu</div>
     <div class="menu-separator"></div>
-    <sui-menu class="fl-row" :widths="4">
+    <sui-menu class="sui-menu" :widths="4">
       <sui-menu-item @click="selectTab('all')" :active="isActive('all')"
         >All</sui-menu-item
       >
       <sui-menu-item
-        @click="selectTab('appetizer')"
-        :active="isActive('appetizer')"
+        @click="selectTab('appetizers')"
+        :active="isActive('appetizers')"
         >Appetizers</sui-menu-item
       >
-      <sui-menu-item @click="selectTab('main')" :active="isActive('main')"
+      <sui-menu-item @click="selectTab('mains')" :active="isActive('mains')"
         >Mains</sui-menu-item
       >
-      <sui-menu-item @click="selectTab('drink')" :active="isActive('drink')"
+      <sui-menu-item @click="selectTab('drinks')" :active="isActive('drinks')"
         >Drinks</sui-menu-item
       >
     </sui-menu>
     <section class="menu-section flex">
       <h2>{{ tabSelected | capitalize }}</h2>
-      <sui-card-group class="appetizer-container grid">
+      <sui-card-group class="selection-container grid">
         <sui-card v-for="item in selectedMenu" :key="item.id">
-          <sui-image :src="item.img_url"></sui-image>
+          <div class="card-img-wrapper">
+            <sui-image :src="item.img_url" class="card-img"></sui-image>
+          </div>
           <sui-card-content>
             <sui-card-header>{{ item.name }}</sui-card-header>
-            <sui-card-meta>All</sui-card-meta>
+            <sui-card-meta>{{ item.category | capitalize }}</sui-card-meta>
             <sui-card-description>{{ item.desc }}</sui-card-description>
           </sui-card-content>
           <sui-card-content extra>
@@ -39,10 +41,10 @@
 </template>
 
 <script>
-import { getAllMenuItems } from "../../api/ajaxCalls";
+import { getAllMenuItems } from '../../api/ajaxCalls';
 
 export default {
-  name: "MenuItems",
+  name: 'MenuItems',
   methods: {
     getItems: function() {
       getAllMenuItems().then(res => {
@@ -65,7 +67,7 @@ export default {
       appetizers: [],
       mains: [],
       drinks: [],
-      tabSelected: "all"
+      tabSelected: 'all'
     };
   },
   computed: {
@@ -73,7 +75,7 @@ export default {
       if (!this.items) return [];
 
       return this.items.filter(item => {
-        if (this.tabSelected === "all") return true;
+        if (this.tabSelected === 'all') return true;
 
         return item.category === this.tabSelected;
       });
@@ -81,11 +83,11 @@ export default {
   },
   filters: {
     priceProcess: function(p) {
-      if (!p) return "nope";
+      if (!p) return 'nope';
       return (p / 100).toFixed(2);
     },
     capitalize: function(value) {
-      if (!value) return "what";
+      if (!value) return 'what';
       value = value.toString();
       return value.charAt(0).toUpperCase() + value.slice(1);
     }

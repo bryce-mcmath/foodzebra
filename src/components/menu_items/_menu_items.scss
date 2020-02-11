@@ -12,6 +12,11 @@
     justify-content: center;
   }
 
+  > .sui-menu {
+    flex-direction: row;
+    margin: 0;
+  }
+
   .menu-separator {
     background-color: #222;
     min-height: 32px;
@@ -24,15 +29,20 @@
 
   .menu-section {
     min-height: 300px;
+    justify-content: center;
+    align-items: center;
 
     > h2 {
       font-size: 32px;
+      font-weight: bold;
+      margin: 0;
     }
 
-    > [class*="-container"] {
+    > .selection-container {
       grid-template-columns: 1fr 1fr 1fr;
       column-gap: 16px;
-      margin: 16px auto;
+      justify-content: center;
+      padding: 24px 0;
 
       .card {
         .card-img-wrapper {

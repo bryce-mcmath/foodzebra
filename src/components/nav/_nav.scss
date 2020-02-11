@@ -10,6 +10,7 @@
   color: #222;
   min-height: 88px;
   transition: all 0.5s;
+  border-bottom: 4px solid red;
 
   .nav-left,
   .nav-right {
@@ -103,4 +104,5 @@
   background: transparent;
   min-height: 120px;
   transition: all 0.5s;
+  border: none;
 }
