@@ -2,9 +2,7 @@
   <footer id="footer" class="footer flex">
     <div class="footer-brand flex">
       <hr />
-      <div class="brand">
-        <span>food</span>zebra
-      </div>
+      <div class="brand"><span>food</span>zebra</div>
       <hr />
     </div>
     <section class="footer-content grid">
@@ -41,11 +39,12 @@
     </section>
     <div class="copyright">
       &copy;2020 |
-      <span>Privacy Policy</span> |
-      <span>
+      <span class="cp">Privacy Policy</span> |
+      <span class="cp">
         <a href="https://github.com/bryce-mcmath/foodzebra">Github</a>
-      </span> |
-      <span>Log In As Operator</span>
+      </span>
+      |
+      <span class="cp">Log In As Operator</span>
     </div>
   </footer>
 </template>
