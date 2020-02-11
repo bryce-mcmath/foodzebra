@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Nav></Nav>
+    <Nav :itemsInCart="this.cart.items"></Nav>
     <!-- if on / -->
     <Hero></Hero>
     <MenuItems @addItem="addItemToCard"></MenuItems>
@@ -36,7 +36,8 @@ export default {
   },
   methods: {
     addItemToCard: function(payload) {
-      console.log("addItem", payload);
+      this.cart.items.push(payload.id);
+      console.log("App.vue", this.cart.items);
     }
   }
 };

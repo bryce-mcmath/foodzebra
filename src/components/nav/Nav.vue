@@ -24,8 +24,8 @@
     </nav>
     <div class="noSelect cart flex" v-bind:class="{ 'cart-up': isScrolled }">
       <i class="fas fa-shopping-cart fa-2x"></i>
-      <div class="count flex">
-        <span>3</span>
+      <div v-if="itemsNumber" class="count flex fwb">
+        <span>{{ itemsNumber }}</span>
       </div>
     </div>
   </div>
@@ -34,6 +34,11 @@
 <script>
 export default {
   name: "Nav",
+  props: {
+    itemsInCart: {
+      type: Array
+    }
+  },
   methods: {
     handleScroll: function() {
       if (window.scrollY > 80) {
@@ -53,6 +58,11 @@ export default {
     return {
       isScrolled: false
     };
+  },
+  computed: {
+    itemsNumber: function() {
+      return this.itemsInCart.length;
+    }
   }
 };
 </script>
