@@ -3,7 +3,7 @@
     <Nav></Nav>
     <!-- if on / -->
     <Hero></Hero>
-    <MenuItems></MenuItems>
+    <MenuItems @addItem="addItemToCard"></MenuItems>
     <!-- if on /orders as operator -->
     <!-- <Orders /> -->
     <Footer></Footer>
@@ -35,8 +35,8 @@ export default {
     };
   },
   methods: {
-    customEvent: function(payload) {
-      console.log("custom", payload);
+    addItemToCard: function(payload) {
+      console.log("addItem", payload);
     }
   }
 };
