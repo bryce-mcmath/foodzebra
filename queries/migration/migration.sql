@@ -31,7 +31,8 @@ CREATE TABLE "MenuItem" (
   "desc" TEXT NOT NULL,
   "price" SMALLINT NOT NULL,
   "img_url" VARCHAR(255),
-  "deleted_at" TIMESTAMP
+  "deleted_at" TIMESTAMP,
+  "category" VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE "OrderItem" (

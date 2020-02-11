@@ -25,11 +25,13 @@ INSERT INTO "MenuItem" (
   "desc",
   "price",
   "img_url",
-  "deleted_at") 
+  "deleted_at",
+  "category") 
 VALUES 
-('Pizza', 'Pepperoni, cheese, tomato sauce, just like a mama used ta make', 999, 'https://i.imgur.com/YPacqGc.jpg', NULL),
-('Fries', 'French fried purtaters', 599, 'https://i.imgur.com/HTtLQol.jpg', NULL),
-('Pasta', 'Ah spaghett', 999, 'https://i.imgur.com/HMVBN9l.jpg', NULL);
+('Pizza', 'Pepperoni, cheese, tomato sauce, just like a mama used ta make', 999, 'https://i.imgur.com/YPacqGc.jpg', NULL, 'main'),
+('Fries', 'French fried purtaters', 599, 'https://i.imgur.com/HTtLQol.jpg', NULL, 'appetizer'),
+('Pasta', 'Ah spaghett', 999, 'https://i.imgur.com/HMVBN9l.jpg', NULL, 'main'),
+('Cola', 'so da', 399, 'https://images.unsplash.com/photo-1561758033-48d52648ae8b', NULL, 'drink');
 
 INSERT INTO "OrderItem" (
   "order_id",
@@ -39,4 +41,5 @@ VALUES
 (1, 1),
 (1, 1),
 (1, 2),
-(1, 3);
+(1, 3),
+(1, 4);
