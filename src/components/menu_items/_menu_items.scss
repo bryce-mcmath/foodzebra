@@ -1,4 +1,47 @@
 .menu-items {
-  height: 200vh;
+  margin-top: 544px;
   width: 100vw;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  > * {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .menu-separator {
+    background-color: #222;
+    min-height: 32px;
+  }
+
+  .menu-header {
+    font-size: 48px;
+    min-height: 104px;
+  }
+
+  .menu-section {
+    min-height: 300px;
+
+    > h2 {
+      font-size: 32px;
+    }
+
+    > [class*='-container'] {
+      grid-template-columns: 1fr 1fr 1fr;
+      column-gap: 16px;
+      margin: 16px auto;
+    }
+
+    > .appetizer-container {
+    }
+
+    > .main-container {
+    }
+
+    > .drink-container {
+    }
+  }
 }
