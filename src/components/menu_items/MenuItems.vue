@@ -32,7 +32,9 @@
           </sui-card-content>
           <sui-card-content extra>
             <div class="price">${{ item.price | priceProcess }}</div>
-            <button class="ui button">Add to Cart</button>
+            <button class="ui button" @click="emitAddToCart(item)">
+              Add to Cart
+            </button>
           </sui-card-content>
         </sui-card>
       </sui-card-group>
@@ -41,21 +43,26 @@
 </template>
 
 <script>
-import { getAllMenuItems } from '../../api/ajaxCalls';
+import { getAllMenuItems } from "../../api/ajaxCalls";
 
 export default {
-  name: 'MenuItems',
+  name: "MenuItems",
   methods: {
     getItems: function() {
-      getAllMenuItems().then(res => {
-        this.items = res;
-      });
+      setTimeout(() => {
+        getAllMenuItems().then(res => {
+          this.items = res;
+        });
+      }, 1500);
     },
     selectTab: function(tabClicked) {
       this.tabSelected = tabClicked;
     },
     isActive: function(tab) {
       return this.tabSelected === tab;
+    },
+    emitAddToCart: function(item) {
+      this.$emit("addItem", item);
     }
   },
   mounted() {
@@ -67,7 +74,7 @@ export default {
       appetizers: [],
       mains: [],
       drinks: [],
-      tabSelected: 'all'
+      tabSelected: "all"
     };
   },
   computed: {
@@ -75,7 +82,7 @@ export default {
       if (!this.items) return [];
 
       return this.items.filter(item => {
-        if (this.tabSelected === 'all') return true;
+        if (this.tabSelected === "all") return true;
 
         return item.category === this.tabSelected;
       });
@@ -83,11 +90,11 @@ export default {
   },
   filters: {
     priceProcess: function(p) {
-      if (!p) return 'nope';
+      if (!p) return "nope";
       return (p / 100).toFixed(2);
     },
     capitalize: function(value) {
-      if (!value) return 'what';
+      if (!value) return "what";
       value = value.toString();
       return value.charAt(0).toUpperCase() + value.slice(1);
     }

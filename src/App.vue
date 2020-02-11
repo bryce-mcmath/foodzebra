@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <Nav></Nav>
+    <Nav :itemsInCart="this.cart.items"></Nav>
     <!-- if on / -->
     <Hero></Hero>
-    <MenuItems></MenuItems>
+    <MenuItems @addItem="addItemToCard"></MenuItems>
     <!-- if on /orders as operator -->
     <!-- <Orders /> -->
     <Footer></Footer>
@@ -35,8 +35,9 @@ export default {
     };
   },
   methods: {
-    customEvent: function(payload) {
-      console.log("custom", payload);
+    addItemToCard: function(payload) {
+      this.cart.items.push(payload.id);
+      console.log("App.vue", this.cart.items);
     }
   }
 };
