@@ -38,22 +38,21 @@
 
     > a > .ui.button {
       background: transparent;
-      border: 1px solid red;
-      border-left: 4px solid red;
-      border-bottom: 8px solid red;
+      border: 1px solid #222;
       padding: 8px 16px;
       width: 40%;
       color: #222;
     }
 
     > a > .ui.button:hover {
-      background: white;
+      background: #222;
       transition: all 0.25s;
       cursor: pointer;
+      color: white;
     }
 
     > a > .ui.button:active {
-      border: 2px solid red;
+      border: 2px solid #222;
       transition: none;
     }
   }

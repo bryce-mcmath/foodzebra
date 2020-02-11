@@ -92,6 +92,7 @@
           background: red;
           color: #222;
           transition: all 0.5s;
+          cursor: pointer;
         }
       }
     }
@@ -107,6 +108,13 @@
     color: #555;
     > span {
       color: red;
+      > a {
+        color: inherit;
+      }
+    }
+
+    > span:hover {
+      text-decoration: underline;
     }
   }
 }

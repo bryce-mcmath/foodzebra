@@ -2,7 +2,9 @@
   <footer id="footer" class="footer flex">
     <div class="footer-brand flex">
       <hr />
-      <div class="brand"><span>food</span>zebra</div>
+      <div class="brand">
+        <span>food</span>zebra
+      </div>
       <hr />
     </div>
     <section class="footer-content grid">
@@ -38,14 +40,19 @@
       </div>
     </section>
     <div class="copyright">
-      &copy;2020 | <span>Privacy Policy</span> | <span>Github</span>
+      &copy;2020 |
+      <span>Privacy Policy</span> |
+      <span>
+        <a href="https://github.com/bryce-mcmath/foodzebra">Github</a>
+      </span> |
+      <span>Log In As Operator</span>
     </div>
   </footer>
 </template>
 
 <script>
 export default {
-  name: 'Footer',
+  name: "Footer",
   data: function() {
     return {};
   }

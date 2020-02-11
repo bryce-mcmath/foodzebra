@@ -9,7 +9,10 @@
       </p>
 
       <a href="#menu" v-smooth-scroll>
-        <button class="massive ui button">View Menu</button>
+        <button class="massive ui button">
+          View Menu
+          <i class="fas fa-arrow-circle-down"></i>
+        </button>
       </a>
     </div>
     <div class="hero-overlay"></div>
@@ -18,7 +21,7 @@
 
 <script>
 export default {
-  name: 'Hero',
+  name: "Hero",
   data: function() {
     return {};
   }
