@@ -3,6 +3,8 @@
     <Nav :itemsInCart="this.cart.items"></Nav>
     <!-- if on / -->
     <Hero></Hero>
+    <OperatorTab></OperatorTab>
+    <!-- <OrderItems></OrderItems> -->
     <MenuItems @addItem="addItemToCard"></MenuItems>
     <!-- if on /orders as operator -->
     <!-- <Orders /> -->
@@ -26,12 +28,14 @@ import Footer from './components/footer/Footer.vue';
 import MenuItems from './components/menu_items/MenuItems.vue';
 import MenuModal from './components/menu_modal/MenuModal.vue';
 import LoginModal from './components/login_modal/LoginModal.vue';
+import OperatorTab from './components/operator_tab/OperatorTab.vue';
 
 export default {
   name: 'app',
   components: {
     Nav,
     Hero,
+    OperatorTab,
     MenuItems,
     MenuModal,
     LoginModal,
