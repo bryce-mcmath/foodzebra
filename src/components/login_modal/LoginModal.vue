@@ -61,10 +61,10 @@ export default {
       loginAjaxCall(this.email, this.password)
         .then(response => {
           if (response.status > 199 && response.status < 300) {
-            this.loginFailed = true;
-          } else {
             this.emitClose();
             location.reload();
+          } else {
+            this.loginFailed = true;
           }
         })
         .catch(err => {
