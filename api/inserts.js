@@ -129,11 +129,11 @@ const addOrder = options => {
   if (!isValidVarChar(pickup_name)) invalidReason = 'pickup_name';
   if (!isValidVarChar(customer_note)) invalidReason = 'customer_note';
   if (!isValidSmallInt(total_price)) invalidReason = 'total_price';
-  if (!isValidVarChar(user_id)) invalidReason = 'user_id';
+  if (!isValidInt(user_id)) invalidReason = 'user_id';
 
   if (invalidReason) throw new Error(`${invalidReason} is not valid`);
 
-  let query = `
+  const query = `
   INSERT INTO "Order" (
     "pickup_name",
     "customer_note",
@@ -145,23 +145,29 @@ const addOrder = options => {
     "deleted_at",
     "user_id") 
   VALUES 
-  ($1, $2, now(), NULL, $3, NULL, NULL, NULL, $5)
+  ($1, $2, now(), NULL, $3, NULL, NULL, NULL, $4)
   RETURNING *;`;
 
   return db.query(query, values);
 };
 
-const updateOrder = (id, msg, estimate = 1800) => {
-  const values = [id, estimate];
+const updateOrder = (id = '', msg = '', estimate = 1800) => {
+  if (!id || !msg) {
+    throw new Error('id and message required');
+  }
+
   if (msg === 'accept') {
+    const values = [estimate, id];
     const query = `
       UPDATE "Order"
-        SET "accepted_at" = now()
-      WHERE "id" = $1
+        SET "accepted_at" = now(),
+            "estimate" = $1
+      WHERE "id" = $2
       RETURNING *;`;
 
     return db.query(query, values);
   } else if (msg === 'fulfill') {
+    const values = [id];
     const query = `
       UPDATE "Order"
         SET "fulfilled_at" = now()
@@ -172,7 +178,11 @@ const updateOrder = (id, msg, estimate = 1800) => {
   }
 };
 
-const deleteOrder = id => {
+const deleteOrder = (id = '') => {
+  if (!id) {
+    throw new Error('id required');
+  }
+
   const values = [id];
   const query = `
     UPDATE "Order"
