@@ -34,14 +34,14 @@ export default {
       get: function() {
         return this.modalOpen;
       },
-      set: function(newValueP) {
-        if (!newValueP) this.emitClose();
+      set: function(newValue) {
+        if (!newValue) this.emitClose();
       }
     }
   },
   methods: {
     emitClose() {
-      this.$emit("closeMenuModal");
+      this.$emit("closeModal");
     }
   }
 };
