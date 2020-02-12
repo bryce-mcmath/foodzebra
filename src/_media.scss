@@ -1,0 +1,20 @@
+// Small screens
+@media (max-width: 1023) {
+  .hide-sm {
+    display: none;
+  }
+}
+
+// Tablets
+@media (max-width: 768) {
+  .hide-tablet {
+    display: none;
+  }
+}
+
+// Mobile
+@media (max-width: 480) {
+  .hide-mobile {
+    display: none;
+  }
+}
