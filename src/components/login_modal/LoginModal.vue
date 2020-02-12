@@ -62,7 +62,7 @@ export default {
         .then(response => {
           if (response.status > 199 && response.status < 300) {
             this.emitClose();
-            location.reload();
+            this.emitLogin();
           } else {
             this.loginFailed = true;
           }
@@ -73,6 +73,9 @@ export default {
     },
     emitClose() {
       this.$emit("closeModal");
+    },
+    emitLogin() {
+      this.$emit("loggedIn");
     }
   }
 };

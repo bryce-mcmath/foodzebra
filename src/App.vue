@@ -12,6 +12,7 @@
     ></MenuModal>
     <LoginModal
       @closeModal="setLoginModal(false)"
+      @loggedIn="loginLogic()"
       :modalOpen="loginModalOpen"
     ></LoginModal>
     <Footer @openLogin="setLoginModal(true)"></Footer>
@@ -19,15 +20,15 @@
 </template>
 
 <script>
-import Nav from "./components/nav/Nav.vue";
-import Hero from "./components/hero/Hero.vue";
-import Footer from "./components/footer/Footer.vue";
-import MenuItems from "./components/menu_items/MenuItems.vue";
-import MenuModal from "./components/menu_modal/MenuModal.vue";
-import LoginModal from "./components/login_modal/LoginModal.vue";
+import Nav from './components/nav/Nav.vue';
+import Hero from './components/hero/Hero.vue';
+import Footer from './components/footer/Footer.vue';
+import MenuItems from './components/menu_items/MenuItems.vue';
+import MenuModal from './components/menu_modal/MenuModal.vue';
+import LoginModal from './components/login_modal/LoginModal.vue';
 
 export default {
-  name: "app",
+  name: 'app',
   components: {
     Nav,
     Hero,
@@ -40,9 +41,9 @@ export default {
     return {
       cart: {
         items: [],
-        mobile: "",
-        customer_note: "",
-        pickup_name: ""
+        mobile: '',
+        customer_note: '',
+        pickup_name: ''
       },
       menuModalOpen: false,
       loginModalOpen: false
@@ -57,19 +58,22 @@ export default {
       }, 3000);
     },
     setMenuModal: function(status) {
-      if (typeof status === "boolean") {
+      if (typeof status === 'boolean') {
         this.menuModalOpen = status;
       }
     },
     setLoginModal: function(status) {
-      if (typeof status === "boolean") {
+      if (typeof status === 'boolean') {
         this.loginModalOpen = status;
       }
+    },
+    loginLogic: function() {
+      // TBD login ajax calls go here eventually
     }
   }
 };
 </script>
 
 <style lang="scss">
-@import "./app.scss";
+@import './app.scss';
 </style>
