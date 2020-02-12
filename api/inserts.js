@@ -151,7 +151,7 @@ const addOrder = options => {
   return db.query(query, values);
 };
 
-const updateOrder = (id, msg, estimate = 20) => {
+const updateOrder = (id, msg, estimate = 1800) => {
   const values = [id, estimate];
   if (msg === 'accept') {
     const query = `
