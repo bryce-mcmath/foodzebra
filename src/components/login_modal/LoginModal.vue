@@ -3,16 +3,24 @@
     <sui-modal-header>Login</sui-modal-header>
     <sui-modal-content image>
       <sui-modal-description>
-        <sui-input v-model="email" placeholder="Email"></sui-input>
+        <sui-input
+          v-model="email"
+          placeholder="Email"
+          @keyup.enter="submitCredentials()"
+        ></sui-input>
         <sui-input
           v-model="password"
           type="password"
           placeholder="Password"
+          @keyup.enter="submitCredentials()"
         ></sui-input>
       </sui-modal-description>
+      <sui-modal-description v-show="loginFailed"
+        >Invalid username or password</sui-modal-description
+      >
     </sui-modal-content>
     <sui-modal-actions>
-      <sui-button positive @click.native="emitClose">
+      <sui-button positive @click.native="submitCredentials()">
         OK
       </sui-button>
     </sui-modal-actions>
@@ -20,6 +28,8 @@
 </template>
 
 <script>
+import { loginAjaxCall } from "../../api/ajaxCalls";
+
 export default {
   name: "LoginModal",
   props: {
@@ -31,7 +41,8 @@ export default {
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      loginFailed: false
     };
   },
   computed: {
@@ -45,6 +56,21 @@ export default {
     }
   },
   methods: {
+    submitCredentials() {
+      this.loginFailed = false;
+      loginAjaxCall(this.email, this.password)
+        .then(response => {
+          if (response.status > 199 && response.status < 300) {
+            this.loginFailed = true;
+          } else {
+            this.emitClose();
+            location.reload();
+          }
+        })
+        .catch(err => {
+          console.log("Component 'LoginModal' error:", err);
+        });
+    },
     emitClose() {
       this.$emit("closeModal");
     }
