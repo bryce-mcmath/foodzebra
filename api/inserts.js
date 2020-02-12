@@ -62,8 +62,6 @@ const customerAddOrder = options => {
     // created_at,
     estimate,
     total_price,
-    // accepted_at,
-    // deleted_at,
     user_id
   } = options;
   let values = [pickup_name, customer_note, estimate, total_price, user_id];
@@ -122,8 +120,48 @@ const addMenuItem = options => {
   return db.query(query, values);
 };
 
+const updateMenuItem = options => {
+  const { id, name, desc, price, img_url, category } = options;
+  const values = [id, name, desc, price, img_url, null, category];
+  let invalidReason = '';
+
+  if (!isValidVarChar(name)) invalidReason = 'name';
+  if (!isValidVarChar(desc)) invalidReason = 'desc';
+  if (!isValidSmallInt(price) || price <= 0) invalidReason = 'price';
+  if (!isValidVarChar(img_url)) invalidReason = 'img_url';
+  if (!isValidVarChar(category)) invalidReason = 'category';
+  if (invalidReason) throw new Error(`${invalidReason} is not valid`);
+
+  let query = `
+  UPDATE "MenuItem" (
+    SET "name" = $2,
+    SET "desc" = $3,
+    SET "price" = $4,
+    SET "img_url" = $5,
+    SET "deleted_at" = $6,
+    SET "category" = $7
+  ) WHERE "id" = $1
+  RETURNING *;`;
+
+  return db.query(query, values);
+};
+
+const deleteMenuItem = id => {
+  const values = [id, Date.now()];
+
+  let query = `
+  UPDATE "MenuItem" (
+    SET "deleted_at" = $2
+  ) WHERE "id" = $1
+  RETURNING *;`;
+
+  return db.query(query, values);
+};
+
 module.exports = {
   addUser,
   customerAddOrder,
-  addMenuItem
+  addMenuItem,
+  updateMenuItem,
+  deleteMenuItem
 };
