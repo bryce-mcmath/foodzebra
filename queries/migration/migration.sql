@@ -19,8 +19,9 @@ CREATE TABLE "Order" (
   "customer_note" VARCHAR(255),
   "created_at" TIMESTAMP NOT NULL DEFAULT now(),
   "estimate" INTEGER,
-  "total_price" SMALLINT,
+  "total_price" SMALLINT NOT NULL,
   "accepted_at" TIMESTAMP,
+  "fulfilled_at" TIMESTAMP,
   "deleted_at" TIMESTAMP,
   "user_id" INTEGER REFERENCES "User"("id") ON DELETE CASCADE
 );

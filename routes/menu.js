@@ -45,7 +45,7 @@ router.post('/', (req, res) => {
               console.log('error adding item: ', err);
             });
         } else {
-          console.log('Incomplete order');
+          console.log('Incomplete item options');
           res.send(400);
         }
       } else {
@@ -83,7 +83,8 @@ router.put('/:id', (req, res) => {
     .then(result => {
       const user = result.rows[0];
       if (user.role === 'operator') {
-        const { id, name, desc, price, img_url, category } = req.body;
+        const { name, desc, price, img_url, category } = req.body;
+        const id = req.params.id;
         if (id && name && desc && price && img_url && category) {
           updateMenuItem({
             id,
@@ -97,10 +98,10 @@ router.put('/:id', (req, res) => {
               res.json(item.rows[0]);
             })
             .catch(err => {
-              console.log('error adding item: ', err);
+              console.log('error updating item: ', err);
             });
         } else {
-          console.log('Incomplete order');
+          console.log('Incomplete item options');
           res.send(400);
         }
       } else {
