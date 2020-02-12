@@ -5,7 +5,6 @@ const { getUserByEmail } = require('../api/queries');
 
 router.post('/', (req, res) => {
   const { email, password } = req.body;
-  console.log('req.body is: ', req.body);
   getUserByEmail(email)
     .then(user => {
       const { password: hash, id } = user.rows[0];

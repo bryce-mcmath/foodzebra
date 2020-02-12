@@ -15,10 +15,11 @@ INSERT INTO "Order" (
   "estimate",
   "total_price",
   "accepted_at",
+  "fulfilled_at",
   "deleted_at",
   "user_id") 
 VALUES 
-('Wilson Wong', 'I do not like pickles', now(), NULL, 1989, NULL, NULL, 1);
+('Wilson Wong', 'I do not like pickles', now(), NULL, 1989, NULL, NULL, NULL, 1);
 
 INSERT INTO "MenuItem" (
   "name",
