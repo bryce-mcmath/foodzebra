@@ -44,7 +44,7 @@
         <a href="https://github.com/bryce-mcmath/foodzebra">Github</a>
       </span>
       |
-      <span class="cp">Log In As Operator</span>
+      <span @click="emitLogin()" class="cp">Log In As Operator</span>
     </div>
   </footer>
 </template>
@@ -54,6 +54,11 @@ export default {
   name: "Footer",
   data: function() {
     return {};
+  },
+  methods: {
+    emitLogin: function() {
+      this.$emit("openLogin");
+    }
   }
 };
 </script>

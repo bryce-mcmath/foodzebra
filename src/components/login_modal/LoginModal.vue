@@ -1,15 +1,14 @@
 <template lang="html">
-  <sui-modal v-model="open">
-    <sui-modal-header>Select a Photo</sui-modal-header>
+  <sui-modal class="login-modal-container" v-model="open">
+    <sui-modal-header>Login</sui-modal-header>
     <sui-modal-content image>
-      <sui-image wrapped size="medium" src="" />
       <sui-modal-description>
-        <sui-header>Default Profile Image</sui-header>
-        <p>
-          We've found the following gravatar image associated with your e-mail
-          address.
-        </p>
-        <p>Is it okay to use this photo?</p>
+        <sui-input v-model="email" placeholder="Email"></sui-input>
+        <sui-input
+          v-model="password"
+          type="password"
+          placeholder="Password"
+        ></sui-input>
       </sui-modal-description>
     </sui-modal-content>
     <sui-modal-actions>
@@ -22,12 +21,18 @@
 
 <script>
 export default {
-  name: "MenuModal",
+  name: "LoginModal",
   props: {
     modalOpen: {
       type: Boolean,
       default: false
     }
+  },
+  data() {
+    return {
+      email: "",
+      password: ""
+    };
   },
   computed: {
     open: {

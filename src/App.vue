@@ -7,10 +7,14 @@
     <!-- if on /orders as operator -->
     <!-- <Orders /> -->
     <MenuModal
-      @closeMenuModal="closeMenuModal"
-      :modalOpen="modalOpen"
+      @closeModal="setMenuModal(false)"
+      :modalOpen="menuModalOpen"
     ></MenuModal>
-    <Footer></Footer>
+    <LoginModal
+      @closeModal="setLoginModal(false)"
+      :modalOpen="loginModalOpen"
+    ></LoginModal>
+    <Footer @openLogin="setLoginModal(true)"></Footer>
   </div>
 </template>
 
@@ -20,6 +24,7 @@ import Hero from "./components/hero/Hero.vue";
 import Footer from "./components/footer/Footer.vue";
 import MenuItems from "./components/menu_items/MenuItems.vue";
 import MenuModal from "./components/menu_modal/MenuModal.vue";
+import LoginModal from "./components/login_modal/LoginModal.vue";
 
 export default {
   name: "app",
@@ -28,6 +33,7 @@ export default {
     Hero,
     MenuItems,
     MenuModal,
+    LoginModal,
     Footer
   },
   data() {
@@ -38,19 +44,27 @@ export default {
         customer_note: "",
         pickup_name: ""
       },
-      modalOpen: false
+      menuModalOpen: false,
+      loginModalOpen: false
     };
   },
   methods: {
     addItemToCard: function(payload) {
       this.cart.items.push(payload.id);
-      this.modalOpen = true;
+      this.setMenuModal(true);
       setTimeout(() => {
-        this.modalOpen = false;
+        this.setMenuModal(false);
       }, 3000);
     },
-    closeMenuModal: function() {
-      this.modalOpen = false;
+    setMenuModal: function(status) {
+      if (typeof status === "boolean") {
+        this.menuModalOpen = status;
+      }
+    },
+    setLoginModal: function(status) {
+      if (typeof status === "boolean") {
+        this.loginModalOpen = status;
+      }
     }
   }
 };
