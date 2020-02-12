@@ -33,7 +33,7 @@
 
 <script>
 export default {
-  name: "Nav",
+  name: 'Nav',
   props: {
     itemsInCart: {
       type: Array
@@ -49,10 +49,10 @@ export default {
     }
   },
   created() {
-    window.addEventListener("scroll", this.handleScroll);
+    window.addEventListener('scroll', this.handleScroll);
   },
   destroyed() {
-    window.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener('scroll', this.handleScroll);
   },
   data: function() {
     return {

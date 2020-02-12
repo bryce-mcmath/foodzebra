@@ -1,0 +1,16 @@
+.ui.standard {
+  max-width: 300px;
+  min-width: 10vw;
+}
+
+.ui.modal > .header {
+  text-align: center;
+}
+
+.ui.modal > .checkmark-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+}

@@ -43,10 +43,10 @@
 </template>
 
 <script>
-import { getAllMenuItems } from "../../api/ajaxCalls";
+import { getAllMenuItems } from '../../api/ajaxCalls';
 
 export default {
-  name: "MenuItems",
+  name: 'MenuItems',
   methods: {
     getItems: function() {
       setTimeout(() => {
@@ -63,7 +63,7 @@ export default {
     },
     emitAddToCart: function(item) {
       this.toggleModal();
-      this.$emit("addItem", item);
+      this.$emit('addItem', item);
     },
     toggleModal() {
       this.modalOpen = !this.modalOpen;
@@ -78,7 +78,7 @@ export default {
       appetizers: [],
       mains: [],
       drinks: [],
-      tabSelected: "all",
+      tabSelected: 'all',
       modalOpen: false
     };
   },
@@ -87,21 +87,21 @@ export default {
       if (!this.items) return [];
 
       return this.items.filter(item => {
-        if (this.tabSelected === "all") return true;
+        if (this.tabSelected === 'all') return true;
 
         return item.category === this.tabSelected;
       });
     }
   },
   filters: {
-    priceProcess: function(p) {
-      if (!p) return "nope";
-      return (p / 100).toFixed(2);
+    priceProcess: function(int) {
+      if (!int) return '';
+      return (int / 100).toFixed(2);
     },
-    capitalize: function(value) {
-      if (!value) return "what";
-      value = value.toString();
-      return value.charAt(0).toUpperCase() + value.slice(1);
+    capitalize: function(str) {
+      if (!str) return '';
+      str = str.toString();
+      return str.charAt(0).toUpperCase() + str.slice(1);
     }
   }
 };
