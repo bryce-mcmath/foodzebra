@@ -1,0 +1,15 @@
+.ui.modal > .content > .description {
+  overflow: auto;
+}
+
+.ui.modal > .content > .description.error {
+  background: #fff3cd;
+  color: #856404;
+  padding: 16px 8px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.ui.input.login-input > input {
+  margin-bottom: 16px;
+}

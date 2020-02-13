@@ -1,23 +1,25 @@
 <template lang="html">
   <sui-modal class="login-modal-container" v-model="open">
     <sui-modal-header>Login</sui-modal-header>
-    <sui-modal-content image>
+    <sui-modal-content>
+      <sui-modal-description class="error" v-show="loginFailed"
+        >Invalid username or password</sui-modal-description
+      >
       <sui-modal-description>
         <sui-input
+          class="login-input"
           v-model="email"
           placeholder="Email"
           @keyup.enter="submitCredentials()"
         ></sui-input>
         <sui-input
+          class="login-input"
           v-model="password"
           type="password"
           placeholder="Password"
           @keyup.enter="submitCredentials()"
         ></sui-input>
       </sui-modal-description>
-      <sui-modal-description v-show="loginFailed"
-        >Invalid username or password</sui-modal-description
-      >
     </sui-modal-content>
     <sui-modal-actions>
       <sui-button positive @click.native="submitCredentials()">
@@ -28,10 +30,10 @@
 </template>
 
 <script>
-import { loginAjaxCall } from "../../api/ajaxCalls";
+import { loginAjaxCall } from '../../api/ajaxCalls';
 
 export default {
-  name: "LoginModal",
+  name: 'LoginModal',
   props: {
     modalOpen: {
       type: Boolean,
@@ -40,8 +42,8 @@ export default {
   },
   data() {
     return {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
       loginFailed: false
     };
   },
@@ -65,6 +67,9 @@ export default {
             this.emitLogin();
           } else {
             this.loginFailed = true;
+            setTimeout(() => {
+              this.loginFailed = false;
+            }, 2000);
           }
         })
         .catch(err => {
@@ -72,10 +77,10 @@ export default {
         });
     },
     emitClose() {
-      this.$emit("closeModal");
+      this.$emit('closeModal');
     },
     emitLogin() {
-      this.$emit("loggedIn");
+      this.$emit('loggedIn');
     }
   }
 };
