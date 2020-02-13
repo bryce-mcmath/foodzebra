@@ -94,5 +94,14 @@ module.exports = {
         console.log('ajaxCalls error', err);
         return [];
       });
+  },
+  placeOrder: order => {
+    return axios
+      .post('/orders', order)
+      .then(response => response.data)
+      .catch(err => {
+        console.log('ajaxCalls error', err);
+        return [];
+      });
   }
 };

@@ -35,7 +35,7 @@
           </li>
           <li>
             <a href="#"
-              ><div class="noSelect hamb-cart flex">
+              ><div class="noSelect hamb-cart flex" @click="emitViewCart()">
                 <i class="fas fa-shopping-cart fa-2x"></i>
                 <div v-if="itemsNumber" class="count flex fwb">
                   <span>{{ itemsNumber }}</span>
@@ -48,6 +48,7 @@
     </nav>
     <div
       class="noSelect cart hide-sm flex"
+      @click="emitViewCart()"
       v-bind:class="{ 'cart-up': isScrolled }"
     >
       <i class="fas fa-shopping-cart fa-2x"></i>
@@ -76,6 +77,9 @@ export default {
     },
     handleCheck: function() {
       this.isChecked = !this.isChecked;
+    },
+    emitViewCart: function() {
+      this.$emit('openCartModal');
     }
   },
   created() {

@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <Nav :itemsInCart="this.cart.items"></Nav>
+    <Nav
+      :itemsInCart="this.cart.items"
+      @openCartModal="setCartModal(true)"
+    ></Nav>
     <!-- if on / -->
     <Hero></Hero>
 
@@ -37,6 +40,12 @@
       :modalOpen="orderModalOpen"
       :order_id="current_order"
     ></OrderModal>
+    <CartModal
+      @closeModal="setCartModal(false)"
+      @placeOrder="onPlaceOrder"
+      :modalOpen="cartModalOpen"
+      :cart="cart"
+    ></CartModal>
     <Footer @openLogin="setLoginModal(true)"></Footer>
   </div>
 </template>
@@ -49,9 +58,10 @@ import MenuItems from './components/menu_items/MenuItems.vue';
 import MenuModal from './components/menu_modal/MenuModal.vue';
 import LoginModal from './components/login_modal/LoginModal.vue';
 import OrderModal from './components/order-modal/OrderModal.vue';
+import CartModal from './components/cart_modal/CartModal.vue';
 import OperatorTab from './components/operator_tab/OperatorTab.vue';
 import OrderItems from './components/order_items/OrderItems.vue';
-import { validateSession } from './api/ajaxCalls';
+import { validateSession, placeOrder } from './api/ajaxCalls';
 
 export default {
   name: 'app',
@@ -64,6 +74,7 @@ export default {
     MenuModal,
     LoginModal,
     OrderModal,
+    CartModal,
     Footer
   },
   mounted() {
@@ -80,6 +91,7 @@ export default {
       menuModalOpen: false,
       loginModalOpen: false,
       orderModalOpen: false,
+      cartModalOpen: false,
       operatorTabValues: {
         show: false,
         tabSelected: 'menu'
@@ -117,6 +129,11 @@ export default {
         this.orderModalOpen = status;
       }
     },
+    setCartModal: function(status) {
+      if (typeof status === 'boolean') {
+        this.cartModalOpen = status;
+      }
+    },
     loginLogic: function() {
       validateSession().then(response => {
         if (response.data) {
@@ -137,6 +154,9 @@ export default {
     onFulfillOrder(id) {
       console.log('onfulfillorder was called');
       // axios
+    },
+    onPlaceOrder(order) {
+      placeOrder(order);
     }
   }
 };
