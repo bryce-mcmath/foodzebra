@@ -1,13 +1,31 @@
-const express = require("express");
-const bcrypt = require("bcryptjs");
+const express = require('express');
+const bcrypt = require('bcryptjs');
 const router = express.Router();
-const { getUserByEmail } = require("../api/queries");
+const { getUserByEmail, getUserById } = require('../api/queries');
 
-router.post("/", (req, res) => {
+//
+router.get('/', (req, res) => {
+  const notValid = () => null;
+
+  if (req.session.user_id) {
+    getUserById(req.session.user_id)
+      .then(response => {
+        if (response.rows[0].role === 'operator') res.send('valid');
+        else notValid();
+      })
+      .catch(err => {
+        notValid();
+      });
+  } else {
+    notValid();
+  }
+});
+
+router.post('/', (req, res) => {
   const invalidCredentials = () => {
-    res.status(401).send("Wrong username or password");
+    res.status(401).send('Wrong username or password');
   };
-  const { email = "", password = "" } = req.body;
+  const { email = '', password = '' } = req.body;
 
   if (email && password) {
     getUserByEmail(email)
@@ -24,7 +42,7 @@ router.post("/", (req, res) => {
                 invalidCredentials();
               }
             } else {
-              console.log("bcrypt err: ", err);
+              console.log('bcrypt err: ', err);
               invalidCredentials();
             }
           });
@@ -33,7 +51,7 @@ router.post("/", (req, res) => {
         }
       })
       .catch(err => {
-        console.log("db error: ", err);
+        console.log('db error: ', err);
         invalidCredentials();
       });
   } else {
