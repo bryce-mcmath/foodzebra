@@ -5,12 +5,13 @@
       <h3>Items in Cart:</h3>
       <div
         class="order-modal-row flex"
-        v-for="item in this.cart.items"
-        :key="item.id"
+        v-for="(item, index) in this.cart.items"
+        :key="index"
       >
-        <p>{{ item.name }}</p>
+        <p>{{ item.name }}&nbsp;</p>
         <p>{{ item.price | priceProcess }}</p>
       </div>
+      <div>Total: {{ cartSum(this.cart.items) | priceProcess }}</div>
     </div>
     <sui-modal-actions>
       <sui-button secondary @click.native="emitClose">
@@ -56,19 +57,20 @@ export default {
     },
     emitPlaceOrder() {
       this.$emit('placeOrder');
+    },
+    cartSum(cartArray) {
+      if (Array.isArray(cartArray)) {
+        console.log('cart', cartArray);
+        return cartArray.reduce((a, b) => a + b.price, 0);
+      } else {
+        return 0;
+      }
     }
   },
   filters: {
     priceProcess: function(input) {
       if (!input) return '$0.00';
       return `$${(input / 100).toFixed(2)}`;
-    },
-    sumPrices: function(prices) {
-      const sum = (tot, price) => {
-        return tot + price;
-      };
-
-      return prices.reduce(sum, 0);
     }
   }
 };

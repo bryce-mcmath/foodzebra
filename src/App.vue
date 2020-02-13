@@ -101,7 +101,7 @@ export default {
   },
   methods: {
     addItemToCart: function(payload) {
-      this.cart.items.push(payload.id);
+      this.cart.items.push(payload);
       this.setMenuModal(true);
       setTimeout(() => {
         this.setMenuModal(false);
