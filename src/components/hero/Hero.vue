@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: "Hero",
+  name: 'Hero',
   data: function() {
     return {};
   }

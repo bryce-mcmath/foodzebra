@@ -1,10 +1,11 @@
 <template>
   <footer id="footer" class="footer flex">
     <div class="footer-brand flex">
-      <hr />
+      <hr class="hide-sm" />
       <div class="brand"><span>food</span>zebra</div>
-      <hr />
+      <hr class="hide-sm" />
     </div>
+    <hr class="footer-break show-sm" />
     <section class="footer-content grid">
       <div class="location-contact flex">
         <h3 class="footer-header">Location and Contact</h3>
@@ -51,13 +52,13 @@
 
 <script>
 export default {
-  name: "Footer",
+  name: 'Footer',
   data: function() {
     return {};
   },
   methods: {
     emitLogin: function() {
-      this.$emit("openLogin");
+      this.$emit('openLogin');
     }
   }
 };

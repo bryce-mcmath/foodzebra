@@ -69,7 +69,7 @@ export default {
             this.loginFailed = true;
             setTimeout(() => {
               this.loginFailed = false;
-            }, 2000);
+            }, 4000);
           }
         })
         .catch(err => {
