@@ -1,17 +1,22 @@
 <template>
-  <div id="app" @click.once="loginLogic()">
+  <div id="app">
     <Nav :itemsInCart="this.cart.items"></Nav>
     <!-- if on / -->
     <Hero></Hero>
 
-    <div class="content-container">
+    <div class="content-container" @click.once="loginLogic()">
       <OperatorTab
         v-if="operatorTabValues.show"
         :operatorTab="operatorTabValues.tabSelected"
-        @selectedOperatorTab="showTab"
+        @selectedOperatorTab="operatorTabClicked"
       ></OperatorTab>
-      <!-- <OrderItems></OrderItems> -->
-      <MenuItems @addItem="addItemToCard"></MenuItems>
+      <OrderItems
+        v-if="operatorTabValues.tabSelected === 'orders'"
+      ></OrderItems>
+      <MenuItems
+        v-if="operatorTabValues.tabSelected === 'menu'"
+        @addItem="addItemToCard"
+      ></MenuItems>
       <!-- if on /orders as operator -->
       <!-- <Orders /> -->
     </div>
@@ -36,6 +41,7 @@ import MenuItems from './components/menu_items/MenuItems.vue';
 import MenuModal from './components/menu_modal/MenuModal.vue';
 import LoginModal from './components/login_modal/LoginModal.vue';
 import OperatorTab from './components/operator_tab/OperatorTab.vue';
+import OrderItems from './components/order_items/OrderItems.vue';
 
 export default {
   name: 'app',
@@ -43,6 +49,7 @@ export default {
     Nav,
     Hero,
     OperatorTab,
+    OrderItems,
     MenuItems,
     MenuModal,
     LoginModal,
@@ -87,7 +94,7 @@ export default {
       this.operatorTabValues.show = true;
       // TBD login ajax calls go here eventually
     },
-    showTab: function(payload) {
+    operatorTabClicked: function(payload) {
       this.operatorTabValues.tabSelected = payload;
     }
   }
