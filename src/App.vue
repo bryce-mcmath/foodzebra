@@ -1,13 +1,20 @@
 <template>
-  <div id="app">
+  <div id="app" @click.once="loginLogic()">
     <Nav :itemsInCart="this.cart.items"></Nav>
     <!-- if on / -->
     <Hero></Hero>
-    <OperatorTab></OperatorTab>
-    <!-- <OrderItems></OrderItems> -->
-    <MenuItems @addItem="addItemToCard"></MenuItems>
-    <!-- if on /orders as operator -->
-    <!-- <Orders /> -->
+
+    <div class="content-container">
+      <OperatorTab
+        v-if="operatorTabValues.show"
+        :operatorTab="operatorTabValues.tabSelected"
+        @selectedOperatorTab="showTab"
+      ></OperatorTab>
+      <!-- <OrderItems></OrderItems> -->
+      <MenuItems @addItem="addItemToCard"></MenuItems>
+      <!-- if on /orders as operator -->
+      <!-- <Orders /> -->
+    </div>
     <MenuModal
       @closeModal="setMenuModal(false)"
       :modalOpen="menuModalOpen"
@@ -50,7 +57,11 @@ export default {
         pickup_name: ''
       },
       menuModalOpen: false,
-      loginModalOpen: false
+      loginModalOpen: false,
+      operatorTabValues: {
+        show: false,
+        tabSelected: 'menu'
+      }
     };
   },
   methods: {
@@ -72,7 +83,12 @@ export default {
       }
     },
     loginLogic: function() {
+      console.log('loginLogic');
+      this.operatorTabValues.show = true;
       // TBD login ajax calls go here eventually
+    },
+    showTab: function(payload) {
+      this.operatorTabValues.tabSelected = payload;
     }
   }
 };
@@ -80,4 +96,7 @@ export default {
 
 <style lang="scss">
 @import './app.scss';
+.content-container {
+  margin-top: 544px;
+}
 </style>

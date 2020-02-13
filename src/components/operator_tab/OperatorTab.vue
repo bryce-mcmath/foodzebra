@@ -1,10 +1,10 @@
 <template>
   <div id="operator-tab">
     <sui-menu class="sui-menu" :widths="2">
-      <sui-menu-item @click="selectTab('Menu')" :active="isActive('Menu')"
+      <sui-menu-item @click="selectTab('menu')" :active="isActive('menu')"
         >Menu</sui-menu-item
       >
-      <sui-menu-item @click="selectTab('Orders')" :active="isActive('Orders')"
+      <sui-menu-item @click="selectTab('orders')" :active="isActive('orders')"
         >Orders</sui-menu-item
       >
     </sui-menu>
@@ -14,15 +14,15 @@
 <script>
 export default {
   name: 'OperatorTab',
-  data() {
-    return {
-      tabSelected: 'Menu'
-    };
+  props: ['operatorTab'],
+  computed: {
+    tabSelected: function() {
+      return this.operatorTab;
+    }
   },
   methods: {
     selectTab: function(tabClicked) {
-      this.$emit('');
-      this.tabSelected = tabClicked;
+      this.$emit('selectedOperatorTab', tabClicked);
     },
     isActive: function(tab) {
       return this.tabSelected === tab;
