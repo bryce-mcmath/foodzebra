@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import {} from '../../api/ajaxCalls';
+import { placeOrder } from '../../api/ajaxCalls';
 
 export default {
   name: 'CartModal',
@@ -39,7 +39,9 @@ export default {
     }
   },
   data() {
-    return {};
+    return {
+      order: {}
+    };
   },
   computed: {
     open: {

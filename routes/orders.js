@@ -123,37 +123,23 @@ router.get('/fulfilled', (req, res) => {
 
 router.post('/', (req, res) => {
   const user_id = req.session.user_id;
-  getUserById(user_id)
-    .then(resolve => {
-      const user = resolve.rows[0];
-      if (user.role === 'customer' || user.role === 'operator') {
-        const { pickup_name, customer_note, total_price } = req.body;
-        if (pickup_name && total_price) {
-          addOrder({ pickup_name, customer_note, total_price, user_id })
-            .then(result => {
-              if (result.rows[0]) {
-                res.json(result.rows[0]);
-              } else {
-                throw new Error('Placed order not returned');
-              }
-            })
-            .catch(err => {
-              throw new Error('Error adding order: ', err);
-            });
+  const user = resolve.rows[0];
+  const { pickup_name, customer_note, total_price, mobile } = req.body;
+  if (pickup_name && total_price) {
+    addOrder({ pickup_name, customer_note, total_price, mobile, user_id })
+      .then(result => {
+        if (result.rows[0]) {
+          res.json(result.rows[0]);
         } else {
-          throw new Error('Pickup name and total price required');
+          throw new Error('Placed order not returned');
         }
-      } else {
-        console.log(
-          'Access denied. You are not logged in as a customer or operator'
-        );
-        res.status(403);
-      }
-    })
-    .catch(err => {
-      console.log('error getting user: ', err);
-      res.status(400);
-    });
+      })
+      .catch(err => {
+        throw new Error('Error adding order: ', err);
+      });
+  } else {
+    throw new Error('Pickup name and total price required');
+  }
 });
 
 router.get('/:id', (req, res) => {
