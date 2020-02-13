@@ -10,7 +10,6 @@ router.get('/', (req, res) => {
   if (req.session.user_id) {
     getUserById(req.session.user_id)
       .then(response => {
-        console.log(response.rows);
         if (response.rows[0].role === 'operator') res.send('valid');
         else notValid();
       })
