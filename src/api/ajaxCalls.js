@@ -32,6 +32,19 @@ module.exports = {
         return err.response;
       });
   },
+  validateSession: () => {
+    return axios
+      .get(`/login`)
+      .then(response => {
+        return response;
+      })
+      .catch(err => {
+        if (err.response.status !== 401) {
+          console.log('ajaxCalls error', err);
+        }
+        return err.response;
+      });
+  },
   getAllOrderNew: () => {
     return axios
       .get('/orders/new')

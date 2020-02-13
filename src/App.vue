@@ -4,7 +4,7 @@
     <!-- if on / -->
     <Hero></Hero>
 
-    <div class="content-container" @click.once="loginLogic()">
+    <div id="content-container" class="content-container">
       <OperatorTab
         v-if="operatorTabValues.show"
         :operatorTab="operatorTabValues.tabSelected"
@@ -42,6 +42,7 @@ import MenuModal from './components/menu_modal/MenuModal.vue';
 import LoginModal from './components/login_modal/LoginModal.vue';
 import OperatorTab from './components/operator_tab/OperatorTab.vue';
 import OrderItems from './components/order_items/OrderItems.vue';
+import { validateSession } from './api/ajaxCalls';
 
 export default {
   name: 'app',
@@ -54,6 +55,9 @@ export default {
     MenuModal,
     LoginModal,
     Footer
+  },
+  mounted() {
+    this.loginLogic();
   },
   data() {
     return {
@@ -90,9 +94,14 @@ export default {
       }
     },
     loginLogic: function() {
-      console.log('loginLogic');
-      this.operatorTabValues.show = true;
-      // TBD login ajax calls go here eventually
+      validateSession().then(response => {
+        if (response.data) {
+          this.operatorTabValues.show = true;
+          this.operatorTabValues.tabSelected = 'orders';
+          let container = this.$el.querySelector('#content-container');
+          container.scrollTop = container.scrollHeight;
+        }
+      });
     },
     operatorTabClicked: function(payload) {
       this.operatorTabValues.tabSelected = payload;
