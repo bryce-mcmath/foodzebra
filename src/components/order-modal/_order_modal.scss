@@ -1,0 +1,14 @@
+.order-modal-content {
+  padding: 16px;
+
+  .order-modal-row {
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px lightgrey solid;
+
+    > p {
+      margin: 0;
+      margin-bottom: 2px;
+    }
+  }
+}

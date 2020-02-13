@@ -63,6 +63,15 @@
             <div class="price">
               Fulfilled at: {{ item.fulfilled_at | dateFilter }}
             </div>
+            <sui-modal-actions>
+              <sui-button
+                secondary
+                v-bind:id="item.id"
+                @click.native="emitViewOrder($event)"
+              >
+                View
+              </sui-button>
+            </sui-modal-actions>
           </sui-card-content>
         </sui-card>
       </sui-card-group>
@@ -85,7 +94,6 @@ export default {
     getAllOrderNewMethod: function() {
       getAllOrderNew()
         .then(response => {
-          console.log('getAllOrderNewMethod', response);
           this.items = response;
         })
         .catch(err => {
@@ -96,7 +104,6 @@ export default {
     getAllOrderAcceptedMethod: function() {
       getAllOrderAccepted()
         .then(response => {
-          console.log('getAllOrderAcceptedMethod', response);
           this.items = response;
         })
         .catch(err => {
@@ -107,7 +114,6 @@ export default {
     getAllOrderFulfilledMethod: function() {
       getAllOrderFulfilled()
         .then(response => {
-          console.log('getAllOrderFulfilled', response);
           this.items = response;
         })
         .catch(err => {
@@ -118,7 +124,6 @@ export default {
     getAllOrderMethod: function() {
       getAllOrder()
         .then(response => {
-          console.log('getAllOrder', response);
           this.items = response;
         })
         .catch(err => {
@@ -146,6 +151,10 @@ export default {
       if (!acceptTimeStamp || !estimateSeconds) return '';
       let acceptedDate = new Date(acceptTimeStamp);
       return new Date(acceptedDate.getTime() + estimateSeconds * 1000);
+    },
+    emitViewOrder: function(e) {
+      console.log(e.target.id);
+      this.$emit('openOrderModal', true, e.target.id);
     }
   },
   mounted() {

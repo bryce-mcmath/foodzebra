@@ -12,10 +12,11 @@
       ></OperatorTab>
       <OrderItems
         v-if="operatorTabValues.tabSelected === 'orders'"
+        @openOrderModal="setOrderModal"
       ></OrderItems>
       <MenuItems
         v-if="operatorTabValues.tabSelected === 'menu'"
-        @addItem="addItemToCard"
+        @addItem="addItemToCart"
       ></MenuItems>
       <!-- if on /orders as operator -->
       <!-- <Orders /> -->
@@ -29,6 +30,13 @@
       @loggedIn="loginLogic()"
       :modalOpen="loginModalOpen"
     ></LoginModal>
+    <OrderModal
+      @closeModal="setOrderModal(false)"
+      @acceptOrder="onAcceptOrder"
+      @fulfillOrder="onFulfillOrder"
+      :modalOpen="orderModalOpen"
+      :order_id="current_order"
+    ></OrderModal>
     <Footer @openLogin="setLoginModal(true)"></Footer>
   </div>
 </template>
@@ -40,6 +48,7 @@ import Footer from './components/footer/Footer.vue';
 import MenuItems from './components/menu_items/MenuItems.vue';
 import MenuModal from './components/menu_modal/MenuModal.vue';
 import LoginModal from './components/login_modal/LoginModal.vue';
+import OrderModal from './components/order-modal/OrderModal.vue';
 import OperatorTab from './components/operator_tab/OperatorTab.vue';
 import OrderItems from './components/order_items/OrderItems.vue';
 import { validateSession } from './api/ajaxCalls';
@@ -54,6 +63,7 @@ export default {
     MenuItems,
     MenuModal,
     LoginModal,
+    OrderModal,
     Footer
   },
   mounted() {
@@ -69,14 +79,16 @@ export default {
       },
       menuModalOpen: false,
       loginModalOpen: false,
+      orderModalOpen: false,
       operatorTabValues: {
         show: false,
         tabSelected: 'menu'
-      }
+      },
+      current_order: ''
     };
   },
   methods: {
-    addItemToCard: function(payload) {
+    addItemToCart: function(payload) {
       this.cart.items.push(payload.id);
       this.setMenuModal(true);
       setTimeout(() => {
@@ -93,6 +105,18 @@ export default {
         this.loginModalOpen = status;
       }
     },
+    setOrderModal: function(status, id) {
+      console.log('status is: ', status);
+      console.log('id is: ', id);
+      if (id) {
+        console.log('current order is: ', this.current_order);
+        this.current_order = id;
+        console.log('current order after is: ', this.current_order);
+      }
+      if (typeof status === 'boolean') {
+        this.orderModalOpen = status;
+      }
+    },
     loginLogic: function() {
       validateSession().then(response => {
         if (response.data) {
@@ -105,6 +129,14 @@ export default {
     },
     operatorTabClicked: function(payload) {
       this.operatorTabValues.tabSelected = payload;
+    },
+    onAcceptOrder(id, estimate) {
+      console.log('onacceptorder was called');
+      // axios
+    },
+    onFulfillOrder(id) {
+      console.log('onfulfillorder was called');
+      // axios
     }
   }
 };

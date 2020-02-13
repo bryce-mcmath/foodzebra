@@ -1,12 +1,12 @@
-const db = require("../db");
+const db = require('../db');
 
 const getAllMenuItem = () => {
   const query = `SELECT * FROM "MenuItem";`;
   return db.query(query);
 };
 
-const getMenuItemById = (id = "") => {
-  if (!id) throw new Error("Id required");
+const getMenuItemById = (id = '') => {
+  if (!id) throw new Error('Id required');
 
   const query = `
   SELECT * FROM "MenuItem"
@@ -21,8 +21,8 @@ const getAllUser = () => {
   return db.query(query);
 };
 
-const getUserById = (id = "") => {
-  if (!id) throw new Error("Id required");
+const getUserById = (id = '') => {
+  if (!id) throw new Error('Id required');
 
   const query = `
   SELECT * FROM "User"
@@ -31,8 +31,8 @@ const getUserById = (id = "") => {
   return db.query(query, [id]);
 };
 
-const getUserByEmail = (inputParam = "") => {
-  if (!inputParam) throw new Error("email required");
+const getUserByEmail = (inputParam = '') => {
+  if (!inputParam) throw new Error('email required');
 
   const query = `
   SELECT * FROM "User"
@@ -41,8 +41,8 @@ const getUserByEmail = (inputParam = "") => {
   return db.query(query, [inputParam]);
 };
 
-const getUserByName = (inputParam = "") => {
-  if (!inputParam) throw new Error("name required");
+const getUserByName = (inputParam = '') => {
+  if (!inputParam) throw new Error('name required');
 
   const query = `
   SELECT * FROM "User"
@@ -51,8 +51,8 @@ const getUserByName = (inputParam = "") => {
   return db.query(query, [inputParam]);
 };
 
-const getUserByMobile = (inputParam = "") => {
-  if (!inputParam) throw new Error("mobile required");
+const getUserByMobile = (inputParam = '') => {
+  if (!inputParam) throw new Error('mobile required');
 
   const query = `
   SELECT * FROM "User"
@@ -93,8 +93,8 @@ const getAllOrderFulfilled = () => {
   return db.query(query);
 };
 
-const getOrderById = (id = "") => {
-  if (!id) throw new Error("Id required");
+const getOrderById = (id = '') => {
+  if (!id) throw new Error('Id required');
 
   const query = `
   SELECT * FROM "Order"
@@ -103,19 +103,19 @@ const getOrderById = (id = "") => {
   return db.query(query, [id]);
 };
 
-const getOrderItemByOrderId = (id = "") => {
-  if (!id) throw new Error("Order id required");
+const getOrderItemByOrderId = (id = '') => {
+  if (!id) throw new Error('Order id required');
 
   const query = `
-  SELECT "MenuItem"."name", "MenuItem"."price" FROM "OrderItem"
+  SELECT "OrderItem"."id", "MenuItem"."name", "MenuItem"."price" FROM "OrderItem"
   JOIN "MenuItem" ON "OrderItem"."menu_item_id" = "MenuItem"."id"
   WHERE "OrderItem"."order_id" = $1;`;
 
   return db.query(query, [id]);
 };
 
-const getOrderByPickupName = (inputParam = "") => {
-  if (!inputParam) throw new Error("pickup_name required");
+const getOrderByPickupName = (inputParam = '') => {
+  if (!inputParam) throw new Error('pickup_name required');
 
   const query = `
   SELECT * FROM "Order"
