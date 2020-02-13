@@ -91,7 +91,7 @@ module.exports = {
         return response.data;
       })
       .catch(err => {
-        console.log('ajaxCalls error', err);
+        console.log('ajaxCalls error', err.response);
         return [];
       });
   }

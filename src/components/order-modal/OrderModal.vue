@@ -8,7 +8,7 @@
         <p>{{ item.price | priceProcess }}</p>
       </div>
       <div class="order-modal-total">
-        {{ this.items.map(x => x.price) | sumPrices | priceProcess }}
+        <!-- {{ this.items.map(x => x.price) | sumPrices | priceProcess }} -->
       </div>
       <!-- form with estimate input -->
     </div>
@@ -31,16 +31,7 @@ import { getOrderItemByOrderId } from '../../api/ajaxCalls';
 
 export default {
   name: 'OrderModal',
-  props: {
-    modalOpen: {
-      type: Boolean,
-      default: false
-    },
-    order_id: {
-      type: String,
-      default: ''
-    }
-  },
+  props: ['modalOpen', 'order_id'],
   data() {
     return {
       estimate: 1800,
@@ -55,6 +46,11 @@ export default {
       set: function(newValue) {
         if (!newValue) this.emitClose();
       }
+    }
+  },
+  watch: {
+    order_id: function(n, o) {
+      this.getOrderItemByIdMethod();
     }
   },
   methods: {
@@ -86,12 +82,6 @@ export default {
           });
       }
     }
-  },
-  mounted() {
-    this.getOrderItemByIdMethod();
-  },
-  update() {
-    console.log(this.order_id);
   },
   filters: {
     priceProcess: function(input) {
