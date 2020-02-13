@@ -1,7 +1,6 @@
 <template>
   <section id="menu">
     <div class="menu-header flex">Menu</div>
-    <div class="menu-separator"></div>
     <sui-menu class="sui-menu" :widths="4">
       <sui-menu-item @click="selectTab('all')" :active="isActive('all')"
         >All</sui-menu-item

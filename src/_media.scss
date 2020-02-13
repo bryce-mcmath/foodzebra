@@ -76,16 +76,17 @@
         > .count {
           background: red;
           border-radius: 50%;
-          margin-left: 16px;
-          width: 16px;
-          height: 16px;
           font-size: 12px;
           position: absolute;
           top: 0;
-          margin-top: 12px;
           align-items: center;
           justify-content: center;
           color: white;
+          margin-left: 24px;
+          width: 24px;
+          height: 24px;
+          font-size: 12px;
+          margin-top: 12px;
         }
       }
 
@@ -111,6 +112,7 @@
         max-height: 0;
         width: 100vw;
         background-color: white;
+        font-size: 24px;
       }
 
       #showmenu.transparent {
@@ -155,7 +157,7 @@
 
       > h1 {
         font-family: $secondary-font;
-        font-size: 48px;
+        font-size: 56px;
         color: red;
       }
 
@@ -172,7 +174,7 @@
 
   .footer {
     .footer-content {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr;
       row-gap: 32px;
     }
   }
@@ -180,8 +182,38 @@
 
 // Tablets
 @media (max-width: 768px) {
-  .hide-tablet {
-    display: none;
+  .nav .hamburger {
+    > #showmenu {
+      font-size: 16px;
+
+      .hamb-cart {
+        .count {
+          margin-left: 16px;
+          width: 16px;
+          height: 16px;
+          font-size: 12px;
+          margin-top: 12px;
+        }
+      }
+    }
+  }
+
+  .hero > .hero-content > h1 {
+    font-size: 42px;
+  }
+
+  .footer {
+    .footer-content {
+      grid-template-columns: 1fr;
+
+      .mailing form > input {
+        height: 40px;
+      }
+    }
+
+    .copyright {
+      font-size: 11px;
+    }
   }
 }
 
