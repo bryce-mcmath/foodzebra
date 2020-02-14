@@ -48,11 +48,9 @@ export default {
   name: 'MenuItems',
   methods: {
     getItems: function() {
-      setTimeout(() => {
-        getAllMenuItems().then(res => {
-          this.items = res;
-        });
-      }, 1500);
+      getAllMenuItems().then(res => {
+        this.items = res;
+      });
     },
     selectTab: function(tabClicked) {
       this.tabSelected = tabClicked;
