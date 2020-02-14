@@ -1,3 +1,15 @@
+.order-modal-container {
+  > .ui.standard {
+    max-width: 600px;
+    min-width: 300px;
+    width: 40vw;
+
+    .ui.input {
+      width: 175px;
+    }
+  }
+}
+
 .order-modal-content {
   padding: 16px;
 

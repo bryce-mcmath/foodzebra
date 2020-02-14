@@ -61,7 +61,12 @@ import OrderModal from './components/order-modal/OrderModal.vue';
 import CartModal from './components/cart_modal/CartModal.vue';
 import OperatorTab from './components/operator_tab/OperatorTab.vue';
 import OrderItems from './components/order_items/OrderItems.vue';
-import { validateSession, placeOrder } from './api/ajaxCalls';
+import {
+  validateSession,
+  placeOrder,
+  acceptOrder,
+  fulfillOrder
+} from './api/ajaxCalls';
 
 export default {
   name: 'app',
@@ -145,10 +150,25 @@ export default {
     },
     onAcceptOrder(id, estimate) {
       console.log('onacceptorder was called');
+      acceptOrder(id, 'accept', estimate)
+        .then(response => {
+          console.log(response);
+        })
+        .catch(err => {
+          console.log('Component err:', err);
+        });
+
       // axios
     },
     onFulfillOrder(id) {
       console.log('onfulfillorder was called');
+      fulfillOrder(id, 'fulfill')
+        .then(response => {
+          console.log(response);
+        })
+        .catch(err => {
+          console.log('Component err:', err);
+        });
       // axios
     },
     onPlaceOrder(order) {

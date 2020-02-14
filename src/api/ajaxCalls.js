@@ -104,18 +104,19 @@ module.exports = {
         return [];
       });
   },
-  acceptOrder: (id, msg, estimate = 1800) => {
+  acceptOrder: (id, msg, estimate = '') => {
+    console.log('ajax accept', id, msg, estimate);
     return axios
-      .post(`/orders/${id}`, { msg, estimate })
+      .put(`/orders/${id}`, { msg, estimate })
       .then(response => response.data)
       .catch(err => {
-        console.log('ajaxCalls error', err);
+        console.log('ajaxCalls error', err.data);
         return [];
       });
   },
-  fulfillOrder: (id, msg, estimate = null) => {
+  fulfillOrder: (id, msg, estimate = '') => {
     return axios
-      .post(`/orders/${id}`, { msg, estimate })
+      .put(`/orders/${id}`, { msg, estimate })
       .then(response => response.data)
       .catch(err => {
         console.log('ajaxCalls error', err);

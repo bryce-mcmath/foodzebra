@@ -1,5 +1,5 @@
 <template lang="html">
-  <sui-modal class="order-modal-content" v-model="open">
+  <sui-modal class="order-modal-container" v-model="open">
     <sui-modal-header>Order {{ this.order_id }}</sui-modal-header>
     <!-- <div class="order-modal-content"> -->
     <sui-modal-content class="order-modal-content">
@@ -9,7 +9,7 @@
         <p>{{ item.price | priceProcess }}</p>
       </div>
       <div class="order-modal-total flex">
-        <p>Total prices:</p>
+        <p>Total price:</p>
         <p>{{ sumPrices(items) | priceProcess }}</p>
       </div>
       <!-- </div> -->
@@ -17,8 +17,13 @@
     <!-- form with estimate input -->
 
     <sui-modal-actions>
-      <sui-button primary @click.native="emitAcceptOrder">
-        Send Estimate
+      <sui-input
+        type="number"
+        v-model.number="estimate"
+        placeholder="Estimate in minutes"
+      ></sui-input>
+      <sui-button :disabled="!estimate" primary @click.native="emitAcceptOrder">
+        Accept
       </sui-button>
       <sui-button positive @click.native="emitFulfillOrder">
         Ready
@@ -38,7 +43,7 @@ export default {
   props: ['modalOpen', 'order_id'],
   data() {
     return {
-      estimate: 1800,
+      estimate: '',
       items: []
     };
   },
