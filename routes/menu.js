@@ -36,16 +36,16 @@ router.post('/', (req, res) => {
       const user = result.rows[0];
       if (user.role === 'operator') {
         const { name, desc, price, img_url, category } = req.body;
-        if (name && desc && price && img_url && category) {
-          addMenuItem({ name, desc, price, img_url, category })
+        if (name && price && typeof price === 'number') {
+          addMenuItem(name, price, desc, img_url, category)
             .then(item => {
-              res.json(item.rows[0]);
+              res.json(item.rows);
             })
             .catch(err => {
-              console.log('error adding item: ', err);
+              console.log('error adding menu item: ', err);
             });
         } else {
-          console.log('Incomplete item options');
+          console.log('Name and price required');
           res.send(400);
         }
       } else {
@@ -66,7 +66,7 @@ router.get('/:id', (req, res) => {
   if (id) {
     getMenuItemById(id)
       .then(result => {
-        res.json(result.rows[0]);
+        res.json(result.rows);
       })
       .catch(err => {
         console.log(err);
@@ -85,17 +85,10 @@ router.put('/:id', (req, res) => {
       if (user.role === 'operator') {
         const { name, desc, price, img_url, category } = req.body;
         const id = req.params.id;
-        if (id && name && desc && price && img_url && category) {
-          updateMenuItem({
-            id,
-            name,
-            price,
-            desc,
-            img_url,
-            category
-          })
+        if (id && name && price) {
+          updateMenuItem(id, name, price, desc, img_url, category)
             .then(item => {
-              res.json(item.rows[0]);
+              res.json(item.rows);
             })
             .catch(err => {
               console.log('error updating item: ', err);
@@ -122,7 +115,7 @@ router.delete('/:id', (req, res) => {
         const id = req.params.id;
         deleteMenuItem(id)
           .then(item => {
-            res.json(item.rows[0]);
+            res.json(item.rows);
           })
           .catch(err => {
             console.log('error adding item: ', err);

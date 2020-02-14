@@ -19,7 +19,7 @@ CREATE TABLE "Order" (
   "customer_note" VARCHAR(255) DEFAULT '',
   "mobile" VARCHAR(255),
   "created_at" TIMESTAMP NOT NULL DEFAULT now(),
-  "estimate" INTEGER DEFAULT 1800,
+  "estimate" INTEGER,
   "total_price" SMALLINT NOT NULL,
   "accepted_at" TIMESTAMP,
   "fulfilled_at" TIMESTAMP,
