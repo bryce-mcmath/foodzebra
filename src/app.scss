@@ -1,5 +1,5 @@
 @charset 'utf-8';
-@import './variables', './reset', './utilities', './mixins', './functions';
+@import './variables', './reset', './utilities';
 @import './components/nav/nav', './components/footer/footer',
   './components/landing/landing', './components/hero/hero',
   './components/menu_items/menu_items', './components/menu_item/menu_item',
@@ -7,5 +7,6 @@
   './components/operator_tab/operator_tab',
   './components/order_items/order_items', './components/menu_modal/menu_modal',
   './components/login_modal/login_modal', './components/order-modal/order_modal',
-  './components/cart_modal/cart_modal';
+  './components/cart_modal/cart_modal',
+  './components/success_modal/success_modal';
 @import './media';

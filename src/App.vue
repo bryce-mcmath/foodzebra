@@ -44,9 +44,14 @@
       @closeModal="setCartModal(false)"
       @placeOrder="onPlaceOrder"
       @clearCart="onClearCart"
+      @openSuccessModal="setSuccessModal(true)"
       :modalOpen="cartModalOpen"
       :cart="cart"
     ></CartModal>
+    <SuccessModal
+      @closeModal="setSuccessModal(false)"
+      :modalOpen="successModalOpen"
+    ></SuccessModal>
     <Footer @openLogin="setLoginModal(true)"></Footer>
   </div>
 </template>
@@ -60,6 +65,7 @@ import MenuModal from './components/menu_modal/MenuModal.vue';
 import LoginModal from './components/login_modal/LoginModal.vue';
 import OrderModal from './components/order-modal/OrderModal.vue';
 import CartModal from './components/cart_modal/CartModal.vue';
+import SuccessModal from './components/success_modal/SuccessModal.vue';
 import OperatorTab from './components/operator_tab/OperatorTab.vue';
 import OrderItems from './components/order_items/OrderItems.vue';
 import {
@@ -81,6 +87,7 @@ export default {
     LoginModal,
     OrderModal,
     CartModal,
+    SuccessModal,
     Footer
   },
   mounted() {
@@ -99,6 +106,7 @@ export default {
       orderModalOpen: false,
       orderItemsUpdate: false,
       cartModalOpen: false,
+      successModalOpen: false,
       operatorTabValues: {
         show: false,
         tabSelected: 'menu'
@@ -137,6 +145,12 @@ export default {
         this.cartModalOpen = status;
       }
     },
+    setSuccessModal: function(status) {
+      console.log('setSuccess called, status: ', status);
+      if (typeof status === 'boolean') {
+        this.successModalOpen = status;
+      }
+    },
     loginLogic: function() {
       validateSession().then(response => {
         if (response.data) {
@@ -159,8 +173,6 @@ export default {
         .catch(err => {
           console.log('Component err:', err);
         });
-
-      // axios
     },
     onFulfillOrder(id) {
       let action = 'fulfill';
@@ -171,18 +183,12 @@ export default {
         .catch(err => {
           console.log('Component err:', err);
         });
-      // axios
     },
     onPlaceOrder(order) {
       if (this.cart.items.length) {
         const tmpOrder = { ...order, items: this.cart.items };
         placeOrder(tmpOrder);
-        this.cart = {
-          items: [],
-          mobile: '',
-          customer_note: '',
-          pickup_name: ''
-        };
+        this.cart.items = [];
       }
     },
     onClearCart() {
@@ -191,10 +197,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss">
-@import './app.scss';
-.content-container {
-  margin-top: 544px;
-}
-</style>

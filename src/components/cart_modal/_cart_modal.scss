@@ -2,8 +2,22 @@
   .ui.form {
     margin-top: 32px;
 
+    div.field {
+      margin: 8px 0;
+    }
+
+    div.fields {
+      margin-bottom: 16px;
+    }
+
     p.warning {
       color: lightgrey;
     }
+  }
+}
+
+.ui.modal {
+  > .cart-modal-content.content {
+    padding: 24px 64px;
   }
 }

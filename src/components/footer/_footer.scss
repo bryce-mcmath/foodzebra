@@ -1,6 +1,6 @@
 .footer {
   width: 100vw;
-  background: #222;
+  background: $secondary-color;
   flex-direction: column;
   justify-content: center;
   font-weight: bold;
@@ -16,7 +16,7 @@
       color: #555;
 
       > span {
-        color: red;
+        color: $primary-color;
       }
     }
 
@@ -42,6 +42,12 @@
       > * {
         color: #555;
         font-weight: inherit;
+      }
+
+      p:nth-child(5):hover {
+        color: red;
+        cursor: pointer;
+        transition: all 0.5s;
       }
     }
 
@@ -75,12 +81,12 @@
         width: 100%;
         justify-content: space-around;
         align-items: center;
-        color: red;
+        color: $primary-color;
 
         > * {
           justify-content: center;
           align-items: center;
-          border: 2px solid red;
+          border: 2px solid$primary-color;
           border-radius: 50%;
           height: 48px;
           width: 48px;
@@ -89,8 +95,8 @@
         }
 
         > *:hover {
-          background: red;
-          color: #222;
+          background: $primary-color;
+          color: $secondary-color;
           transition: all 0.5s;
           cursor: pointer;
         }
@@ -107,7 +113,7 @@
     text-align: center;
     color: #555;
     > span {
-      color: red;
+      color: $primary-color;
       > a {
         color: inherit;
       }

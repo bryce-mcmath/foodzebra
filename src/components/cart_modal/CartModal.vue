@@ -18,7 +18,7 @@
       <sui-form>
         <sui-header dividing>Order Info</sui-header>
         <sui-form-field>
-          <label>Pickup Name</label>
+          <label>Pickup Name *</label>
           <sui-form-field>
             <input
               v-model="order.pickup_name"
@@ -31,12 +31,14 @@
         <sui-form-field>
           <label>Mobile Number (10 Digits)</label>
           <sui-form-field>
-            <input
-              type="text"
+            <sui-input
+              type="tel"
               v-model.number="order.mobile"
               name="mobile"
-              placeholder="111 222 3333"
-            />
+              placeholder="1112223333"
+              minlength="10"
+              maxlength="10"
+            ></sui-input>
           </sui-form-field>
         </sui-form-field>
         <sui-form-field>
@@ -48,9 +50,9 @@
             rows="2"
           ></textarea>
         </sui-form-field>
-
+        <p>* = Required</p>
         <sui-header dividing>Billing Information</sui-header>
-        <p class="warning">
+        <p>
           Don't actually try to give us your billing info. This isn't real.
         </p>
         <sui-form-field disabled>
@@ -142,10 +144,10 @@ export default {
     emitPlaceOrder() {
       this.$emit('placeOrder', this.order);
       this.$emit('closeModal');
+      this.$emit('openSuccessModal');
     },
     cartSum(cartArray) {
       if (Array.isArray(cartArray)) {
-        console.log('cart', cartArray);
         return cartArray.reduce((a, b) => a + b.price, 0);
       } else {
         return 0;

@@ -11,15 +11,19 @@
     justify-content: center;
   }
 
-  > .sui-menu {
+  > .sui-menu.ui {
     flex-direction: row;
     margin: 0;
+
+    > div {
+      font-size: 24px;
+    }
   }
 
   .menu-header {
     font-size: 64px;
     min-height: 104px;
-    background-color: #222;
+    background-color: $secondary-color;
     color: white;
     font-family: $secondary-font;
   }
@@ -33,6 +37,7 @@
       font-size: 32px;
       font-weight: bold;
       margin: 0;
+      margin-top: 16px;
     }
 
     > .selection-container {
@@ -53,18 +58,5 @@
         }
       }
     }
-
-    > .appetizer-container {
-    }
-
-    > .main-container {
-    }
-
-    > .drink-container {
-    }
   }
-}
-
-.fl-row {
-  flex-direction: row;
 }

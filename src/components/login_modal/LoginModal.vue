@@ -5,25 +5,35 @@
       <sui-modal-description class="error" v-show="loginFailed"
         >Invalid username or password</sui-modal-description
       >
-      <sui-modal-description>
-        <sui-input
-          class="login-input"
-          v-model="email"
-          placeholder="Email"
-          @keyup.enter="submitCredentials()"
-        ></sui-input>
-        <sui-input
-          class="login-input"
-          v-model="password"
-          type="password"
-          placeholder="Password"
-          @keyup.enter="submitCredentials()"
-        ></sui-input>
-      </sui-modal-description>
+      <sui-form>
+        <sui-form-fields>
+          <sui-form-field center>
+            <label>Email</label>
+            <sui-input
+              class="login-input"
+              v-model="email"
+              @keyup.enter="submitCredentials()"
+              placeholder="Email"
+            ></sui-input>
+          </sui-form-field>
+          <sui-form-field>
+            <label>Password</label>
+            <sui-input
+              class="login-input"
+              v-model="password"
+              type="password"
+              placeholder="Password"
+              @keyup.enter="submitCredentials()"
+              type="text"
+              placeholder="Password"
+            ></sui-input>
+          </sui-form-field>
+        </sui-form-fields>
+      </sui-form>
     </sui-modal-content>
     <sui-modal-actions>
       <sui-button positive @click.native="submitCredentials()">
-        OK
+        Login
       </sui-button>
     </sui-modal-actions>
   </sui-modal>

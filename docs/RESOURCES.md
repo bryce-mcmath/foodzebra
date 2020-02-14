@@ -2,9 +2,7 @@
 
 ### Tool References
 
-- [Moqups](https://app.moqups.com/)
 - [Postgres Docs](https://www.postgresql.org/docs/)
-- [Parcel Vue Config](https://parceljs.org/vue.html)
 - [semantic-ui-vue](https://semantic-ui-vue.github.io/)
 - [Semantic UI Docs](https://semantic-ui.com/)
 - [Twilio](https://www.twilio.com/)

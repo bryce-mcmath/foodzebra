@@ -42,25 +42,25 @@
         <sui-card v-for="item in items" :key="item.id">
           <sui-card-content>
             <sui-card-header>Order for: {{ item.pickup_name }}</sui-card-header>
-            <sui-card-description
+            <sui-card-description v-if="item.customer_note"
               >Customer note: {{ item.customer_note }}</sui-card-description
             >
           </sui-card-content>
           <sui-card-content extra>
             <div class="price">{{ item.total_price | priceProcess }}</div>
-            <div class="price">
+            <div v-if="item.created_at" class="price">
               Created at: {{ item.created_at | dateFilter }}
             </div>
-            <div class="price">
+            <div v-if="item.accepted_at" class="price">
               Accepted at: {{ item.accepted_at | dateFilter }}
             </div>
-            <div class="price">
+            <div class="price" v-if="item.estimate">
               Estimate:
               {{
                 estimateCalculator(item.accepted_at, item.estimate) | dateFilter
               }}
             </div>
-            <div class="price">
+            <div class="price" v-if="item.fulfilled_at">
               Fulfilled at: {{ item.fulfilled_at | dateFilter }}
             </div>
             <sui-modal-actions>
@@ -93,7 +93,6 @@ export default {
   props: ['orderItemsUpdate'],
   watch: {
     orderItemsUpdate: function(oldValue, newValue) {
-      console.log('orderItems watcher', oldValue, newValue);
       if (oldValue === 'accepted') {
         this.selectTab('accepted');
         this.getAllOrderAcceptedMethod();
@@ -115,24 +114,22 @@ export default {
         });
     },
     getAllOrderAcceptedMethod: function() {
-      console.log('getAllOrderAcceptedMethod');
       getAllOrderAccepted()
         .then(response => {
           this.items = response;
         })
         .catch(err => {
-          console.log("Component 'LoginModal' error:", err);
+          console.log("Component 'OrderItems' error:", err);
           this.items = [];
         });
     },
     getAllOrderFulfilledMethod: function() {
-      console.log('getAllOrderFulfilledMethod');
       getAllOrderFulfilled()
         .then(response => {
           this.items = response;
         })
         .catch(err => {
-          console.log("Component 'LoginModal' error:", err);
+          console.log("Component 'OrderItems' error:", err);
           this.items = [];
         });
     },
@@ -142,7 +139,7 @@ export default {
           this.items = response;
         })
         .catch(err => {
-          console.log("Component 'LoginModal' error:", err);
+          console.log("Component 'OrderItems' error:", err);
           this.items = [];
         });
     },
@@ -195,9 +192,17 @@ export default {
       if (!input) return 'N/A';
 
       const date = new Date(input);
-      return `${date.getHours() + 1}:${
-        date.getMinutes() < 10 ? 0 + date.getMinutes() : date.getMinutes()
-      }, ${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
+      const dateArr = date.toUTCString().split(' ');
+      const timeArr = dateArr[4].split(':');
+      const hour =
+        parseInt(timeArr[0]) + 7 > 23
+          ? parseInt(timeArr[0]) + 7 - 24
+          : parseInt(timeArr[0]) + 7;
+
+      return `${hour}:${timeArr[1]} ${dateArr[2]} ${dateArr[1]} ${dateArr[3]}`;
+      // return `${date.getHours() + 1}:${
+      //   date.getMinutes() < 10 ? 0 + date.getMinutes() : date.getMinutes()
+      // }, ${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
     }
   }
 };

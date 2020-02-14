@@ -8,12 +8,11 @@ const cookieSession = require('cookie-session');
 const bodyParser = require('body-parser');
 const app = express();
 
-// Web server config
+// Local vs deployed config
 const PORT = process.env.PORT || 8080;
 const ENV = process.env.BUILD_ENV || 'production';
-// const db = require('./db');
 
-console.log('Running environment:', ENV);
+console.log('Running environment ', ENV);
 
 // Initialize middleware
 app.use(helmet());
@@ -25,7 +24,7 @@ app.use(
   cookieSession({
     name: 'session',
     secret: process.env.SECRET,
-    maxAge: 24 * 60 * 60 * 1000
+    maxAge: 24 * 60 * 60 * 1000 // 24HR
   })
 );
 
@@ -33,12 +32,10 @@ app.use(
 app.get('/', (req, res) => {
   res.render('index.html');
 });
-
 app.use('/menu', require('./routes/menu'));
 app.use('/login', require('./routes/login'));
 app.use('/logout', require('./routes/logout'));
 app.use('/orders', require('./routes/orders'));
-
 app.get('/*', (req, res) => {
   res.redirect('/');
 });
