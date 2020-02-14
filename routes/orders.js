@@ -8,7 +8,8 @@ const {
   getAllOrderFulfilled,
   getOrderById,
   getOrderByPickupName,
-  getOrderItemByOrderId
+  getOrderItemByOrderId,
+  addOrderItem
 } = require('../api/queries');
 const { addOrder, updateOrder, deleteOrder } = require('../api/inserts');
 
@@ -123,11 +124,24 @@ router.get('/fulfilled', (req, res) => {
 
 router.post('/', (req, res) => {
   const user_id = req.session.user_id;
-  const { pickup_name, customer_note, total_price, mobile } = req.body;
+  const { pickup_name, customer_note, total_price, mobile, items } = req.body;
+  for (let item of items) {
+  }
   if (pickup_name && total_price) {
     addOrder(pickup_name, total_price, customer_note, mobile, user_id)
       .then(result => {
         if (result.rows) {
+          const order_id = result.rows[0].id;
+          for (let item of items) {
+            const menu_item_id = item.id;
+            addOrderItem(order_id, menu_item_id)
+              .then(ordItem => {
+                console.log(ordItem.rows);
+              })
+              .catch(err => {
+                console.error(err);
+              });
+          }
           res.json(result.rows);
         } else {
           res.json([]);

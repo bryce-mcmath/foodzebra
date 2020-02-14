@@ -172,7 +172,8 @@ export default {
       // axios
     },
     onPlaceOrder(order) {
-      placeOrder(order);
+      const tmpOrder = { ...order, items: this.items };
+      placeOrder(tmpOrder);
     }
   }
 };

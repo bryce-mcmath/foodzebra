@@ -216,6 +216,26 @@ const deleteOrder = (id = '') => {
   return db.query(query, values);
 };
 
+const addOrderItem = (order_id, menu_item_id) => {
+  let invalidReason = false;
+
+  if (!isValidInt(order_id)) invalidReason = 'order_id';
+  if (!isValidInt(menu_item_id)) invalidReason = 'menu_item_id';
+
+  if (invalidReason) throw new Error(`${invalidReason} is not valid`);
+
+  const values = [order_id, menu_item_id];
+  const query = `
+  INSERT INTO "OrderItem" (
+    "order_id",
+    "menu_item_id",
+  VALUES 
+  ($1, $2)
+  RETURNING *;`;
+
+  return db.query(query, values);
+};
+
 module.exports = {
   addUser,
   addMenuItem,
@@ -223,5 +243,6 @@ module.exports = {
   deleteMenuItem,
   addOrder,
   updateOrder,
-  deleteOrder
+  deleteOrder,
+  addOrderItem
 };
