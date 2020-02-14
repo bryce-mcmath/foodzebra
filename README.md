@@ -6,9 +6,9 @@
 
 [![Build Status](https://travis-ci.com/bryce-mcmath/foodzebra.svg?branch=master)](https://travis-ci.com/bryce-mcmath/foodzebra)
 
-FoodZebra is a fullstack application made to model a restaurants online ordering process, from both the user's view and the restaurants. It uses the Twilio API to notify both parties of changes in the order's status via SMS.
+FoodZebra is a responsive fullstack application made to model a restaurants online ordering process, from both the user's view and the restaurant's. It uses the Twilio API to notify both parties of changes in the order's status via SMS.
 
-To learn more and see it in action, read further. Or visit it [live](https://ancient-woodland-75923.herokuapp.com/)
+To learn more and see it in action, read further. Or visit it [live](https://ancient-woodland-75923.herokuapp.com/) and try making an order (of five items or less please.) You don't have to give us your phone number but receiving the notifications is sort of the fun part.
 
 ## Table of contents
 
@@ -30,11 +30,11 @@ To learn more and see it in action, read further. Or visit it [live](https://anc
 
 <!-- Gifs -->
 
-### Customer Demo
+### Customer Demo:
 
 ![Customer Demo](https://github.com/bryce-mcmath/foodzebra/blob/master/docs/demo_customer.gif?raw=true)
 
-### Operator Demo
+### Operator Demo:
 
 ![Operator Demo](https://github.com/bryce-mcmath/foodzebra/blob/master/docs/demo_operator.gif?raw=true)
 
@@ -108,8 +108,8 @@ Bryce McMath – [bryce-mcmath](https://github.com/bryce-mcmath) – bryce.j.mcm
 
 ## Known issues / bugs
 
-- List of most prominent
-- issues or bugs
+- You can only order five items at a time due to our free (rate-limited) usage of ElephantSQL
+- Bugs? What bugs?
 
 _To add an issue, start a new one [here.](https://github.com/bryce-mcmath/foodzebra/issues)_
 
@@ -136,4 +136,4 @@ _If you'd like to add a feature yourself, please see the [Contributing](#contrib
 - It was a blast
 - I'm very tired
 
-## ![FoodZebra](https://github.com/bryce-mcmath/foodzebra/blob/master/docs/foodzebrabrand.PNG?raw=true)
+## ![FoodZebra](https://github.com/bryce-mcmath/foodzebra/blob/master/docs/large_foodzebra.png?raw=true)
