@@ -5,7 +5,6 @@
       @openCartModal="setCartModal(true)"
     ></Nav>
     <Hero></Hero>
-
     <div id="content-container" class="content-container">
       <OperatorTab
         v-if="operatorTabValues.show"
@@ -21,8 +20,6 @@
         v-if="operatorTabValues.tabSelected === 'menu'"
         @addItem="addItemToCart"
       ></MenuItems>
-      <!-- if on /orders as operator -->
-      <!-- <Orders /> -->
     </div>
     <MenuModal
       @closeModal="setMenuModal(false)"
@@ -146,14 +143,13 @@ export default {
       }
     },
     setSuccessModal: function(status) {
-      console.log('setSuccess called, status: ', status);
       if (typeof status === 'boolean') {
         this.successModalOpen = status;
       }
     },
     loginLogic: function() {
       validateSession().then(response => {
-        if (response.data) {
+        if (response.data === 'operator') {
           this.operatorTabValues.show = true;
           this.operatorTabValues.tabSelected = 'orders';
           let container = this.$el.querySelector('#content-container');

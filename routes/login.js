@@ -3,21 +3,19 @@ const bcrypt = require('bcryptjs');
 const router = express.Router();
 const { getUserByEmail, getUserById } = require('../api/queries');
 
-//
 router.get('/', (req, res) => {
-  const notValid = () => null;
-
   if (req.session.user_id) {
     getUserById(req.session.user_id)
       .then(response => {
-        if (response.rows[0].role === 'operator') res.send('valid');
-        else notValid();
+        if (response.rows[0].role === 'operator') {
+          res.send('operator');
+        } else {
+          res.send('customer');
+        }
       })
       .catch(err => {
-        notValid();
+        console.log('Error getting user');
       });
-  } else {
-    notValid();
   }
 });
 

@@ -21,8 +21,8 @@ const getAllUser = () => {
   return db.query(query);
 };
 
-const getUserById = (id = '') => {
-  if (!id) throw new Error('Id required');
+const getUserById = (id = 0) => {
+  if (typeof parseInt(id) !== 'number') throw new Error('Must be valid ID');
 
   const query = `
   SELECT * FROM "User"

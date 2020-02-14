@@ -40,7 +40,7 @@ module.exports = {
       })
       .catch(err => {
         if (err.response.status !== 401) {
-          console.log('ajaxCalls error', err);
+          console.log('ajaxCalls error in validateSession', err);
         }
         return err.response;
       });
@@ -123,12 +123,12 @@ module.exports = {
       });
   }
 
-  // STRETCH
-  /* - delete order
-     - add menu item
-     - update menu item
-     - delete menu item
-     - register user
-     - logout user
+  /* STRETCH
+    - delete order
+    - add menu item
+    - update menu item
+    - delete menu item
+    - register user
+    - logout user
   */
 };
