@@ -14,6 +14,7 @@
         @selectedOperatorTab="operatorTabClicked"
       ></OperatorTab>
       <OrderItems
+        :orderItemsUpdate="orderItemsUpdate"
         v-if="operatorTabValues.tabSelected === 'orders'"
         @openOrderModal="setOrderModal"
       ></OrderItems>
@@ -96,6 +97,7 @@ export default {
       menuModalOpen: false,
       loginModalOpen: false,
       orderModalOpen: false,
+      orderItemsUpdate: false,
       cartModalOpen: false,
       operatorTabValues: {
         show: false,
@@ -149,10 +151,10 @@ export default {
       this.operatorTabValues.tabSelected = payload;
     },
     onAcceptOrder(id, estimate) {
-      console.log('onacceptorder was called');
-      acceptOrder(id, 'accept', estimate)
+      let action = 'accept';
+      acceptOrder(id, action, estimate)
         .then(response => {
-          console.log(response);
+          this.orderItemsUpdate = action + 'ed';
         })
         .catch(err => {
           console.log('Component err:', err);
@@ -161,10 +163,10 @@ export default {
       // axios
     },
     onFulfillOrder(id) {
-      console.log('onfulfillorder was called');
-      fulfillOrder(id, 'fulfill')
+      let action = 'fulfill';
+      fulfillOrder(id, action)
         .then(response => {
-          console.log(response);
+          this.orderItemsUpdate = action + 'ed';
         })
         .catch(err => {
           console.log('Component err:', err);

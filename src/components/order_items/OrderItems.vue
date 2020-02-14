@@ -90,6 +90,19 @@ import {
 
 export default {
   name: 'OrderItems',
+  props: ['orderItemsUpdate'],
+  watch: {
+    orderItemsUpdate: function(oldValue, newValue) {
+      console.log('orderItems watcher', oldValue, newValue);
+      if (oldValue === 'accepted') {
+        this.selectTab('accepted');
+        this.getAllOrderAcceptedMethod();
+      } else if (oldValue === 'fulfilled') {
+        this.selectTab('fulfilled');
+        this.getAllOrderFulfilledMethod();
+      }
+    }
+  },
   methods: {
     getAllOrderNewMethod: function() {
       getAllOrderNew()
@@ -102,6 +115,7 @@ export default {
         });
     },
     getAllOrderAcceptedMethod: function() {
+      console.log('getAllOrderAcceptedMethod');
       getAllOrderAccepted()
         .then(response => {
           this.items = response;
@@ -112,6 +126,7 @@ export default {
         });
     },
     getAllOrderFulfilledMethod: function() {
+      console.log('getAllOrderFulfilledMethod');
       getAllOrderFulfilled()
         .then(response => {
           this.items = response;
@@ -150,7 +165,7 @@ export default {
     estimateCalculator: function(acceptTimeStamp, estimateSeconds) {
       if (!acceptTimeStamp || !estimateSeconds) return '';
       let acceptedDate = new Date(acceptTimeStamp);
-      return new Date(acceptedDate.getTime() + estimateSeconds * 1000);
+      return new Date(acceptedDate.getTime() + estimateSeconds * 60 * 1000);
     },
     emitViewOrder: function(e) {
       this.$emit('openOrderModal', true, e.target.id);
@@ -180,9 +195,9 @@ export default {
       if (!input) return 'N/A';
 
       const date = new Date(input);
-      return `${date.getHours() +
-        1}:${date.getMinutes()}, ${date.getFullYear()}/${date.getMonth() +
-        1}/${date.getDate()}`;
+      return `${date.getHours() + 1}:${
+        date.getMinutes() < 10 ? 0 + date.getMinutes() : date.getMinutes()
+      }, ${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
     }
   }
 };

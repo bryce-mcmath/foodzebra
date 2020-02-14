@@ -105,7 +105,6 @@ module.exports = {
       });
   },
   acceptOrder: (id, msg, estimate = '') => {
-    console.log('ajax accept', id, msg, estimate);
     return axios
       .put(`/orders/${id}`, { msg, estimate })
       .then(response => response.data)

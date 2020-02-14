@@ -178,7 +178,6 @@ const updateOrder = (id = '', msg = '', estimate = 1800) => {
   if (!id || !msg) {
     throw new Error('id and message required');
   }
-
   if (msg === 'accept') {
     const values = [estimate, id];
     const query = `

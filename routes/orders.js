@@ -186,7 +186,6 @@ router.get('/:id', (req, res) => {
 
 router.put('/:id', (req, res) => {
   const user_id = req.session.user_id;
-  console.log('PUT: /orders/:id,', req.params.id, req.body.msg);
   getUserById(user_id)
     .then(resolve => {
       const user = resolve.rows[0];
