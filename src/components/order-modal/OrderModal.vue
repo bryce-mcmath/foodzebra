@@ -21,10 +21,12 @@
         type="number"
         v-model.number="estimate"
         placeholder="Estimate in minutes"
+        v-if="!accepted"
       ></sui-input>
       <sui-button
         class="order-button"
         :disabled="!estimate"
+        v-if="!accepted"
         primary
         @click.native="emitAcceptOrder"
       >
@@ -33,6 +35,7 @@
       <sui-button
         class="order-button"
         positive
+        v-if="accepted && !fulfilled"
         @click.native="emitFulfillOrder"
       >
         Ready
@@ -53,7 +56,9 @@ export default {
   data() {
     return {
       estimate: '',
-      items: []
+      items: [],
+      accepted: false,
+      fulfilled: false
     };
   },
   computed: {
@@ -97,6 +102,14 @@ export default {
         getOrderItemByOrderId(Number(this.order_id))
           .then(response => {
             this.items = response;
+            for (let item of this.items) {
+              if (item.accepted_at) {
+                this.accepted = true;
+              }
+              if (item.fulfilled_at) {
+                this.fulfilled = true;
+              }
+            }
           })
           .catch(err => {
             console.log("Component 'OrderModal' error:", err);

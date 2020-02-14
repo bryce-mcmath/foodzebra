@@ -107,8 +107,9 @@ const getOrderItemByOrderId = (id = '') => {
   if (!id) throw new Error('Order id required');
 
   const query = `
-  SELECT "OrderItem"."id", "MenuItem"."name", "MenuItem"."price" FROM "OrderItem"
+  SELECT "OrderItem"."id", "MenuItem"."name", "MenuItem"."price", "Order"."accepted_at", "Order"."fulfilled_at" FROM "OrderItem"
   JOIN "MenuItem" ON "OrderItem"."menu_item_id" = "MenuItem"."id"
+  JOIN "Order" ON "Order"."id" = $1
   WHERE "OrderItem"."order_id" = $1;`;
 
   return db.query(query, [id]);
