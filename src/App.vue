@@ -158,8 +158,6 @@ export default {
         .catch(err => {
           console.log('Component err:', err);
         });
-
-      // axios
     },
     onFulfillOrder(id) {
       let action = 'fulfill';
@@ -170,7 +168,6 @@ export default {
         .catch(err => {
           console.log('Component err:', err);
         });
-      // axios
     },
     onPlaceOrder(order) {
       const tmpOrder = { ...order, items: this.cart.items };
