@@ -16,9 +16,6 @@ To learn more and see it in action, read further. Or visit it [live](https://anc
 - [Getting started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installing and running](#installing-and-running)
-- [Running the tests](#running-the-tests)
-  - [End to end tests](#end-to-end-test)
-  - [Coding style tests](#coding-style-tests)
 - [Deployment](#deployment)
 - [Built with](#built-with)
 - [Contributing](#contributing)
@@ -35,7 +32,7 @@ To learn more and see it in action, read further. Or visit it [live](https://anc
 
 ![Hover Text](https://upload.wikimedia.org/wikipedia/commons/5/57/Bootstrap-3.1.1-screenshot-jumbotron-example.png)
 
-The above gif demonstrates basic usage. For more gifs, screenshots, and an outline of the plan this project was made from, please navigate to the /docs directory from the root of this repo.
+The above gifs demonstrates basic usage. For more gifs, screenshots, and an outline of the plan this project was made from, please navigate to the /docs directory from the root of this repo.
 
 ## Getting started
 
@@ -88,7 +85,7 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Meta
 
-Wilson Wong – [wilwong89](https://github.com/wilwong89) – YourEmail@example.com
+Wilson Wong – [wilwong89](https://github.com/wilwong89) – wilwong89@gmail.com
 
 Bryce McMath – [bryce-mcmath](https://github.com/bryce-mcmath) – bryce.j.mcmath@gmail.com
 
@@ -97,7 +94,7 @@ Bryce McMath – [bryce-mcmath](https://github.com/bryce-mcmath) – bryce.j.mcm
 - List of most prominent
 - issues or bugs
 
-_To add an issue, start a new one [here.](https://github.com/youraccount/therepo/issues)_
+_To add an issue, start a new one [here.](https://github.com/bryce-mcmath/foodzebra/issues)_
 
 ## Feature roadmap
 
