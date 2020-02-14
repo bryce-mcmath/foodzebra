@@ -1,5 +1,9 @@
 <template lang="html">
-  <sui-modal class="menu-modal-container" v-model="open">
+  <sui-modal
+    @click.native="emitClose"
+    class="menu-modal-container"
+    v-model="open"
+  >
     <sui-modal-header>Item Added to Order!</sui-modal-header>
     <div class="checkmark-wrapper">
       <img
@@ -9,7 +13,7 @@
       />
     </div>
     <sui-modal-actions>
-      <sui-button positive @click.native="emitClose">
+      <sui-button positive>
         Dismiss
       </sui-button>
     </sui-modal-actions>

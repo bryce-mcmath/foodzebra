@@ -115,9 +115,6 @@ export default {
     addItemToCart: function(payload) {
       this.cart.items.push(payload);
       this.setMenuModal(true);
-      setTimeout(() => {
-        this.setMenuModal(false);
-      }, 3000);
     },
     setMenuModal: function(status) {
       if (typeof status === 'boolean') {
