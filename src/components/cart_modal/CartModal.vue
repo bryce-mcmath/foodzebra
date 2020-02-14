@@ -16,70 +16,30 @@
         Total: {{ cartSum(this.cart.items) | priceProcess }}
       </div>
       <sui-form>
-        <sui-header dividing>Shipping Information</sui-header>
+        <!-- Add tipping here -->
+      </sui-form>
+      <sui-form>
+        <sui-header dividing>Order Info</sui-header>
         <sui-form-field>
-          <label>Name</label>
-          <sui-form-fields fields="two">
-            <sui-form-field>
-              <input
-                type="text"
-                name="shipping[first-name]"
-                placeholder="First Name"
-              />
-            </sui-form-field>
-            <sui-form-field>
-              <input
-                type="text"
-                name="shipping[last-name]"
-                placeholder="Last Name"
-              />
-            </sui-form-field>
-          </sui-form-fields>
-        </sui-form-field>
-        <sui-form-field>
-          <label>Billing Address</label>
-          <sui-form-fields>
-            <sui-form-field width="twelve">
-              <input
-                type="text"
-                name="shipping[address]"
-                placeholder="Street Address"
-              />
-            </sui-form-field>
-            <sui-form-field width="four">
-              <input
-                type="text"
-                name="shipping[address-2]"
-                placeholder="Apt #"
-              />
-            </sui-form-field>
-          </sui-form-fields>
-        </sui-form-field>
-        <sui-form-fields fields="two">
+          <label>Pickup Name</label>
           <sui-form-field>
-            <label>State</label>
-            <sui-dropdown
-              placeholder="State"
-              selection
-              :options="states"
-              v-model="currentState"
+            <input
+              type="text"
+              name="pickup_name"
+              placeholder="Enter Your Name"
             />
           </sui-form-field>
-          <sui-form-field>
-            <label>State</label>
-            <sui-dropdown
-              :options="countries"
-              placeholder="Country"
-              search
-              selection
-              v-model="currentCountry"
-            />
-          </sui-form-field>
-        </sui-form-fields>
+        </sui-form-field>
+        <sui-form-field>
+          <label>Add a Note:</label>
+          <textarea rows="2"></textarea>
+        </sui-form-field>
+
         <sui-header dividing>Billing Information</sui-header>
-        <sui-form-field>
+        <sui-form-field disabled>
           <label>Card Type</label>
           <sui-dropdown
+            disabled
             placeholder="Type"
             selection
             :options="cardTypes"
@@ -87,29 +47,32 @@
           />
         </sui-form-field>
         <sui-form-fields>
-          <sui-form-field width="seven">
+          <sui-form-field disabled width="seven">
             <label>Card Number</label>
             <input
+              disabled
               type="text"
               name="card[number]"
               maxlength="16"
               placeholder="Card #"
             />
           </sui-form-field>
-          <sui-form-field width="three">
+          <sui-form-field disabled width="three">
             <label>CVC</label>
             <input
+              disabled
               type="text"
               name="card[cvc]"
               maxlength="3"
               placeholder="CVC"
             />
           </sui-form-field>
-          <sui-form-field width="six">
+          <sui-form-field disabled width="six">
             <label>Expiration</label>
             <sui-form-fields>
               <sui-form-field>
                 <sui-dropdown
+                  disabled
                   placeholder="Month"
                   selection
                   :options="months"
