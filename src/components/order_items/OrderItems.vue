@@ -37,7 +37,11 @@
       >
     </sui-menu>
     <section class="menu-section flex">
-      <h2>{{ tabSelected | capitalize }}</h2>
+      <h2>
+        <span v-if="items.length < 1"
+          >No Orders In {{ tabSelected | capitalize }}</span
+        ><span v-if="items.length > 0">{{ tabSelected | capitalize }}</span>
+      </h2>
       <sui-card-group class="selection-container grid">
         <sui-card v-for="item in items" :key="item.id">
           <sui-card-content>
