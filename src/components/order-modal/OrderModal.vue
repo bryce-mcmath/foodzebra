@@ -7,8 +7,9 @@
         <p>{{ item.name }}</p>
         <p>{{ item.price | priceProcess }}</p>
       </div>
-      <div class="order-modal-total">
-        {{ this.items.map(x => x.price) | sumPrices | priceProcess }}
+      <div class="order-modal-total flex">
+        <p>Total prices:</p>
+        <p>{{ sumPrices(items) | priceProcess }}</p>
       </div>
       <!-- form with estimate input -->
     </div>
@@ -31,16 +32,7 @@ import { getOrderItemByOrderId } from '../../api/ajaxCalls';
 
 export default {
   name: 'OrderModal',
-  props: {
-    modalOpen: {
-      type: Boolean,
-      default: false
-    },
-    order_id: {
-      type: String,
-      default: ''
-    }
-  },
+  props: ['modalOpen', 'order_id'],
   data() {
     return {
       estimate: 1800,
@@ -53,31 +45,40 @@ export default {
         return this.modalOpen;
       },
       set: function(newValue) {
-        if (!newValue) this.emitClose();
+        this.clearItems();
+        if (!newValue) {
+          this.emitClose();
+        }
       }
     }
   },
+  watch: {
+    order_id: function(n, o) {
+      this.getOrderItemByIdMethod();
+    }
+  },
   methods: {
+    clearItems() {
+      this.items = [];
+    },
     emitClose() {
+      this.clearItems();
       this.$emit('closeModal');
     },
     emitAcceptOrder() {
+      this.clearItems();
       this.$emit('acceptOrder', Number(this.order_id), this.estimate);
       this.$emit('closeModal');
     },
     emitFulfillOrder(id) {
+      this.clearItems();
       this.$emit('fulfillOrder', Number(this.order_id));
       this.$emit('closeModal');
     },
     getOrderItemByIdMethod() {
-      console.log(
-        'The thing was called. Number(this.order_id) is: ',
-        Number(this.order_id)
-      );
       if (this.order_id !== '') {
         getOrderItemByOrderId(Number(this.order_id))
           .then(response => {
-            console.log('getMenuItemsMethod', response);
             this.items = response;
           })
           .catch(err => {
@@ -85,25 +86,19 @@ export default {
             this.items = [];
           });
       }
+    },
+    sumPrices(itemArray) {
+      if (Array.isArray(itemArray)) {
+        return itemArray.reduce((a, b) => a + b.price, 0);
+      } else {
+        return 0;
+      }
     }
-  },
-  mounted() {
-    this.getOrderItemByIdMethod();
-  },
-  update() {
-    console.log(this.order_id);
   },
   filters: {
     priceProcess: function(input) {
       if (!input) return '$0.00';
       return `$${(input / 100).toFixed(2)}`;
-    },
-    sumPrices: function(prices) {
-      const sum = (tot, price) => {
-        return tot + price;
-      };
-
-      return prices.reduce(sum, 0);
     }
   }
 };

@@ -118,12 +118,8 @@ export default {
       }
     },
     setOrderModal: function(status, id) {
-      console.log('status is: ', status);
-      console.log('id is: ', id);
       if (id) {
-        console.log('current order is: ', this.current_order);
         this.current_order = id;
-        console.log('current order after is: ', this.current_order);
       }
       if (typeof status === 'boolean') {
         this.orderModalOpen = status;

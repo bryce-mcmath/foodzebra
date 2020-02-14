@@ -153,7 +153,6 @@ export default {
       return new Date(acceptedDate.getTime() + estimateSeconds * 1000);
     },
     emitViewOrder: function(e) {
-      console.log(e.target.id);
       this.$emit('openOrderModal', true, e.target.id);
     }
   },
