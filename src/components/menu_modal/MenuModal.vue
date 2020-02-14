@@ -1,5 +1,5 @@
 <template lang="html">
-  <sui-modal v-model="open">
+  <sui-modal class="menu-modal-container" v-model="open">
     <sui-modal-header>Item Added to Order!</sui-modal-header>
     <div class="checkmark-wrapper">
       <img
