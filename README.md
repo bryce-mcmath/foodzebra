@@ -28,11 +28,17 @@ To learn more and see it in action, read further. Or visit it [live](https://anc
 
 ## Usage
 
-<!-- Gif -->
+<!-- Gifs -->
 
-![Hover Text](https://upload.wikimedia.org/wikipedia/commons/5/57/Bootstrap-3.1.1-screenshot-jumbotron-example.png)
+### Customer Demo
 
-The above gifs demonstrates basic usage. For more gifs, screenshots, and an outline of the plan this project was made from, please navigate to the /docs directory from the root of this repo.
+![Customer Demo](https://github.com/bryce-mcmath/foodzebra/blob/master/docs/demo_customer.gif?raw=true)
+
+### Operator Demo
+
+![Operator Demo](https://github.com/bryce-mcmath/foodzebra/blob/master/docs/demo_operator.gif?raw=true)
+
+The above gifs demonstrate basic usage. For more gifs, screenshots, and the ERD we created at the start of this project, please navigate to the /docs directory from the root of this repo.
 
 ## Getting started
 
@@ -44,18 +50,20 @@ What things you need to install the software and how to install them
 
 If you don't have Nodejs and npm installed, install them from [here.](https://nodejs.org/en/)
 
-```
-Give examples
-```
+Set up a free ElephantSQL cloud database [here](https://customer.elephantsql.com/instance/create?plan=turtle) using the migration and seed files in /queries.
 
 ### Installing and Running
 
-A step by step series of examples that tell you how to get a development env running
-
-In the root directory:
+Clone this repository to your local machine, and in the root directory:
 
 ```
 npm install
+```
+
+Then add a .env file in the root directory that follows the .env.example file. After that, run parcel to build the project with:
+
+```
+npm run build
 ```
 
 And finally:
@@ -64,16 +72,25 @@ And finally:
 npm run dev
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+And navigate to localhost:8080 in your browser.
 
 ## Deployment
 
+After forking the project and setting up the cloud database and .env file as per the above steps, add your forked repo to Travis CI [here.](https://travis-ci.com/getting_started) After that, setup a Heroku instance following the guide [here,](https://devcenter.heroku.com/articles/getting-started-with-nodejs) add your environment variables with the Heroku dashboard, and add your api-key and app name to the .travis.yml file.
+
+Congrats! Now everytime you push to master, you'll automatically check that installing and building works and then deploy if it does.
+
 ## Built with
 
-- [React](https://reactjs.org/) - Front-end framework
+- [Vue](https://vuejs.org/) - Front-end framework
+- [semantic-ui-vue](https://semantic-ui-vue.github.io/)
+- [axios](https://github.com/axios/axios) - Promise-based HTTP client
+- [Sass](https://sass-lang.com/) - CSS pre-compiler to make styling easier
 - [Nodejs](https://nodejs.org/en/) - Javascript runtime
 - [Express](https://expressjs.com/) - Framework used for API in Node
 - [PostgreSQL](https://www.postgresql.org/) - Open source object-relational database
+- [ElephantSQL/AWS](https://www.elephantsql.com/) - Cloud database management
+- [Travis CI](https://travis-ci.com/) - Continuous integration platform
 
 ## Contributing
 
@@ -100,20 +117,23 @@ _To add an issue, start a new one [here.](https://github.com/bryce-mcmath/foodze
 
 ### In the works
 
-- List features that are currently
-- being worked on here
+- Hook up add, update, delete menu routes to UI
+- Hook up delete order routes to UI
+- Hook up customer login, logout, register routes to UI
 
 ### Planned
 
-- List of features that are
-- intended to be added
+- Switch from semantic-vue to vuetify
+- Autofill forms if customer is logged in
+- Add a dashboard with basic analytics for operators
+- Add ability to send custom SMS to any unfulfilled order
 
 _If you'd like to add a feature yourself, please see the [Contributing](#contributing) guidelines._
 
 ## Acknowledgements
 
-- Hat tip to the other readme templates I synthesized
-- Inspiration
-- etc
+- We only had a week to do this and we used some tools we were interested in but not yet familiar with
+- It was a blast
+- I'm very tired
 
----
+## ![FoodZebra](https://github.com/bryce-mcmath/foodzebra/blob/master/docs/foodzebrabrand.PNG?raw=true)
