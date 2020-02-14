@@ -1,3 +1,4 @@
+-- 'Guest' user for all orders made without logging in
 INSERT INTO "User" (
   "id",
   "name",
@@ -8,6 +9,7 @@ INSERT INTO "User" (
 VALUES 
 (0, 'Guest', '', 'customer', '', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.');
 
+-- One customer account and one operator account
 INSERT INTO "User" (
   "name",
   "email",
@@ -15,25 +17,8 @@ INSERT INTO "User" (
   "mobile",
   "password") 
 VALUES 
-('Wilson Wong', 'wilwong89@gmail.com', 'customer', '250 896 8729', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.'),
-('Bryce McMath', 'bryce.j.mcmath@gmail.com', 'operator', '250 896 8729', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.');
-
-INSERT INTO "Order" (
-  "pickup_name",
-  "customer_note",
-  "mobile",
-  "created_at",
-  "estimate",
-  "total_price",
-  "accepted_at",
-  "fulfilled_at",
-  "deleted_at",
-  "user_id") 
-VALUES 
-('Guest', '', '2508968729', now(), NULL, 1276, NULL, NULL, NULL, 0),
-('Wilson Wong', 'I do not like pickles', '2508968729', now(), NULL, 1989, NULL, NULL, NULL, 1),
-('Tom Hanks', 'I would like chocolates with my order please', '2508968729', now(), NULL, 2499, NULL, NULL, NULL, 0),
-('Mel Gibson', '', '2508968729', now(), NULL, 3289, NULL, NULL, NULL, 0);
+('Wilson Wong', 'wilwong89@gmail.com', 'customer', '250 888 8888', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.'),
+('Bryce McMath', 'bryce.j.mcmath@gmail.com', 'operator', '250 888 8888', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.');
 
 INSERT INTO "MenuItem" (
   "name",
@@ -56,14 +41,34 @@ VALUES
 ('Water', 'Literally just water. You will die without this. Buy now.', 199, 'https://images.unsplash.com/photo-1516888892881-aad840c56db2?auto=compress', NULL, 'drinks'),
 ('Sparkling Water', 'Water 2: With Bubbles This Time', 4000, 'https://images.unsplash.com/photo-1551753103-f121bd83be46?auto=compress&h=200', NULL, 'drinks');
 
-INSERT INTO "OrderItem" (
-  "order_id",
-  "menu_item_id"
-) 
-VALUES
-(1, 1),
-(1, 1),
-(1, 2),
-(1, 3),
-(1, 4),
-(2, 7);
+-- The below seeded data isn't perfect, only use when you don't have time to make your own orders
+
+-- INSERT INTO "Order" (
+--   "pickup_name",
+--   "customer_note",
+--   "mobile",
+--   "created_at",
+--   "estimate",
+--   "total_price",
+--   "accepted_at",
+--   "fulfilled_at",
+--   "deleted_at",
+--   "user_id") 
+-- VALUES 
+-- ('Guest', '', '2508968729', now(), NULL, 1276, NULL, NULL, NULL, 0),
+-- ('Wilson Wong', 'I do not like pickles', '2508968729', now(), NULL, 1989, NULL, NULL, NULL, 1),
+-- ('Tom Hanks', 'I would like chocolates with my order please', '2508968729', now(), NULL, 2499, NULL, NULL, NULL, 0),
+-- ('Mel Gibson', '', '2508968729', now(), NULL, 3289, NULL, NULL, NULL, 0);
+
+
+-- INSERT INTO "OrderItem" (
+--   "order_id",
+--   "menu_item_id"
+-- ) 
+-- VALUES
+-- (1, 1),
+-- (1, 1),
+-- (1, 2),
+-- (1, 3),
+-- (1, 4),
+-- (2, 7);

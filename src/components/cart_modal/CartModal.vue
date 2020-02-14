@@ -145,7 +145,6 @@ export default {
     },
     cartSum(cartArray) {
       if (Array.isArray(cartArray)) {
-        console.log('cart', cartArray);
         return cartArray.reduce((a, b) => a + b.price, 0);
       } else {
         return 0;

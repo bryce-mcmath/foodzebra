@@ -28,7 +28,7 @@
     > h1 {
       font-family: $secondary-font;
       font-size: 80px;
-      color: red;
+      color: $primary-color;
     }
 
     > p {
@@ -38,21 +38,21 @@
 
     > a > .ui.button {
       background: transparent;
-      border: 1px solid #222;
+      border: 1px solid $secondary-color;
       padding: 8px 16px;
       width: 40%;
-      color: #222;
+      color: $secondary-color;
     }
 
     > a > .ui.button:hover {
-      background: #222;
+      background: $secondary-color;
       transition: all 0.25s;
       cursor: pointer;
       color: white;
     }
 
     > a > .ui.button:active {
-      border: 2px solid #222;
+      border: 2px solid $secondary-color;
       transition: none;
     }
   }

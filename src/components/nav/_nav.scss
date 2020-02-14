@@ -8,10 +8,10 @@
   padding: 0 128px;
   background: white;
   z-index: 2;
-  color: #222;
+  color: $secondary-color;
   min-height: 88px;
   transition: all 0.5s;
-  border-bottom: 4px solid red;
+  border-bottom: 4px solid$primary-color;
 
   .nav-left,
   .nav-right {
@@ -26,12 +26,12 @@
     font-size: 24px;
     font-weight: bold;
     font-family: inherit;
-    color: #222;
+    color: $secondary-color;
     transition: all 0.5s;
   }
   .nav-left *:hover,
   .nav-right *:hover {
-    color: red;
+    color: $primary-color;
     transition: all 0.5s;
   }
 
@@ -41,9 +41,9 @@
     font-size: 48px;
     font-family: $primary-font;
     font-weight: bold;
-    color: #222;
+    color: $secondary-color;
     > span {
-      color: red;
+      color: $primary-color;
     }
     > img {
       height: 56px;
@@ -73,7 +73,7 @@
   }
 
   > .count {
-    background: red;
+    background: $primary-color;
     border-radius: 50%;
     width: 32px;
     height: 32px;

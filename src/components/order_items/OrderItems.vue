@@ -93,7 +93,6 @@ export default {
   props: ['orderItemsUpdate'],
   watch: {
     orderItemsUpdate: function(oldValue, newValue) {
-      console.log('orderItems watcher', oldValue, newValue);
       if (oldValue === 'accepted') {
         this.selectTab('accepted');
         this.getAllOrderAcceptedMethod();
@@ -115,24 +114,22 @@ export default {
         });
     },
     getAllOrderAcceptedMethod: function() {
-      console.log('getAllOrderAcceptedMethod');
       getAllOrderAccepted()
         .then(response => {
           this.items = response;
         })
         .catch(err => {
-          console.log("Component 'LoginModal' error:", err);
+          console.log("Component 'OrderItems' error:", err);
           this.items = [];
         });
     },
     getAllOrderFulfilledMethod: function() {
-      console.log('getAllOrderFulfilledMethod');
       getAllOrderFulfilled()
         .then(response => {
           this.items = response;
         })
         .catch(err => {
-          console.log("Component 'LoginModal' error:", err);
+          console.log("Component 'OrderItems' error:", err);
           this.items = [];
         });
     },
@@ -142,7 +139,7 @@ export default {
           this.items = response;
         })
         .catch(err => {
-          console.log("Component 'LoginModal' error:", err);
+          console.log("Component 'OrderItems' error:", err);
           this.items = [];
         });
     },
