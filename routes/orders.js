@@ -8,10 +8,14 @@ const {
   getAllOrderFulfilled,
   getOrderById,
   getOrderByPickupName,
-  getOrderItemByOrderId,
-  addOrderItem
+  getOrderItemByOrderId
 } = require('../api/queries');
-const { addOrder, updateOrder, deleteOrder } = require('../api/inserts');
+const {
+  addOrder,
+  updateOrder,
+  deleteOrder,
+  addOrderItem
+} = require('../api/inserts');
 
 // Get all orders
 router.get('/', (req, res) => {
@@ -125,10 +129,14 @@ router.get('/fulfilled', (req, res) => {
 router.post('/', (req, res) => {
   const user_id = req.session.user_id;
   const { pickup_name, customer_note, total_price, mobile, items } = req.body;
-  for (let item of items) {
-  }
   if (pickup_name && total_price) {
-    addOrder(pickup_name, total_price, customer_note, mobile, user_id)
+    addOrder(
+      pickup_name,
+      total_price,
+      customer_note,
+      mobile.toString(),
+      user_id
+    )
       .then(result => {
         if (result.rows) {
           const order_id = result.rows[0].id;
@@ -136,10 +144,11 @@ router.post('/', (req, res) => {
             const menu_item_id = item.id;
             addOrderItem(order_id, menu_item_id)
               .then(ordItem => {
-                console.log(ordItem.rows);
+                res.status(200);
               })
               .catch(err => {
-                console.error(err);
+                console.error('Error adding order items: ', err);
+                res.status(500);
               });
           }
           res.json(result.rows);
@@ -148,10 +157,12 @@ router.post('/', (req, res) => {
         }
       })
       .catch(err => {
-        throw new Error('Error adding order: ', err);
+        console.error('Error adding order: ', err);
+        res.status(500);
       });
   } else {
-    throw new Error('Pickup name and total price required');
+    console.error('Pickup name and price required: ', err);
+    res.status(400);
   }
 });
 
@@ -171,7 +182,8 @@ router.get('/:id', (req, res) => {
             }
           })
           .catch(err => {
-            throw new Error('Error getting order: ', err);
+            console.error('Error getting order: ', err);
+            res.status(500);
           });
       } else {
         console.log('Access denied. You are not logged in as an operator');
@@ -200,7 +212,8 @@ router.put('/:id', (req, res) => {
             }
           })
           .catch(err => {
-            throw new Error('Error updating order: ', err);
+            console.error('Error updating order: ', err);
+            res.status(500);
           });
       } else {
         console.log('Access denied. You are not logged in as an operator');
@@ -229,7 +242,8 @@ router.delete('/:id', (req, res) => {
             }
           })
           .catch(err => {
-            throw new Error('Error deleting order: ', err);
+            console.error('Error deleting order: ', err);
+            res.status(500);
           });
       } else {
         console.log('Access denied. You are not logged in as an operator');
@@ -258,7 +272,8 @@ router.get('/:id/items', (req, res) => {
             }
           })
           .catch(err => {
-            throw new Error('Error getting order items: ', err);
+            console.error('Error getting order items: ', err);
+            res.status(500);
           });
       } else {
         console.log('Access denied. You are not logged in as an operator');

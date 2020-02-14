@@ -146,9 +146,13 @@ const addOrder = (
   let invalidReason = false;
 
   if (!isValidVarChar(pickup_name)) invalidReason = 'pickup_name';
-  if (!isValidVarChar(customer_note)) invalidReason = 'customer_note';
+  if (!isValidVarChar(customer_note) && customer_note !== '')
+    invalidReason = 'customer_note';
+  if (!isValidVarChar(mobile) && mobile !== '') invalidReason = 'mobile';
+
   if (!isValidSmallInt(total_price)) invalidReason = 'total_price';
   if (!isValidInt(user_id)) invalidReason = 'user_id';
+
   const values = [
     pickup_name,
     customer_note,
@@ -157,7 +161,9 @@ const addOrder = (
     parseInt(user_id)
   ];
 
-  if (invalidReason) throw new Error(`${invalidReason} is not valid`);
+  if (invalidReason) {
+    throw new Error(`${invalidReason} is not valid`);
+  }
 
   const query = `
   INSERT INTO "Order" (
@@ -220,14 +226,13 @@ const addOrderItem = (order_id, menu_item_id) => {
 
   if (!isValidInt(order_id)) invalidReason = 'order_id';
   if (!isValidInt(menu_item_id)) invalidReason = 'menu_item_id';
-
   if (invalidReason) throw new Error(`${invalidReason} is not valid`);
 
   const values = [order_id, menu_item_id];
   const query = `
   INSERT INTO "OrderItem" (
     "order_id",
-    "menu_item_id",
+    "menu_item_id")
   VALUES 
   ($1, $2)
   RETURNING *;`;

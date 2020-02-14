@@ -4,7 +4,6 @@
       :itemsInCart="this.cart.items"
       @openCartModal="setCartModal(true)"
     ></Nav>
-    <!-- if on / -->
     <Hero></Hero>
 
     <div id="content-container" class="content-container">
@@ -174,8 +173,9 @@ export default {
       // axios
     },
     onPlaceOrder(order) {
-      const tmpOrder = { ...order, items: this.items };
+      const tmpOrder = { ...order, items: this.cart.items };
       placeOrder(tmpOrder);
+      this.cart = { items: [], mobile: '', customer_note: '', pickup_name: '' };
     }
   }
 };
