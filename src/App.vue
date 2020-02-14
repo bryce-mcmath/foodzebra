@@ -157,10 +157,8 @@ export default {
       fulfillOrder(id, 'fulfill');
     },
     onPlaceOrder(order) {
-      console.log('onPlaceOrder was called');
-      // order is an object with the following properties:
-      // pickup_name, total_price, customer_note, mobile
-      placeOrder(order);
+      const tmpOrder = { ...order, items: this.items };
+      placeOrder(tmpOrder);
     }
   }
 };
