@@ -67,7 +67,6 @@ export default {
         return this.modalOpen;
       },
       set: function(newValue) {
-        this.clearItems();
         if (!newValue) {
           this.emitClose();
         }
@@ -76,6 +75,7 @@ export default {
   },
   watch: {
     order_id: function(n, o) {
+      this.clearItems();
       this.getOrderItemByIdMethod();
     }
   },
@@ -84,18 +84,15 @@ export default {
       this.items = [];
     },
     emitClose() {
-      this.clearItems();
       this.$emit('closeModal');
     },
     emitAcceptOrder() {
-      this.clearItems();
       this.$emit('acceptOrder', Number(this.order_id), this.estimate);
-      this.$emit('closeModal');
+      this.emitClose();
     },
     emitFulfillOrder(id) {
-      this.clearItems();
       this.$emit('fulfillOrder', Number(this.order_id));
-      this.$emit('closeModal');
+      this.emitClose();
     },
     getOrderItemByIdMethod() {
       if (this.order_id !== '') {
@@ -113,7 +110,7 @@ export default {
           })
           .catch(err => {
             console.log("Component 'OrderModal' error:", err);
-            this.items = [];
+            this.clearItems();
           });
       }
     },
