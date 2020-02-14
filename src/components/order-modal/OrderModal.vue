@@ -1,7 +1,8 @@
 <template lang="html">
-  <sui-modal v-model="open">
+  <sui-modal class="order-modal-content" v-model="open">
     <sui-modal-header>Order {{ this.order_id }}</sui-modal-header>
-    <div class="order-modal-content">
+    <!-- <div class="order-modal-content"> -->
+    <sui-modal-content class="order-modal-content">
       <h3>Menu Items Ordered:</h3>
       <div class="order-modal-row flex" v-for="item in items" :key="item.id">
         <p>{{ item.name }}</p>
@@ -11,8 +12,10 @@
         <p>Total prices:</p>
         <p>{{ sumPrices(items) | priceProcess }}</p>
       </div>
-      <!-- form with estimate input -->
-    </div>
+      <!-- </div> -->
+    </sui-modal-content>
+    <!-- form with estimate input -->
+
     <sui-modal-actions>
       <sui-button primary @click.native="emitAcceptOrder">
         Send Estimate
