@@ -1,10 +1,9 @@
 .cart-modal-content {
-  :nth-child(3) div {
-    border-top: 2px #222 solid;
-    float: right;
-  }
-
   .ui.form {
     margin-top: 32px;
+
+    p.warning {
+      color: lightgrey;
+    }
   }
 }

@@ -16,9 +16,6 @@
         Total: {{ cartSum(this.cart.items) | priceProcess }}
       </div>
       <sui-form>
-        <!-- Add tipping here -->
-      </sui-form>
-      <sui-form>
         <sui-header dividing>Order Info</sui-header>
         <sui-form-field>
           <label>Pickup Name</label>
@@ -31,61 +28,46 @@
           </sui-form-field>
         </sui-form-field>
         <sui-form-field>
+          <label>Mobile Number (10 Digits)</label>
+          <sui-form-field>
+            <input
+              type="number"
+              v-model:
+              name="mobile"
+              placeholder="111 222 3333"
+            />
+          </sui-form-field>
+        </sui-form-field>
+        <sui-form-field>
           <label>Add a Note:</label>
-          <textarea rows="2"></textarea>
+          <textarea name="customer_note" maxlength="255" rows="2"></textarea>
         </sui-form-field>
 
         <sui-header dividing>Billing Information</sui-header>
+        <p class="warning">
+          Don't actually try to give us your billing info. This isn't real.
+        </p>
         <sui-form-field disabled>
           <label>Card Type</label>
-          <sui-dropdown
-            disabled
-            placeholder="Type"
-            selection
-            :options="cardTypes"
-            v-model="currentCardType"
-          />
+          <sui-dropdown disabled placeholder="Type" selection />
         </sui-form-field>
         <sui-form-fields>
           <sui-form-field disabled width="seven">
             <label>Card Number</label>
-            <input
-              disabled
-              type="text"
-              name="card[number]"
-              maxlength="16"
-              placeholder="Card #"
-            />
+            <input disabled type="text" maxlength="16" placeholder="Card #" />
           </sui-form-field>
           <sui-form-field disabled width="three">
             <label>CVC</label>
-            <input
-              disabled
-              type="text"
-              name="card[cvc]"
-              maxlength="3"
-              placeholder="CVC"
-            />
+            <input disabled type="text" maxlength="3" placeholder="CVC" />
           </sui-form-field>
           <sui-form-field disabled width="six">
             <label>Expiration</label>
             <sui-form-fields>
               <sui-form-field>
-                <sui-dropdown
-                  disabled
-                  placeholder="Month"
-                  selection
-                  :options="months"
-                  v-model="currentMonth"
-                />
+                <sui-dropdown disabled placeholder="Month" selection />
               </sui-form-field>
               <sui-form-field>
-                <input
-                  type="text"
-                  name="card[expire-year]"
-                  maxlength="4"
-                  placeholder="Year"
-                />
+                <input type="text" maxlength="4" placeholder="Year" />
               </sui-form-field>
             </sui-form-fields>
           </sui-form-field>
@@ -119,7 +101,12 @@ export default {
   },
   data() {
     return {
-      order: {}
+      order: {
+        mobile: '',
+        customer_note: '',
+        pickup_name: '',
+        total_price: 0
+      }
     };
   },
   computed: {
