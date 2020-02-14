@@ -161,9 +161,7 @@ const addOrder = (
     parseInt(user_id)
   ];
 
-  console.log(mobile);
   if (invalidReason) {
-    console.log('THERE IS AN INVALID REASON AND IT IS: ', invalidReason);
     throw new Error(`${invalidReason} is not valid`);
   }
 
@@ -237,14 +235,13 @@ const addOrderItem = (order_id, menu_item_id) => {
 
   if (!isValidInt(order_id)) invalidReason = 'order_id';
   if (!isValidInt(menu_item_id)) invalidReason = 'menu_item_id';
-
   if (invalidReason) throw new Error(`${invalidReason} is not valid`);
 
   const values = [order_id, menu_item_id];
   const query = `
   INSERT INTO "OrderItem" (
     "order_id",
-    "menu_item_id",
+    "menu_item_id")
   VALUES 
   ($1, $2)
   RETURNING *;`;

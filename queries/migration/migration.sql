@@ -39,6 +39,6 @@ CREATE TABLE "MenuItem" (
 
 CREATE TABLE "OrderItem" (
   "id" SERIAL PRIMARY KEY NOT NULL,
-  "order_id" INTEGER REFERENCES "Order"("id") NOT NULL,
-  "menu_item_id" INTEGER REFERENCES "MenuItem"("id") NOT NULL
+  "order_id" INTEGER NOT NULL,
+  "menu_item_id" INTEGER NOT NULL
 );
