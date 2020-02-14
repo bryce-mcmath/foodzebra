@@ -122,4 +122,13 @@ module.exports = {
         return [];
       });
   }
+
+  // STRETCH
+  /* - delete order
+     - add menu item
+     - update menu item
+     - delete menu item
+     - register user
+     - logout user
+  */
 };
