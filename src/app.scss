@@ -1,9 +1,8 @@
 @charset 'utf-8';
 @import './variables', './reset', './utilities';
 @import './components/nav/nav', './components/footer/footer',
-  './components/landing/landing', './components/hero/hero',
-  './components/menu_items/menu_items', './components/menu_item/menu_item',
-  './components/orders/orders', './components/order_items/order_items',
+  './components/hero/hero', './components/menu_items/menu_items',
+  './components/menu_item/menu_item', './components/order_items/order_items',
   './components/operator_tab/operator_tab',
   './components/order_items/order_items', './components/menu_modal/menu_modal',
   './components/login_modal/login_modal', './components/order-modal/order_modal',
