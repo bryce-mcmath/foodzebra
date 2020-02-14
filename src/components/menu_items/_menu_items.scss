@@ -11,9 +11,13 @@
     justify-content: center;
   }
 
-  > .sui-menu {
+  > .sui-menu.ui {
     flex-direction: row;
     margin: 0;
+
+    > div {
+      font-size: 24px;
+    }
   }
 
   .menu-header {
@@ -33,6 +37,7 @@
       font-size: 32px;
       font-weight: bold;
       margin: 0;
+      margin-top: 16px;
     }
 
     > .selection-container {
@@ -53,18 +58,5 @@
         }
       }
     }
-
-    > .appetizer-container {
-    }
-
-    > .main-container {
-    }
-
-    > .drink-container {
-    }
   }
-}
-
-.fl-row {
-  flex-direction: row;
 }

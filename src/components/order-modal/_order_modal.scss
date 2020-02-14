@@ -7,6 +7,18 @@
     .ui.input {
       width: 175px;
     }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .ui.order-button {
+        margin: 8px;
+        width: 175px;
+      }
+    }
   }
 }
 
@@ -23,10 +35,13 @@
       margin-bottom: 2px;
     }
   }
-  .order-modal-total {
+  > .order-modal-total {
     justify-content: space-between;
     align-items: center;
     border-top: 1px black solid;
+    .fwb {
+      font-weight: bold;
+    }
 
     > p {
       margin: 0;

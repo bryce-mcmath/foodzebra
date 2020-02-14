@@ -43,6 +43,12 @@
         color: #555;
         font-weight: inherit;
       }
+
+      p:nth-child(5):hover {
+        color: red;
+        cursor: pointer;
+        transition: all 0.5s;
+      }
     }
 
     .mailing {

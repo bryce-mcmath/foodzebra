@@ -8,9 +8,9 @@
         <p>{{ item.name }}</p>
         <p>{{ item.price | priceProcess }}</p>
       </div>
-      <div class="order-modal-total flex">
-        <p>Total price:</p>
-        <p>{{ sumPrices(items) | priceProcess }}</p>
+      <div class="order-modal-total fwb flex">
+        <p class="fwb">Total price:</p>
+        <p class="fwb">{{ sumPrices(items) | priceProcess }}</p>
       </div>
       <!-- </div> -->
     </sui-modal-content>
@@ -22,13 +22,22 @@
         v-model.number="estimate"
         placeholder="Estimate in minutes"
       ></sui-input>
-      <sui-button :disabled="!estimate" primary @click.native="emitAcceptOrder">
+      <sui-button
+        class="order-button"
+        :disabled="!estimate"
+        primary
+        @click.native="emitAcceptOrder"
+      >
         Accept
       </sui-button>
-      <sui-button positive @click.native="emitFulfillOrder">
+      <sui-button
+        class="order-button"
+        positive
+        @click.native="emitFulfillOrder"
+      >
         Ready
       </sui-button>
-      <sui-button secondary @click.native="emitClose">
+      <sui-button class="order-button" secondary @click.native="emitClose">
         Dismiss
       </sui-button>
     </sui-modal-actions>

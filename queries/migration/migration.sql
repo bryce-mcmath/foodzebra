@@ -30,11 +30,11 @@ CREATE TABLE "Order" (
 CREATE TABLE "MenuItem" (
   "id" SERIAL PRIMARY KEY NOT NULL,
   "name" VARCHAR(255) NOT NULL,
-  "desc" TEXT NOT NULL,
+  "desc" TEXT,
   "price" SMALLINT NOT NULL,
   "img_url" VARCHAR(255),
   "deleted_at" TIMESTAMP,
-  "category" VARCHAR(255) NOT NULL
+  "category" VARCHAR(255) DEFAULT 'mains'
 );
 
 CREATE TABLE "OrderItem" (
