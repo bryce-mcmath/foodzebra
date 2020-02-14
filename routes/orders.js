@@ -158,8 +158,6 @@ router.post('/', (req, res) => {
             if (response.error) {
               console.log('Err in POST: /Orders', response.error);
               res.status(500);
-            } else {
-              console.log(response.data);
             }
           });
           const restaurantMessage = `A new order has been placed by ${pickup_name}`;
@@ -167,8 +165,6 @@ router.post('/', (req, res) => {
             if (response.error) {
               console.log('Err in POST: /Orders', response.error);
               res.status(500);
-            } else {
-              console.log(response.data);
             }
           });
           res.json(result.rows);
@@ -236,8 +232,6 @@ router.put('/:id', (req, res) => {
                       if (response.error) {
                         console.log('Err in PUT: /Orders', response.error);
                         res.status(500);
-                      } else {
-                        console.log(response.data);
                       }
                     }
                   );
@@ -250,8 +244,6 @@ router.put('/:id', (req, res) => {
                       if (response.error) {
                         console.log('Err in PUT: /Orders', response.error);
                         res.status(500);
-                      } else {
-                        console.log(response.data);
                       }
                     }
                   );
