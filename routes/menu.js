@@ -89,8 +89,8 @@ router.put('/:id', (req, res) => {
           updateMenuItem({
             id,
             name,
-            desc,
             price,
+            desc,
             img_url,
             category
           })

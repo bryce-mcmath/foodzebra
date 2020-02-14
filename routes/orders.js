@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
             if (result.rows) {
               res.json(result.rows);
             } else {
-              throw new Error('No rows in orders');
+              res.json([]);
             }
           })
           .catch(err => {
@@ -50,7 +50,7 @@ router.get('/new', (req, res) => {
             if (result.rows) {
               res.json(result.rows);
             } else {
-              throw new Error('No rows in orders');
+              res.json([]);
             }
           })
           .catch(err => {
@@ -77,7 +77,7 @@ router.get('/accepted', (req, res) => {
             if (result.rows) {
               res.json(result.rows);
             } else {
-              throw new Error('No rows in orders');
+              res.json([]);
             }
           })
           .catch(err => {
@@ -104,7 +104,7 @@ router.get('/fulfilled', (req, res) => {
             if (result.rows) {
               res.json(result.rows);
             } else {
-              throw new Error('No rows in orders');
+              res.json([]);
             }
           })
           .catch(err => {
@@ -123,15 +123,14 @@ router.get('/fulfilled', (req, res) => {
 
 router.post('/', (req, res) => {
   const user_id = req.session.user_id;
-  const user = resolve.rows[0];
   const { pickup_name, customer_note, total_price, mobile } = req.body;
   if (pickup_name && total_price) {
-    addOrder({ pickup_name, customer_note, total_price, mobile, user_id })
+    addOrder(pickup_name, total_price, customer_note, mobile, user_id)
       .then(result => {
-        if (result.rows[0]) {
-          res.json(result.rows[0]);
+        if (result.rows) {
+          res.json(result.rows);
         } else {
-          throw new Error('Placed order not returned');
+          res.json([]);
         }
       })
       .catch(err => {
@@ -148,13 +147,13 @@ router.get('/:id', (req, res) => {
     .then(resolve => {
       const user = resolve.rows[0];
       const id = req.params.id;
-      if (user.role === 'operator' && id) {
+      if (user.role === 'operator') {
         getOrderById(id)
           .then(result => {
-            if (result.rows[0]) {
-              res.json(result.rows[0]);
+            if (result.rows) {
+              res.json(result.rows);
             } else {
-              throw new Error('No order returned');
+              res.json([]);
             }
           })
           .catch(err => {
@@ -177,14 +176,13 @@ router.put('/:id', (req, res) => {
     .then(resolve => {
       const user = resolve.rows[0];
       const id = req.params.id;
-      if (user.role === 'operator' && id) {
-        const { msg, estimate } = req.body;
-        updateOrder(id, msg, estimate)
+      if (user.role === 'operator') {
+        updateOrder(id, req.body.msg, req.body.estimate)
           .then(result => {
-            if (result.rows[0]) {
-              res.json(result.rows[0]);
+            if (result.rows) {
+              res.json(result.rows);
             } else {
-              throw new Error('No order returned');
+              res.json([]);
             }
           })
           .catch(err => {
@@ -207,13 +205,13 @@ router.delete('/:id', (req, res) => {
     .then(resolve => {
       const user = resolve.rows[0];
       const id = req.params.id;
-      if (user.role === 'operator' && id) {
+      if (user.role === 'operator') {
         deleteOrder(id)
           .then(result => {
-            if (result.rows[0]) {
-              res.json(result.rows[0]);
+            if (result.rows) {
+              res.json(result.rows);
             } else {
-              throw new Error('No order returned');
+              res.json([]);
             }
           })
           .catch(err => {
@@ -236,13 +234,13 @@ router.get('/:id/items', (req, res) => {
     .then(resolve => {
       const user = resolve.rows[0];
       const id = req.params.id;
-      if (user.role === 'operator' && id) {
+      if (user.role === 'operator') {
         getOrderItemByOrderId(id)
           .then(result => {
-            if (result.rows[0]) {
+            if (result.rows) {
               res.json(result.rows);
             } else {
-              throw new Error('No items returned');
+              res.json([]);
             }
           })
           .catch(err => {

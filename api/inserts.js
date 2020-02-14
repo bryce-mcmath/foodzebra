@@ -28,9 +28,13 @@ const isValidSmallInt = inputNum => {
   return false;
 };
 
-const addUser = options => {
-  let { name, email, role, mobile, password } = options;
-  let values = [name, email, role, mobile, password];
+const addUser = (
+  name,
+  password,
+  email = '',
+  role = 'customer',
+  mobile = ''
+) => {
   let invalidReason = false;
 
   if (!isValidVarChar(name)) invalidReason = 'name';
@@ -38,9 +42,9 @@ const addUser = options => {
   if (!isValidVarChar(role)) invalidReason = 'role';
   if (!isValidVarChar(mobile)) invalidReason = 'mobile';
   if (!isValidVarChar(password)) invalidReason = 'password';
-
   if (invalidReason) throw new Error(`${invalidReason} is not valid`);
 
+  let values = [name, email, role, mobile, password];
   let query = `
   INSERT INTO "User" (
     "name",
@@ -55,9 +59,13 @@ const addUser = options => {
   return db.query(query, values);
 };
 
-const addMenuItem = options => {
-  const { name, desc, price, img_url, category } = options;
-  const values = [name, desc, price, img_url, category];
+const addMenuItem = (
+  name,
+  price,
+  desc = 'N/A',
+  img_url = '',
+  category = 'mains'
+) => {
   let invalidReason = '';
 
   if (!isValidVarChar(name)) invalidReason = 'name';
@@ -65,8 +73,9 @@ const addMenuItem = options => {
   if (!isValidSmallInt(price) || price <= 0) invalidReason = 'price';
   if (!isValidVarChar(img_url)) invalidReason = 'img_url';
   if (!isValidVarChar(category)) invalidReason = 'category';
-
   if (invalidReason) throw new Error(`${invalidReason} is not valid`);
+
+  const values = [name, desc, price, img_url, category];
 
   let query = `
   INSERT INTO "MenuItem" (
@@ -83,9 +92,14 @@ const addMenuItem = options => {
   return db.query(query, values);
 };
 
-const updateMenuItem = options => {
-  const { id, name, desc, price, img_url, category } = options;
-  const values = [id, name, desc, price, img_url, null, category];
+const updateMenuItem = (
+  id,
+  name,
+  price,
+  desc = '',
+  img_url = '',
+  category = 'mains'
+) => {
   let invalidReason = '';
 
   if (!isValidVarChar(name)) invalidReason = 'name';
@@ -95,14 +109,15 @@ const updateMenuItem = options => {
   if (!isValidVarChar(category)) invalidReason = 'category';
   if (invalidReason) throw new Error(`${invalidReason} is not valid`);
 
+  const values = [id, name, desc, price, img_url, category];
+
   let query = `
   UPDATE "MenuItem"
     SET "name" = $2,
      "desc" = $3,
      "price" = $4,
      "img_url" = $5,
-     "deleted_at" = $6,
-     "category" = $7
+     "category" = $6
   WHERE "id" = $1
   RETURNING *;`;
 
@@ -121,15 +136,26 @@ const deleteMenuItem = id => {
   return db.query(query, values);
 };
 
-const addOrder = options => {
-  const { pickup_name, customer_note, total_price, user_id } = options;
-  const values = [pickup_name, customer_note, total_price, user_id];
+const addOrder = (
+  pickup_name,
+  total_price,
+  customer_note = '',
+  mobile = '',
+  user_id = 0
+) => {
   let invalidReason = false;
 
   if (!isValidVarChar(pickup_name)) invalidReason = 'pickup_name';
   if (!isValidVarChar(customer_note)) invalidReason = 'customer_note';
   if (!isValidSmallInt(total_price)) invalidReason = 'total_price';
   if (!isValidInt(user_id)) invalidReason = 'user_id';
+  const values = [
+    pickup_name,
+    customer_note,
+    mobile,
+    total_price,
+    parseInt(user_id)
+  ];
 
   if (invalidReason) throw new Error(`${invalidReason} is not valid`);
 
@@ -138,14 +164,11 @@ const addOrder = options => {
     "pickup_name",
     "customer_note",
     "created_at",
-    "estimate",
+    "mobile",
     "total_price",
-    "accepted_at",
-    "fulfilled_at",
-    "deleted_at",
     "user_id") 
   VALUES 
-  ($1, $2, now(), NULL, $3, NULL, NULL, NULL, $4)
+  ($1, $2, now(), $3, $4, $5)
   RETURNING *;`;
 
   return db.query(query, values);

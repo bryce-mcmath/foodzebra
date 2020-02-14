@@ -1,4 +1,14 @@
 INSERT INTO "User" (
+  "id",
+  "name",
+  "email",
+  "role",
+  "mobile",
+  "password") 
+VALUES 
+(0, 'Guest', '', 'customer', '', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.');
+
+INSERT INTO "User" (
   "name",
   "email",
   "role",
@@ -11,6 +21,7 @@ VALUES
 INSERT INTO "Order" (
   "pickup_name",
   "customer_note",
+  "mobile",
   "created_at",
   "estimate",
   "total_price",
@@ -19,7 +30,10 @@ INSERT INTO "Order" (
   "deleted_at",
   "user_id") 
 VALUES 
-('Wilson Wong', 'I do not like pickles', now(), NULL, 1989, NULL, NULL, NULL, 1);
+('Guest', '', '2508968729', now(), NULL, 1276, NULL, NULL, NULL, 0),
+('Wilson Wong', 'I do not like pickles', '2508968729', now(), NULL, 1989, NULL, NULL, NULL, 1),
+('Tom Hanks', 'I would like chocolates with my order please', '2508968729', now(), NULL, 2499, NULL, NULL, NULL, 0),
+('Mel Gibson', '', '2508968729', now(), NULL, 3289, NULL, NULL, NULL, 0);
 
 INSERT INTO "MenuItem" (
   "name",
@@ -51,4 +65,9 @@ VALUES
 (1, 1),
 (1, 2),
 (1, 3),
-(1, 4);
+(1, 4),
+(2, 7),
+(2, 9),
+(2, 1),
+(3, 5),
+(3, 9);
