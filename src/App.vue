@@ -148,11 +148,9 @@ export default {
       this.operatorTabValues.tabSelected = payload;
     },
     onAcceptOrder(id, estimate) {
-      console.log('onacceptorder was called');
       acceptOrder(id, 'accept', estimate);
     },
     onFulfillOrder(id) {
-      console.log('onfulfillorder was called');
       fulfillOrder(id, 'fulfill');
     },
     onPlaceOrder(order) {

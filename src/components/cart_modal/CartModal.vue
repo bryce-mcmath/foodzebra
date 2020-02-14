@@ -121,7 +121,6 @@ export default {
   },
   updated() {
     this.order.total_price = this.cartSum(this.cart.items);
-    console.log(this.order);
   },
   computed: {
     open: {

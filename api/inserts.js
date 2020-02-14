@@ -177,15 +177,7 @@ const addOrder = (
   ($1, $2, now(), $3, $4, $5)
   RETURNING *;`;
 
-  console.log('query is: ', query);
-
-  console.log('values is: ', values);
-
-  return db.query(query, values).catch(err => {
-    console.log('query is: ', query);
-    console.log('values is: ', values);
-    console.log('err is: ', err);
-  });
+  return db.query(query, values);
 };
 
 const updateOrder = (id = '', msg = '', estimate = 1800) => {
