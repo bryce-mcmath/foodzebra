@@ -16,7 +16,7 @@ CREATE TABLE "User" (
 CREATE TABLE "Order" (
   "id" SERIAL PRIMARY KEY NOT NULL,
   "pickup_name" VARCHAR(255) NOT NULL,
-  "customer_note" VARCHAR(255) DEFAULT '',
+  "customer_note" VARCHAR(255),
   "mobile" VARCHAR(255),
   "created_at" TIMESTAMP NOT NULL DEFAULT now(),
   "estimate" INTEGER,

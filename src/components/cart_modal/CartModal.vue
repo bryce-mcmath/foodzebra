@@ -21,6 +21,7 @@
           <label>Pickup Name</label>
           <sui-form-field>
             <input
+              v-model="order.pickup_name"
               type="text"
               name="pickup_name"
               placeholder="Enter Your Name"
@@ -31,8 +32,8 @@
           <label>Mobile Number (10 Digits)</label>
           <sui-form-field>
             <input
-              type="number"
-              v-model:
+              type="text"
+              v-model.number="order.mobile"
               name="mobile"
               placeholder="111 222 3333"
             />
@@ -40,7 +41,12 @@
         </sui-form-field>
         <sui-form-field>
           <label>Add a Note:</label>
-          <textarea name="customer_note" maxlength="255" rows="2"></textarea>
+          <textarea
+            v-model="order.customer_note"
+            name="customer_note"
+            maxlength="255"
+            rows="2"
+          ></textarea>
         </sui-form-field>
 
         <sui-header dividing>Billing Information</sui-header>
@@ -77,7 +83,11 @@
         <sui-button secondary @click.native="emitClose">
           Dismiss
         </sui-button>
-        <sui-button positive @click.native="emitPlaceOrder">
+        <sui-button
+          v-if="order.pickup_name"
+          positive
+          @click.native="emitPlaceOrder"
+        >
           Place Order
         </sui-button>
       </sui-modal-actions>
@@ -109,6 +119,10 @@ export default {
       }
     };
   },
+  updated() {
+    this.order.total_price = this.cartSum(this.cart.items);
+    console.log(this.order);
+  },
   computed: {
     open: {
       get: function() {
@@ -124,7 +138,8 @@ export default {
       this.$emit('closeModal');
     },
     emitPlaceOrder() {
-      this.$emit('placeOrder');
+      this.$emit('placeOrder', this.order);
+      this.$emit('closeModal');
     },
     cartSum(cartArray) {
       if (Array.isArray(cartArray)) {

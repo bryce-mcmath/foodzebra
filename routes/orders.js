@@ -125,10 +125,15 @@ router.get('/fulfilled', (req, res) => {
 router.post('/', (req, res) => {
   const user_id = req.session.user_id;
   const { pickup_name, customer_note, total_price, mobile, items } = req.body;
-  for (let item of items) {
-  }
+  console.log(items);
   if (pickup_name && total_price) {
-    addOrder(pickup_name, total_price, customer_note, mobile, user_id)
+    addOrder(
+      pickup_name,
+      total_price,
+      customer_note,
+      mobile.toString(),
+      user_id
+    )
       .then(result => {
         if (result.rows) {
           const order_id = result.rows[0].id;

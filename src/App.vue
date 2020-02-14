@@ -157,7 +157,7 @@ export default {
       fulfillOrder(id, 'fulfill');
     },
     onPlaceOrder(order) {
-      const tmpOrder = { ...order, items: this.items };
+      const tmpOrder = { ...order, items: this.cart.items };
       placeOrder(tmpOrder);
     }
   }

@@ -146,9 +146,13 @@ const addOrder = (
   let invalidReason = false;
 
   if (!isValidVarChar(pickup_name)) invalidReason = 'pickup_name';
-  if (!isValidVarChar(customer_note)) invalidReason = 'customer_note';
+  if (!isValidVarChar(customer_note) && customer_note !== '')
+    invalidReason = 'customer_note';
+  if (!isValidVarChar(mobile) && mobile !== '') invalidReason = 'mobile';
+
   if (!isValidSmallInt(total_price)) invalidReason = 'total_price';
   if (!isValidInt(user_id)) invalidReason = 'user_id';
+
   const values = [
     pickup_name,
     customer_note,
@@ -157,7 +161,11 @@ const addOrder = (
     parseInt(user_id)
   ];
 
-  if (invalidReason) throw new Error(`${invalidReason} is not valid`);
+  console.log(mobile);
+  if (invalidReason) {
+    console.log('THERE IS AN INVALID REASON AND IT IS: ', invalidReason);
+    throw new Error(`${invalidReason} is not valid`);
+  }
 
   const query = `
   INSERT INTO "Order" (
@@ -171,7 +179,15 @@ const addOrder = (
   ($1, $2, now(), $3, $4, $5)
   RETURNING *;`;
 
-  return db.query(query, values);
+  console.log('query is: ', query);
+
+  console.log('values is: ', values);
+
+  return db.query(query, values).catch(err => {
+    console.log('query is: ', query);
+    console.log('values is: ', values);
+    console.log('err is: ', err);
+  });
 };
 
 const updateOrder = (id = '', msg = '', estimate = 1800) => {
