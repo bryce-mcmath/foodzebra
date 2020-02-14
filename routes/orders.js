@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const twilioAPI = require('../api/twilio_api');
 const {
   getUserById,
   getAllOrder,
@@ -151,6 +152,16 @@ router.post('/', (req, res) => {
                 res.status(500);
               });
           }
+          let textMessage =
+            'Your order has been placed! You will be notified when it is accepted.';
+          twilioAPI.sendSMS(mobile, textMessage, response => {
+            if (response.error) {
+              console.log('Err in POST: /Orders', response.error);
+              res.status(500);
+            } else {
+              res.send(response);
+            }
+          });
           res.json(result.rows);
         } else {
           res.json([]);
@@ -206,6 +217,16 @@ router.put('/:id', (req, res) => {
         updateOrder(id, req.body.msg, req.body.estimate)
           .then(result => {
             if (result.rows) {
+              console.log('PUT: /orders/:id, req.body');
+              // let textMessage =
+              //   'Your order has been placed! You will be notified when it is accepted.';
+              // twilioAPI.sendSMS(mobile, textMessage, response => {
+              //   if (response.error) {
+              //     console.log('Err in POST: /Orders');
+              //     res.status(500);
+              //   } else {
+              //     res.send(response);
+              //   })
               res.json(result.rows);
             } else {
               res.json([]);

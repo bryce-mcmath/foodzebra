@@ -22,19 +22,20 @@ const client = require('twilio')(accountSid, authToken);
 const numFormatAndValidator = number => {
   if (typeof number !== 'string' || typeof number !== 'number') return '';
   let formatted = number.trim();
+  console.log('numFormatAndValidator', formatted);
 
   return formatted.replace(/\D+/g, '');
 };
 
 module.exports = {
   sendSMS: (toNumber, message = '', callback) => {
-    const formattedNum = numFormatAndValidator(toNumber);
-
+    // const formattedNum = numFormatAndValidator(toNumber);
+    console.log('formattedNum', toNumber);
     client.messages
       .create({
         body: message,
         from: '+12362371332',
-        to: `${formattedNum}`
+        to: `${toNumber}`
       })
       .then(message => {
         callback({ data: message.sid });
