@@ -13,18 +13,22 @@ const numFormatAndValidator = number => {
 module.exports = {
   sendSMS: (toNumber, message = '', callback) => {
     const cleanNum = numFormatAndValidator(toNumber);
-    client.messages
-      .create({
-        body: message,
-        from: '+12362371332',
-        to: `${cleanNum}`
-      })
-      .then(msg => {
-        callback({ data: msg });
-      })
-      .catch(err => {
-        console.log('twilio err');
-        callback({ error: err });
-      });
+    if (cleanNum) {
+      client.messages
+        .create({
+          body: message,
+          from: '+12362371332',
+          to: `${cleanNum}`
+        })
+        .then(msg => {
+          callback({ data: msg });
+        })
+        .catch(err => {
+          console.log('twilio err');
+          callback({ error: err });
+        });
+    } else {
+      callback({ data: 'No mobile number' });
+    }
   }
 };
