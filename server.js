@@ -11,7 +11,7 @@ const app = express();
 // Web server config
 const PORT = process.env.PORT || 8080;
 const ENV = process.env.BUILD_ENV || 'production';
-const db = require('./db');
+// const db = require('./db');
 
 console.log('Running environment:', ENV);
 
