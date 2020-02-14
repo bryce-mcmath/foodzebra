@@ -124,6 +124,17 @@ const getOrderByPickupName = (inputParam = '') => {
   return db.query(query, [inputParam]);
 };
 
+const getMobileByOrderId = order_id => {
+  if (!order_id || typeof parseInt(order_id) !== 'number')
+    throw new Error('valid order_id required');
+
+  const query = `
+  SELECT mobile FROM "Order"
+  WHERE "id" = $1;`;
+
+  return db.query(query, [order_id]);
+};
+
 module.exports = {
   getAllMenuItem,
   getMenuItemById,
@@ -138,5 +149,6 @@ module.exports = {
   getAllOrderFulfilled,
   getOrderById,
   getOrderByPickupName,
-  getOrderItemByOrderId
+  getOrderItemByOrderId,
+  getMobileByOrderId
 };

@@ -9,7 +9,8 @@ const {
   getAllOrderFulfilled,
   getOrderById,
   getOrderByPickupName,
-  getOrderItemByOrderId
+  getOrderItemByOrderId,
+  getMobileByOrderId
 } = require('../api/queries');
 const {
   addOrder,
@@ -152,14 +153,22 @@ router.post('/', (req, res) => {
                 res.status(500);
               });
           }
-          let textMessage =
-            'Your order has been placed! You will be notified when it is accepted.';
-          twilioAPI.sendSMS(mobile, textMessage, response => {
+          const customerMessage = `Your order (#${order_id}) has been placed! You will be notified when it has been accepted.`;
+          twilioAPI.sendSMS(mobile, customerMessage, response => {
             if (response.error) {
               console.log('Err in POST: /Orders', response.error);
               res.status(500);
             } else {
-              res.send(response);
+              console.log(response.data);
+            }
+          });
+          const restaurantMessage = `A new order has been placed by ${pickup_name}`;
+          twilioAPI.sendSMS('2508968729', restaurantMessage, response => {
+            if (response.error) {
+              console.log('Err in POST: /Orders', response.error);
+              res.status(500);
+            } else {
+              console.log(response.data);
             }
           });
           res.json(result.rows);
@@ -217,16 +226,38 @@ router.put('/:id', (req, res) => {
         updateOrder(id, req.body.msg, req.body.estimate)
           .then(result => {
             if (result.rows) {
-              console.log('PUT: /orders/:id, req.body');
-              // let textMessage =
-              //   'Your order has been placed! You will be notified when it is accepted.';
-              // twilioAPI.sendSMS(mobile, textMessage, response => {
-              //   if (response.error) {
-              //     console.log('Err in POST: /Orders');
-              //     res.status(500);
-              //   } else {
-              //     res.send(response);
-              //   })
+              getMobileByOrderId(id).then(mobres => {
+                if (req.body.msg && req.body.msg === 'accept') {
+                  const customerMessage = `Your order has been accepted! It should be ready in about ${req.body.estimate} minutes. See you soon!`;
+                  twilioAPI.sendSMS(
+                    mobres.rows[0].mobile,
+                    customerMessage,
+                    response => {
+                      if (response.error) {
+                        console.log('Err in PUT: /Orders', response.error);
+                        res.status(500);
+                      } else {
+                        console.log(response.data);
+                      }
+                    }
+                  );
+                } else if (req.body.msg && req.body.msg === 'fulfill') {
+                  const customerMessage = `Your order is ready for pickup! Thank you for using FoodZebra 🦓`;
+                  twilioAPI.sendSMS(
+                    mobres.rows[0].mobile,
+                    customerMessage,
+                    response => {
+                      if (response.error) {
+                        console.log('Err in PUT: /Orders', response.error);
+                        res.status(500);
+                      } else {
+                        console.log(response.data);
+                      }
+                    }
+                  );
+                }
+              });
+
               res.json(result.rows);
             } else {
               res.json([]);

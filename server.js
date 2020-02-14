@@ -36,6 +36,7 @@ app.use('/menu', require('./routes/menu'));
 app.use('/login', require('./routes/login'));
 app.use('/logout', require('./routes/logout'));
 app.use('/orders', require('./routes/orders'));
+app.use('/sms', require('./routes/sms'));
 app.get('/*', (req, res) => {
   res.redirect('/');
 });

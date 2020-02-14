@@ -200,9 +200,6 @@ export default {
           : parseInt(timeArr[0]) + 7;
 
       return `${hour}:${timeArr[1]} ${dateArr[2]} ${dateArr[1]} ${dateArr[3]}`;
-      // return `${date.getHours() + 1}:${
-      //   date.getMinutes() < 10 ? 0 + date.getMinutes() : date.getMinutes()
-      // }, ${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
     }
   }
 };

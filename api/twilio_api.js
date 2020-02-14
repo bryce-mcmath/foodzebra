@@ -30,15 +30,15 @@ const numFormatAndValidator = number => {
 module.exports = {
   sendSMS: (toNumber, message = '', callback) => {
     // const formattedNum = numFormatAndValidator(toNumber);
-    console.log('formattedNum', toNumber);
+    // console.log('formattedNum', toNumber);
     client.messages
       .create({
         body: message,
         from: '+12362371332',
         to: `${toNumber}`
       })
-      .then(message => {
-        callback({ data: message.sid });
+      .then(msg => {
+        callback({ data: msg });
       })
       .catch(err => {
         console.log('twilio err');
