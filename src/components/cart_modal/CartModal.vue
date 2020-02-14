@@ -1,7 +1,7 @@
 <template lang="html">
   <sui-modal v-model="open">
     <sui-modal-header>Order</sui-modal-header>
-    <div class="cart-modal-content">
+    <sui-modal-content scrolling class="cart-modal-content">
       <h3>Items in Cart:</h3>
       <div
         class="order-modal-row flex"
@@ -11,16 +11,132 @@
         <p>{{ item.name }}&nbsp;</p>
         <p>{{ item.price | priceProcess }}</p>
       </div>
-      <div>Total: {{ cartSum(this.cart.items) | priceProcess }}</div>
-    </div>
-    <sui-modal-actions>
-      <sui-button secondary @click.native="emitClose">
-        Dismiss
-      </sui-button>
-      <sui-button positive @click.native="emitPlaceOrder">
-        Place Order
-      </sui-button>
-    </sui-modal-actions>
+
+      <div class="fwb">
+        Total: {{ cartSum(this.cart.items) | priceProcess }}
+      </div>
+      <sui-form>
+        <sui-header dividing>Shipping Information</sui-header>
+        <sui-form-field>
+          <label>Name</label>
+          <sui-form-fields fields="two">
+            <sui-form-field>
+              <input
+                type="text"
+                name="shipping[first-name]"
+                placeholder="First Name"
+              />
+            </sui-form-field>
+            <sui-form-field>
+              <input
+                type="text"
+                name="shipping[last-name]"
+                placeholder="Last Name"
+              />
+            </sui-form-field>
+          </sui-form-fields>
+        </sui-form-field>
+        <sui-form-field>
+          <label>Billing Address</label>
+          <sui-form-fields>
+            <sui-form-field width="twelve">
+              <input
+                type="text"
+                name="shipping[address]"
+                placeholder="Street Address"
+              />
+            </sui-form-field>
+            <sui-form-field width="four">
+              <input
+                type="text"
+                name="shipping[address-2]"
+                placeholder="Apt #"
+              />
+            </sui-form-field>
+          </sui-form-fields>
+        </sui-form-field>
+        <sui-form-fields fields="two">
+          <sui-form-field>
+            <label>State</label>
+            <sui-dropdown
+              placeholder="State"
+              selection
+              :options="states"
+              v-model="currentState"
+            />
+          </sui-form-field>
+          <sui-form-field>
+            <label>State</label>
+            <sui-dropdown
+              :options="countries"
+              placeholder="Country"
+              search
+              selection
+              v-model="currentCountry"
+            />
+          </sui-form-field>
+        </sui-form-fields>
+        <sui-header dividing>Billing Information</sui-header>
+        <sui-form-field>
+          <label>Card Type</label>
+          <sui-dropdown
+            placeholder="Type"
+            selection
+            :options="cardTypes"
+            v-model="currentCardType"
+          />
+        </sui-form-field>
+        <sui-form-fields>
+          <sui-form-field width="seven">
+            <label>Card Number</label>
+            <input
+              type="text"
+              name="card[number]"
+              maxlength="16"
+              placeholder="Card #"
+            />
+          </sui-form-field>
+          <sui-form-field width="three">
+            <label>CVC</label>
+            <input
+              type="text"
+              name="card[cvc]"
+              maxlength="3"
+              placeholder="CVC"
+            />
+          </sui-form-field>
+          <sui-form-field width="six">
+            <label>Expiration</label>
+            <sui-form-fields>
+              <sui-form-field>
+                <sui-dropdown
+                  placeholder="Month"
+                  selection
+                  :options="months"
+                  v-model="currentMonth"
+                />
+              </sui-form-field>
+              <sui-form-field>
+                <input
+                  type="text"
+                  name="card[expire-year]"
+                  maxlength="4"
+                  placeholder="Year"
+                />
+              </sui-form-field>
+            </sui-form-fields>
+          </sui-form-field>
+        </sui-form-fields>
+      </sui-form>
+      <sui-modal-actions>
+        <sui-button secondary @click.native="emitClose">
+          Dismiss
+        </sui-button>
+        <sui-button positive @click.native="emitPlaceOrder">
+          Place Order
+        </sui-button>
+      </sui-modal-actions>
+    </sui-modal-content>
   </sui-modal>
 </template>
 
