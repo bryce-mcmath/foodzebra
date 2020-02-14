@@ -103,5 +103,23 @@ module.exports = {
         console.log('ajaxCalls error', err);
         return [];
       });
+  },
+  acceptOrder: (id, msg, estimate = 1800) => {
+    return axios
+      .post(`/orders/${id}`, { msg, estimate })
+      .then(response => response.data)
+      .catch(err => {
+        console.log('ajaxCalls error', err);
+        return [];
+      });
+  },
+  fulfillOrder: (id, msg, estimate = null) => {
+    return axios
+      .post(`/orders/${id}`, { msg, estimate })
+      .then(response => response.data)
+      .catch(err => {
+        console.log('ajaxCalls error', err);
+        return [];
+      });
   }
 };
