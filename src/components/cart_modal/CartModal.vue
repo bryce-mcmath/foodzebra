@@ -80,11 +80,14 @@
         </sui-form-fields>
       </sui-form>
       <sui-modal-actions>
+        <sui-button primary @click.native="emitClearCart">
+          Clear Cart
+        </sui-button>
         <sui-button secondary @click.native="emitClose">
           Dismiss
         </sui-button>
         <sui-button
-          v-if="order.pickup_name"
+          :disabled="!order.pickup_name"
           positive
           @click.native="emitPlaceOrder"
         >
@@ -147,6 +150,10 @@ export default {
       } else {
         return 0;
       }
+    },
+    emitClearCart() {
+      this.$emit('clearCart');
+      this.$emit('closeModal');
     }
   },
   filters: {
