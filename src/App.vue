@@ -43,6 +43,7 @@
     <CartModal
       @closeModal="setCartModal(false)"
       @placeOrder="onPlaceOrder"
+      @clearCart="onClearCart"
       :modalOpen="cartModalOpen"
       :cart="cart"
     ></CartModal>
@@ -173,9 +174,19 @@ export default {
       // axios
     },
     onPlaceOrder(order) {
-      const tmpOrder = { ...order, items: this.cart.items };
-      placeOrder(tmpOrder);
-      this.cart = { items: [], mobile: '', customer_note: '', pickup_name: '' };
+      if (this.cart.items.length) {
+        const tmpOrder = { ...order, items: this.cart.items };
+        placeOrder(tmpOrder);
+        this.cart = {
+          items: [],
+          mobile: '',
+          customer_note: '',
+          pickup_name: ''
+        };
+      }
+    },
+    onClearCart() {
+      this.cart.items = [];
     }
   }
 };
