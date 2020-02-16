@@ -42,33 +42,33 @@ The above gifs demonstrate basic usage. For more gifs, screenshots, and the ERD 
 
 ## Getting started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [Deployment](#deployment) for notes on how to deploy the project on a live system.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
 If you don't have Nodejs and npm installed, install them from [here.](https://nodejs.org/en/)
-
-Set up a free ElephantSQL cloud database [here](https://customer.elephantsql.com/instance/create?plan=turtle) using the migration and seed files in /queries.
 
 ### Installing and Running
 
 Clone this repository to your local machine, and in the root directory:
 
-```
+```sh
 npm install
 ```
 
-Then add a .env file in the root directory that follows the .env.example file. After that, run parcel to build the project with:
+Set up a free ElephantSQL cloud database [here](https://customer.elephantsql.com/instance/create?plan=turtle) using the migration and seed files in /queries.
 
-```
+Then add a .env file in the root directory that follows the .env.example file.
+
+After that, run parcel to build the project with:
+
+```sh
 npm run build
 ```
 
 And finally:
 
-```
+```sh
 npm run dev
 ```
 
