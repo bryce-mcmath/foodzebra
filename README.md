@@ -2,6 +2,8 @@
 
 > Order-for-pickup app that uses SMS to keep customers notified of progress
 
+<!-- Test -->
+
 <!-- Badges -->
 
 [![Build Status](https://travis-ci.com/bryce-mcmath/foodzebra.svg?branch=master)](https://travis-ci.com/bryce-mcmath/foodzebra)
