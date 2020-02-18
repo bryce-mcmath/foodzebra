@@ -51,8 +51,8 @@ const addUser = (
     "email",
     "role",
     "mobile",
-    "password") 
-  VALUES 
+    "password")
+  VALUES
   ($1, $2, $3, $4, $5),
   RETURNING *;`;
 
@@ -85,7 +85,7 @@ const addMenuItem = (
     "img_url",
     "category"
   )
-  VALUES 
+  VALUES
   ($1, $2, $3, $4, $5)
   RETURNING *;`;
 
@@ -172,8 +172,8 @@ const addOrder = (
     "created_at",
     "mobile",
     "total_price",
-    "user_id") 
-  VALUES 
+    "user_id")
+  VALUES
   ($1, $2, now(), $3, $4, $5)
   RETURNING *;`;
 
@@ -233,7 +233,7 @@ const addOrderItem = (order_id, menu_item_id) => {
   INSERT INTO "OrderItem" (
     "order_id",
     "menu_item_id")
-  VALUES 
+  VALUES
   ($1, $2)
   RETURNING *;`;
 

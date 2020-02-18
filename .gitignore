@@ -1,9 +1,6 @@
 # modules
 node_modules
 
-# config
-config.js
-
 # parcel
 .cache
 dist
