@@ -1,6 +1,6 @@
 # Notes
 
-## Trevor
+## TM
 
 - ES6 Module Syntax rather than require
 - constant values should be LIKE_THIS
@@ -17,3 +17,13 @@
 - modal text size
 - spinner and display nothing while data loading
 - no transparency on nav on tablet and under
+
+## DM
+
+- rebase bad commits
+- no unnecessary default args
+- too much logic in twilio_api.js
+- break routes into smaller pieces
+- no console.logs in commited code
+- add tests
+- readable as english
