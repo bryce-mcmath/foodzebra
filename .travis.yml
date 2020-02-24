@@ -8,7 +8,7 @@ jobs:
     - stage: install
       script: npm i
     - stage: build
-      script: npx parcel build ./public/index.html
+      script: npx parcel build ./client/public/index.html
     - stage: deploy
       script: skip
       deploy:

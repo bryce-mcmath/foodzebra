@@ -77,32 +77,3 @@
   ```
   This pattern can be replaced much more concisely with: `return booleanExpression`.
   ​
-  ​
-
-### Project Structure
-
-​
-A more conventional project directory structure might look like this (there's no one solution to this, but essentially it involves a clearer delineation of server vs. client side):
-​
-
-- docs/
-- README and project-level config files (dotfiles, .yml, package.json)
-- public/
-- server/
-  - index.js (contents of /server.js)
-  - twilio.js
-  - routes/
-  - db/
-    - validators.js (extract various isValid\_\_\_\_ functions from inserts.js into here)
-    - index.js (contents of db.js)
-    - schema.sql (contents of queries/migration/migration.sql)
-    - seeds.sql
-    - inserts.js
-    - queries.js (current file could potentially be broken into a queries/ folder with separate files related to users, menu items, and orders or along similar lines. These can often grow as the app grows)
-- client/
-  - src/
-    - index.js
-    - global .scss files
-    - api/
-    - components/
-      - (all your components, including the App component)
