@@ -6,6 +6,6 @@ const notOperator = (res) =>
 
 const dbError = (res) => res.status(500).send('Error updating database');
 
-const twilioError = () => res.status(500).send('Error sending SMS');
+const twilioError = (res) => res.status(500).send('Error sending SMS');
 
 module.exports = { invalidCredentials, notOperator, dbError, twilioError };

@@ -5,12 +5,11 @@ module.exports = {
 		return axios
 			.post(`/login`, { email, password })
 			.then((response) => {
-				console.log('login: ', response);
-				return response.data;
+				return response;
 			})
 			.catch((err) => {
 				if (err.response.status !== 401) {
-					console.log('AJAX error logging in:', err);
+					console.error('AJAX error logging in:', err);
 				}
 				return err.response;
 			});
@@ -23,7 +22,7 @@ module.exports = {
 			})
 			.catch((err) => {
 				if (err.response.status !== 401) {
-					console.log('AJAX error validating session:', err);
+					console.error('AJAX error validating session:', err);
 				}
 				return err.response;
 			});
@@ -33,7 +32,7 @@ module.exports = {
 			.get('/menu')
 			.then((response) => response.data)
 			.catch((err) => {
-				console.log('AJAX error getting menu items:', err);
+				console.error('AJAX error getting menu items:', err);
 				return [];
 			});
 	},
@@ -42,7 +41,7 @@ module.exports = {
 			.get(`/menu/${id}`)
 			.then((response) => response.data)
 			.catch((err) => {
-				console.log('AJAX error getting menu item:', err);
+				console.error('AJAX error getting menu item:', err);
 				return [];
 			});
 	},
@@ -51,7 +50,7 @@ module.exports = {
 			.get('/orders/new')
 			.then((response) => response.data)
 			.catch((err) => {
-				console.log('AJAX error getting new orders:', err);
+				console.error('AJAX error getting new orders:', err);
 				return [];
 			});
 	},
@@ -60,7 +59,7 @@ module.exports = {
 			.get('/orders/accepted')
 			.then((response) => response.data)
 			.catch((err) => {
-				console.log('AJAX error getting accepted orders:', err);
+				console.error('AJAX error getting accepted orders:', err);
 				return [];
 			});
 	},
@@ -69,7 +68,7 @@ module.exports = {
 			.get('/orders/fulfilled')
 			.then((response) => response.data)
 			.catch((err) => {
-				console.log('AJAX error getting fulfilled orders:', err);
+				console.error('AJAX error getting fulfilled orders:', err);
 				return [];
 			});
 	},
@@ -78,7 +77,7 @@ module.exports = {
 			.get('/orders')
 			.then((response) => response.data)
 			.catch((err) => {
-				console.log('AJAX error getting all orders:', err);
+				console.error('AJAX error getting all orders:', err);
 				return [];
 			});
 	},
@@ -91,7 +90,7 @@ module.exports = {
 				return response.data;
 			})
 			.catch((err) => {
-				console.log('AJAX error getting order by id:', err.response);
+				console.error('AJAX error getting order by id:', err.response);
 				return [];
 			});
 	},
@@ -100,7 +99,7 @@ module.exports = {
 			.post('/orders', order)
 			.then((response) => response.data)
 			.catch((err) => {
-				console.log('AJAX error placing new order:', err);
+				console.error('AJAX error placing new order:', err);
 				return [];
 			});
 	},
@@ -109,7 +108,7 @@ module.exports = {
 			.put(`/orders/${id}`, { msg, estimate })
 			.then((response) => response.data)
 			.catch((err) => {
-				console.log('AJAX error accepting new order:', err.data);
+				console.error('AJAX error accepting new order:', err.data);
 				return [];
 			});
 	},
@@ -118,7 +117,7 @@ module.exports = {
 			.put(`/orders/${id}`, { msg, estimate })
 			.then((response) => response.data)
 			.catch((err) => {
-				console.log('AJAX error fulfilling order:', err);
+				console.error('AJAX error fulfilling order:', err);
 				return [];
 			});
 	}

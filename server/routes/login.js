@@ -27,11 +27,13 @@ router.post('/', (req, res) => {
 				bcrypt.compare(password, hash, (err, result) => {
 					if (!err && result) {
 						req.session.user_id = id;
-						res.send({ status: 200 });
+						res.status(200);
 					} else {
 						invalidCredentials(res);
 					}
 				});
+			} else {
+				invalidCredentials(res);
 			}
 		})
 		.catch((err) => {
