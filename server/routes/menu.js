@@ -1,6 +1,11 @@
+/** Express router providing menu related routes
+ * @module server/routers/menu
+ * @requires express
+ */
+
+// Imports
 const express = require('express');
 const router = express.Router();
-
 const {
 	getAllMenuItem,
 	getMenuItemById,
@@ -11,12 +16,16 @@ const {
 	updateMenuItem,
 	deleteMenuItem
 } = require('../db/inserts.js');
-
 const { dbError, notOperator } = require('../utils/routeHelpers');
 
-// Routes: /
-
-// Queries DB for all menu items. Takes no args, returns array w/ objs inside
+/**
+ * Route fetching all menu items
+ * @name get/menu
+ * @function
+ * @memberof server/routes/menu
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware
+ */
 router.get('/', (_, res) => {
 	getAllMenuItem()
 		.then((menu) => {
