@@ -54,23 +54,23 @@
 </template>
 
 <script>
-import Nav from './components/nav/Nav.vue';
-import Hero from './components/hero/Hero.vue';
-import Footer from './components/footer/Footer.vue';
-import MenuItems from './components/menu_items/MenuItems.vue';
-import MenuModal from './components/menu_modal/MenuModal.vue';
-import LoginModal from './components/login_modal/LoginModal.vue';
-import OrderModal from './components/order-modal/OrderModal.vue';
-import CartModal from './components/cart_modal/CartModal.vue';
-import SuccessModal from './components/success_modal/SuccessModal.vue';
-import OperatorTab from './components/operator_tab/OperatorTab.vue';
-import OrderItems from './components/order_items/OrderItems.vue';
+import Nav from './nav/Nav.vue';
+import Hero from './hero/Hero.vue';
+import Footer from './footer/Footer.vue';
+import MenuItems from './menu_items/MenuItems.vue';
+import MenuModal from './menu_modal/MenuModal.vue';
+import LoginModal from './login_modal/LoginModal.vue';
+import OrderModal from './order-modal/OrderModal.vue';
+import CartModal from './cart_modal/CartModal.vue';
+import SuccessModal from './success_modal/SuccessModal.vue';
+import OperatorTab from './operator_tab/OperatorTab.vue';
+import OrderItems from './order_items/OrderItems.vue';
 import {
   validateSession,
   placeOrder,
   acceptOrder,
   fulfillOrder
-} from './api/ajaxCalls';
+} from '../api/ajaxCalls';
 
 export default {
   name: 'app',

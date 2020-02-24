@@ -1,0 +1,4 @@
+const VARCHAR_MAX = 255;
+const SMALL_INT_MAX = 32767;
+const INT_MAX = 2147483647;
+module.exports = { VARCHAR_MAX, SMALL_INT_MAX, INT_MAX };

@@ -2,12 +2,12 @@
   "name": "foodzebra",
   "version": "1.0.0",
   "description": "Order-for-pickup app that uses SMS to keep customers notified of progress",
-  "main": "server.js",
+  "main": "./server/index.js",
   "scripts": {
-    "start": "node server.js",
-    "parc": "parcel ./public/index.html",
-    "build": "parcel build ./public/index.html",
-    "dev": "nodemon server.js"
+    "serve": "node ./server/index.js",
+    "build": "parcel build ./client/public/index.html",
+    "dev": "nodemon ./server/index.js",
+    "parc": "parcel ./client/public/index.html"
   },
   "repository": {
     "type": "git",

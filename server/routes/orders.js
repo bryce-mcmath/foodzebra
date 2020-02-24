@@ -11,13 +11,13 @@ const {
   getOrderByPickupName,
   getOrderItemByOrderId,
   getMobileByOrderId
-} = require('../api/queries');
+} = require('../db/queries');
 const {
   addOrder,
   updateOrder,
   deleteOrder,
   addOrderItem
-} = require('../api/inserts');
+} = require('../db/inserts');
 
 // Get all orders
 router.get('/', (req, res) => {

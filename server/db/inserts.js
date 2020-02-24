@@ -1,32 +1,5 @@
-const db = require('../db');
-const varCharMaxLength = 255;
-const smallIntLimit = 32767;
-const intLimit = 2147483647;
-
-// Helper functions to be called
-const isValidVarChar = inputString => {
-  if (
-    typeof inputString === 'string' &&
-    inputString.length <= varCharMaxLength
-  ) {
-    return true;
-  }
-  return false;
-};
-
-const isValidInt = inputNum => {
-  if (!Number.isNaN(inputNum) && Math.abs(inputNum) <= intLimit) {
-    return true;
-  }
-  return false;
-};
-
-const isValidSmallInt = inputNum => {
-  if (!isNaN(inputNum) && Math.abs(inputNum) <= smallIntLimit) {
-    return true;
-  }
-  return false;
-};
+const db = require('./index');
+const { isValidInt, isValidSmallInt, isValidVarChar } = require('./validators');
 
 const addUser = (
   name,
@@ -42,10 +15,10 @@ const addUser = (
   if (!isValidVarChar(role)) invalidReason = 'role';
   if (!isValidVarChar(mobile)) invalidReason = 'mobile';
   if (!isValidVarChar(password)) invalidReason = 'password';
-  if (invalidReason) throw new Error(`${invalidReason} is not valid`);
+  if (invalidReason) return new Error(`${invalidReason} is not valid`);
 
-  let values = [name, email, role, mobile, password];
-  let query = `
+  const values = [name, email, role, mobile, password];
+  const query = `
   INSERT INTO "User" (
     "name",
     "email",
@@ -66,18 +39,18 @@ const addMenuItem = (
   img_url = '',
   category = 'mains'
 ) => {
-  let invalidReason = '';
+  let invalidReason = false;
 
   if (!isValidVarChar(name)) invalidReason = 'name';
   if (!isValidVarChar(desc)) invalidReason = 'desc';
   if (!isValidSmallInt(price) || price <= 0) invalidReason = 'price';
   if (!isValidVarChar(img_url)) invalidReason = 'img_url';
   if (!isValidVarChar(category)) invalidReason = 'category';
-  if (invalidReason) throw new Error(`${invalidReason} is not valid`);
+  if (invalidReason) return new Error(`${invalidReason} is not valid`);
 
   const values = [name, desc, price, img_url, category];
 
-  let query = `
+  const query = `
   INSERT INTO "MenuItem" (
     "name",
     "desc",
@@ -100,18 +73,18 @@ const updateMenuItem = (
   img_url = '',
   category = 'mains'
 ) => {
-  let invalidReason = '';
+  let invalidReason = false;
 
   if (!isValidVarChar(name)) invalidReason = 'name';
   if (!isValidVarChar(desc)) invalidReason = 'desc';
   if (!isValidSmallInt(price) || price <= 0) invalidReason = 'price';
   if (!isValidVarChar(img_url)) invalidReason = 'img_url';
   if (!isValidVarChar(category)) invalidReason = 'category';
-  if (invalidReason) throw new Error(`${invalidReason} is not valid`);
+  if (invalidReason) return new Error(`${invalidReason} is not valid`);
 
   const values = [id, name, desc, price, img_url, category];
 
-  let query = `
+  const query = `
   UPDATE "MenuItem"
     SET "name" = $2,
      "desc" = $3,
@@ -127,7 +100,7 @@ const updateMenuItem = (
 const deleteMenuItem = id => {
   const values = [id];
 
-  let query = `
+  const query = `
   UPDATE "MenuItem"
     SET "deleted_at" = now()
   WHERE "id" = $1
@@ -152,6 +125,7 @@ const addOrder = (
 
   if (!isValidSmallInt(total_price)) invalidReason = 'total_price';
   if (!isValidInt(user_id)) invalidReason = 'user_id';
+  if (invalidReason) return new Error(`${invalidReason} is not valid`);
 
   const values = [
     pickup_name,
@@ -160,10 +134,6 @@ const addOrder = (
     total_price,
     parseInt(user_id)
   ];
-
-  if (invalidReason) {
-    throw new Error(`${invalidReason} is not valid`);
-  }
 
   const query = `
   INSERT INTO "Order" (
@@ -180,10 +150,9 @@ const addOrder = (
   return db.query(query, values);
 };
 
-const updateOrder = (id = '', msg = '', estimate = 1800) => {
-  if (!id || !msg) {
-    throw new Error('id and message required');
-  }
+const updateOrder = (id, msg, estimate = 1800) => {
+  if (!id || !msg) return new Error(`Missing ID or message`);
+
   if (msg === 'accept') {
     const values = [estimate, id];
     const query = `
@@ -204,12 +173,12 @@ const updateOrder = (id = '', msg = '', estimate = 1800) => {
 
     return db.query(query, values);
   }
+
+  return new Error(`Invalid message type`);
 };
 
-const deleteOrder = (id = '') => {
-  if (!id) {
-    throw new Error('id required');
-  }
+const deleteOrder = id => {
+  if (!id) return new Error('Missing ID');
 
   const values = [id];
   const query = `
@@ -226,7 +195,7 @@ const addOrderItem = (order_id, menu_item_id) => {
 
   if (!isValidInt(order_id)) invalidReason = 'order_id';
   if (!isValidInt(menu_item_id)) invalidReason = 'menu_item_id';
-  if (invalidReason) throw new Error(`${invalidReason} is not valid`);
+  if (invalidReason) return new Error(`${invalidReason} is not valid`);
 
   const values = [order_id, menu_item_id];
   const query = `

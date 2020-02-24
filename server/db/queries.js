@@ -1,12 +1,13 @@
 const db = require('../db');
+const { isValidInt, isValidVarChar } = require('./validators');
 
 const getAllMenuItem = () => {
   const query = `SELECT * FROM "MenuItem";`;
   return db.query(query);
 };
 
-const getMenuItemById = (id = '') => {
-  if (!id) throw new Error('Id required');
+const getMenuItemById = id => {
+  if (!id || isValidInt(parseInt(id))) return new Error('Valid ID required');
 
   const query = `
   SELECT * FROM "MenuItem"
@@ -22,7 +23,7 @@ const getAllUser = () => {
 };
 
 const getUserById = (id = 0) => {
-  if (typeof parseInt(id) !== 'number') throw new Error('Must be valid ID');
+  if (typeof parseInt(id) !== 'number') return new Error('Must be valid ID');
 
   const query = `
   SELECT * FROM "User"
@@ -31,8 +32,9 @@ const getUserById = (id = 0) => {
   return db.query(query, [id]);
 };
 
-const getUserByEmail = (inputParam = '') => {
-  if (!inputParam) throw new Error('email required');
+const getUserByEmail = inputParam => {
+  if (!inputParam || !isValidVarChar(inputParam))
+    return new Error('Valid email required');
 
   const query = `
   SELECT * FROM "User"
@@ -41,8 +43,9 @@ const getUserByEmail = (inputParam = '') => {
   return db.query(query, [inputParam]);
 };
 
-const getUserByName = (inputParam = '') => {
-  if (!inputParam) throw new Error('name required');
+const getUserByName = inputParam => {
+  if (!inputParam || !isValidVarChar(inputParam))
+    return new Error('Valid name required');
 
   const query = `
   SELECT * FROM "User"
@@ -51,8 +54,9 @@ const getUserByName = (inputParam = '') => {
   return db.query(query, [inputParam]);
 };
 
-const getUserByMobile = (inputParam = '') => {
-  if (!inputParam) throw new Error('mobile required');
+const getUserByMobile = inputParam => {
+  if (!inputParam || !isValidVarChar(inputParam))
+    return new Error('mobile required');
 
   const query = `
   SELECT * FROM "User"
@@ -79,7 +83,7 @@ const getAllOrderNew = () => {
 const getAllOrderAccepted = () => {
   const query = `
   SELECT * FROM "Order"
-  WHERE "accepted_at" IS NOT NULL 
+  WHERE "accepted_at" IS NOT NULL
   AND "fulfilled_at" IS NULL;`;
 
   return db.query(query);
@@ -93,8 +97,8 @@ const getAllOrderFulfilled = () => {
   return db.query(query);
 };
 
-const getOrderById = (id = '') => {
-  if (!id) throw new Error('Id required');
+const getOrderById = id => {
+  if (!id || !isValidInt(parseInt(id))) return new Error('Valid ID required');
 
   const query = `
   SELECT * FROM "Order"
@@ -103,8 +107,8 @@ const getOrderById = (id = '') => {
   return db.query(query, [id]);
 };
 
-const getOrderItemByOrderId = (id = '') => {
-  if (!id) throw new Error('Order id required');
+const getOrderItemByOrderId = id => {
+  if (!id || !isValidInt(parseInt(id))) return new Error('Order id required');
 
   const query = `
   SELECT "OrderItem"."id", "MenuItem"."name", "MenuItem"."price", "Order"."accepted_at", "Order"."fulfilled_at" FROM "OrderItem"
@@ -115,8 +119,9 @@ const getOrderItemByOrderId = (id = '') => {
   return db.query(query, [id]);
 };
 
-const getOrderByPickupName = (inputParam = '') => {
-  if (!inputParam) throw new Error('pickup_name required');
+const getOrderByPickupName = inputParam => {
+  if (!inputParam || !isValidVarChar(inputParam))
+    return new Error('Valid pickup name required');
 
   const query = `
   SELECT * FROM "Order"
@@ -127,7 +132,7 @@ const getOrderByPickupName = (inputParam = '') => {
 
 const getMobileByOrderId = order_id => {
   if (!order_id || typeof parseInt(order_id) !== 'number')
-    throw new Error('valid order_id required');
+    return new Error('Valid order_id required');
 
   const query = `
   SELECT mobile FROM "Order"

@@ -1,4 +1,5 @@
 require('dotenv').config();
+const { PORT, BUILD_ENV, SECRET } = process.env;
 
 // Imports
 const express = require('express');
@@ -9,8 +10,8 @@ const bodyParser = require('body-parser');
 const app = express();
 
 // Local vs deployed config
-const PORT = process.env.PORT || 8080;
-const ENV = process.env.BUILD_ENV || 'production';
+const PORT_IN_USE = PORT || 8080;
+const ENV = BUILD_ENV || 'production';
 
 console.log('Running environment ', ENV);
 
@@ -23,14 +24,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(
   cookieSession({
     name: 'session',
-    secret: process.env.SECRET,
+    secret: SECRET,
     maxAge: 24 * 60 * 60 * 1000 // 24HR
   })
 );
 
 // Routes
 app.get('/', (req, res) => {
-  res.render('index.html');
+  res.render('../dist/index.html');
 });
 app.use('/menu', require('./routes/menu'));
 app.use('/login', require('./routes/login'));
@@ -41,4 +42,6 @@ app.get('/*', (req, res) => {
   res.redirect('/');
 });
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT_IN_USE, () =>
+  console.log(`Server running on port ${PORT_IN_USE}`)
+);

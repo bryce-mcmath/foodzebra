@@ -1,7 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
-const { getUserByEmail, getUserById } = require('../api/queries');
+const { getUserByEmail, getUserById } = require('../db/queries');
 
 router.get('/', (req, res) => {
   if (req.session.user_id) {

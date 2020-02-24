@@ -5,12 +5,12 @@ const {
   getAllMenuItem,
   getMenuItemById,
   getUserById
-} = require('../api/queries.js');
+} = require('../db/queries.js');
 const {
   addMenuItem,
   updateMenuItem,
   deleteMenuItem
-} = require('../api/inserts.js');
+} = require('../db/inserts.js');
 
 // Routes: /
 
