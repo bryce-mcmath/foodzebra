@@ -45,28 +45,6 @@ const getUserByEmail = (inputParam) => {
 	return db.query(query, [inputParam]).then((res) => res.rows[0] || null);
 };
 
-const getUserByName = (inputParam) => {
-	if (!inputParam || !isValidVarChar(inputParam))
-		return new Error('Valid name required');
-
-	const query = `
-  SELECT * FROM "User"
-  WHERE name = $1;`;
-
-	return db.query(query, [inputParam]).then((res) => res.rows || null);
-};
-
-const getUserByMobile = (inputParam) => {
-	if (!inputParam || !isValidVarChar(inputParam))
-		return new Error('Valid mobile required');
-
-	const query = `
-  SELECT * FROM "User"
-  WHERE mobile = $1;`;
-
-	return db.query(query, [inputParam]).then((res) => res.rows[0] || null);
-};
-
 const getAllOrder = () => {
 	const query = `
   SELECT * FROM "Order"
@@ -128,18 +106,6 @@ const getOrderItemByOrderId = (id) => {
 	return db.query(query, [id]).then((res) => res.rows || null);
 };
 
-const getOrderByPickupName = (inputParam) => {
-	if (!inputParam || !isValidVarChar(inputParam))
-		return new Error('Valid pickup name required');
-
-	const query = `
-  SELECT * FROM "Order"
-  WHERE "pickup_name" = $1
-  ORDER BY "created_at";`;
-
-	return db.query(query, [inputParam]).then((res) => res.rows || null);
-};
-
 const getMobileByOrderId = (order_id) => {
 	if (!order_id || typeof parseInt(order_id, 10) !== 'number')
 		return new Error('Valid order_id required');
@@ -157,14 +123,11 @@ module.exports = {
 	getAllUser,
 	getUserById,
 	getUserByEmail,
-	getUserByName,
-	getUserByMobile,
 	getAllOrder,
 	getAllOrderNew,
 	getAllOrderAccepted,
 	getAllOrderFulfilled,
 	getOrderById,
-	getOrderByPickupName,
 	getOrderItemByOrderId,
 	getMobileByOrderId
 };

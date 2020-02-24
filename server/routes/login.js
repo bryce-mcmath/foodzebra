@@ -36,7 +36,7 @@ router.post('/', (req, res) => {
 				invalidCredentials(res);
 			}
 		})
-		.catch((err) => {
+		.catch(() => {
 			invalidCredentials(res);
 		});
 });

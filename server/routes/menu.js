@@ -17,12 +17,12 @@ const { dbError, notOperator } = require('../utils/routeHelpers');
 // Routes: /
 
 // Queries DB for all menu items. Takes no args, returns array w/ objs inside
-router.get('/', (req, res) => {
+router.get('/', (_, res) => {
 	getAllMenuItem()
 		.then((menu) => {
 			return menu ? res.send(menu) : new Error('No rows in menu items');
 		})
-		.catch((err) => dbError(res));
+		.catch(() => dbError(res));
 });
 
 // If logged in as operator and valid info is sent, adds item to db and returns json object of newly created item
@@ -34,7 +34,7 @@ router.post('/', (req, res) => {
 				if (name && price && typeof price === 'number') {
 					addMenuItem(name, price, desc, img_url, category)
 						.then((item) => res.status(200).json(item))
-						.catch((err) => dbError(res));
+						.catch(() => or(res));
 				} else {
 					res.status(400).send('Name and valid price required');
 				}
@@ -42,7 +42,7 @@ router.post('/', (req, res) => {
 				notOperator(res);
 			}
 		})
-		.catch((err) => notOperator(res));
+		.catch(() => notOperator(res));
 });
 
 // Routes: /menu/:id params
@@ -52,7 +52,7 @@ router.get('/:id', (req, res) => {
 
 	getMenuItemById(id)
 		.then((item) => (item ? res.json(item) : res.redirect('/')))
-		.catch((err) => dbError(res));
+		.catch(() => dbError(res));
 });
 
 // update menu item
@@ -66,7 +66,7 @@ router.put('/:id', (req, res) => {
 				if (id && name && price) {
 					updateMenuItem(id, name, price, desc, img_url, category)
 						.then((item) => (item ? res.json(item) : res.status))
-						.catch((err) => dbError(res));
+						.catch(() => dbError(res));
 				} else {
 					res.status(400).send('ID, name, and price required');
 				}
@@ -74,7 +74,7 @@ router.put('/:id', (req, res) => {
 				notOperator(res);
 			}
 		})
-		.catch((err) => dbError(res));
+		.catch(() => dbError(res));
 });
 
 router.delete('/:id', (req, res) => {
@@ -86,12 +86,12 @@ router.delete('/:id', (req, res) => {
 					.then((item) => {
 						res.json(item.rows);
 					})
-					.catch((err) => dbError(res));
+					.catch(() => dbError(res));
 			} else {
 				notOperator(res);
 			}
 		})
-		.catch((err) => dbError(res));
+		.catch(() => dbError(res));
 });
 
 module.exports = router;

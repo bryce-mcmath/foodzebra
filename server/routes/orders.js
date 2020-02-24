@@ -8,7 +8,6 @@ const {
 	getAllOrderAccepted,
 	getAllOrderFulfilled,
 	getOrderById,
-	getOrderByPickupName,
 	getOrderItemByOrderId,
 	getMobileByOrderId
 } = require('../db/queries');
@@ -28,12 +27,12 @@ router.get('/', (req, res) => {
 			if (user.role === 'operator') {
 				getAllOrder()
 					.then((orders) => res.json(orders || []))
-					.catch((err) => dbError(res));
+					.catch(() => dbError(res));
 			} else {
 				notOperator(res);
 			}
 		})
-		.catch((err) => dbError(res));
+		.catch(() => dbError(res));
 });
 
 router.get('/new', (req, res) => {
@@ -42,12 +41,12 @@ router.get('/new', (req, res) => {
 			if (user.role === 'operator') {
 				getAllOrderNew()
 					.then((orders) => res.json(orders || []))
-					.catch((err) => dbError(res));
+					.catch(() => dbError(res));
 			} else {
 				notOperator(res);
 			}
 		})
-		.catch((err) => dbError(res));
+		.catch(() => dbError(res));
 });
 
 router.get('/accepted', (req, res) => {
@@ -56,12 +55,12 @@ router.get('/accepted', (req, res) => {
 			if (user.role === 'operator') {
 				getAllOrderAccepted()
 					.then((orders) => res.json(orders || []))
-					.catch((err) => dbError(res));
+					.catch(() => dbError(res));
 			} else {
 				notOperator(res);
 			}
 		})
-		.catch((err) => dbError(res));
+		.catch(() => dbError(res));
 });
 
 router.get('/fulfilled', (req, res) => {
@@ -70,12 +69,12 @@ router.get('/fulfilled', (req, res) => {
 			if (user.role === 'operator') {
 				getAllOrderFulfilled()
 					.then((orders) => res.json(orders || []))
-					.catch((err) => dbError(res));
+					.catch(() => dbError(res));
 			} else {
 				notOperator(res);
 			}
 		})
-		.catch((err) => dbError(res));
+		.catch(() => dbError(res));
 });
 
 router.post('/', (req, res) => {
@@ -98,7 +97,7 @@ router.post('/', (req, res) => {
 							.then((ordItem) => {
 								res.status(200);
 							})
-							.catch((err) => dbError(res));
+							.catch(() => dbError(res));
 					}
 					const customerMessage = `Your order (#${order_id}) has been placed! You will be notified when it has been accepted.`;
 					twilioAPI.sendSMS(mobile, customerMessage, (response) => {
@@ -111,7 +110,7 @@ router.post('/', (req, res) => {
 				}
 				res.json(order || []);
 			})
-			.catch((err) => dbError(res));
+			.catch(() => dbError(res));
 	} else {
 		res.status(400).send('Pickup name and price required');
 	}
@@ -125,12 +124,12 @@ router.get('/:id', (req, res) => {
 			if (user.role === 'operator') {
 				getOrderById(id)
 					.then((order) => res.json(order || []))
-					.catch((err) => dbError(res));
+					.catch(() => dbError(res));
 			} else {
 				notOperator(res);
 			}
 		})
-		.catch((err) => dbError(res));
+		.catch(() => dbError(res));
 });
 
 router.put('/:id', (req, res) => {
@@ -163,12 +162,12 @@ router.put('/:id', (req, res) => {
 						}
 						res.json(order || []);
 					})
-					.catch((err) => dbError(res));
+					.catch(() => dbError(res));
 			} else {
 				notOperator(res);
 			}
 		})
-		.catch((err) => dbError(res));
+		.catch(() => dbError(res));
 });
 
 router.delete('/:id', (req, res) => {
@@ -179,12 +178,12 @@ router.delete('/:id', (req, res) => {
 			if (user.role === 'operator') {
 				deleteOrder(id)
 					.then((order) => res.json(order || []))
-					.catch((err) => dbError(res));
+					.catch(() => dbError(res));
 			} else {
 				notOperator(res);
 			}
 		})
-		.catch((err) => dbError(res));
+		.catch(() => dbError(res));
 });
 
 router.get('/:id/items', (req, res) => {
@@ -195,12 +194,12 @@ router.get('/:id/items', (req, res) => {
 			if (user.role === 'operator') {
 				getOrderItemByOrderId(id)
 					.then((items) => res.json(items || []))
-					.catch((err) => dbError(res));
+					.catch(() => dbError(res));
 			} else {
 				notOperator(res);
 			}
 		})
-		.catch((err) => dbError(res));
+		.catch(() => dbError(res));
 });
 
 module.exports = router;
