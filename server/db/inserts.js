@@ -1,6 +1,23 @@
+/**
+ * Collection of database insert functions
+ * @module inserts
+ * @requires db
+ * @requires validators
+ */
+
 const db = require('./index');
 const { isValidInt, isValidSmallInt, isValidVarChar } = require('./validators');
 
+/**
+ * Creates a new user in the database
+ * @function
+ * @param {String} name
+ * @param {String} password
+ * @param {String} email
+ * @param {String} role
+ * @param {String} mobile
+ * @returns {(Promise|Error)} a promise that either resolves to the created user or null
+ */
 const addUser = (
 	name,
 	password,
@@ -32,6 +49,16 @@ const addUser = (
 	return db.query(query, values).then((res) => res.rows[0] || null);
 };
 
+/**
+ * Creates a new menu item in the database
+ * @function
+ * @param {String} name
+ * @param {Number} price
+ * @param {String} desc
+ * @param {String} img_url
+ * @param {String} category
+ * @returns {(Promise|Error)} a promise that either resolves to the created menu item or null
+ */
 const addMenuItem = (
 	name,
 	price,
@@ -65,6 +92,17 @@ const addMenuItem = (
 	return db.query(query, values).then((res) => res.rows[0] || null);
 };
 
+/**
+ * Updates a new menu item in the database
+ * @function
+ * @param {Number} id
+ * @param {String} name
+ * @param {Number} price
+ * @param {String} desc
+ * @param {String} img_url
+ * @param {String} category
+ * @returns {(Promise|Error)} a promise that either resolves to the updated menu item or null
+ */
 const updateMenuItem = (
 	id,
 	name,
@@ -97,6 +135,12 @@ const updateMenuItem = (
 	return db.query(query, values).then((res) => res.rows[0] || null);
 };
 
+/**
+ * Deletes a new menu item in the database
+ * @function
+ * @param {Number} id
+ * @returns {Promise} a promise that either resolves to the deleted menu item or null
+ */
 const deleteMenuItem = (id) => {
 	const values = [id];
 
@@ -109,6 +153,16 @@ const deleteMenuItem = (id) => {
 	return db.query(query, values).then((res) => res.rows[0] || null);
 };
 
+/**
+ * Adds a new order in the database
+ * @function
+ * @param {String} pickup_name
+ * @param {Number} total_price
+ * @param {String} customer_note
+ * @param {String} mobile
+ * @param {Number} user_id
+ * @returns {Promise|Error} a promise that either resolves to the new order or null
+ */
 const addOrder = (
 	pickup_name,
 	total_price,
@@ -150,6 +204,14 @@ const addOrder = (
 	return db.query(query, values).then((res) => res.rows[0] || null);
 };
 
+/**
+ * Updates an order in the database
+ * @function
+ * @param {Number} id
+ * @param {String} msg
+ * @param {Number} estimate
+ * @returns {(Promise|Error)} a promise that either resolves to the updated order or null
+ */
 const updateOrder = (id, msg, estimate = 1800) => {
 	if (!id || !msg) return new Error(`Missing ID or message`);
 
@@ -177,6 +239,16 @@ const updateOrder = (id, msg, estimate = 1800) => {
 	return new Error(`Invalid message type`);
 };
 
+/**
+ * Adds a deleted_at property to an order in the database
+ * @function
+ * @param {String} pickup_name
+ * @param {Number} total_price
+ * @param {String} customer_note
+ * @param {String} mobile
+ * @param {Number} user_id
+ * @returns {Promise|Error} a promise that either resolves to the deleted order or null
+ */
 const deleteOrder = (id) => {
 	if (!id) return new Error('Missing ID');
 
@@ -190,6 +262,13 @@ const deleteOrder = (id) => {
 	return db.query(query, values).then((res) => res.rows[0] || null);
 };
 
+/**
+ * Adds a new order item in the database
+ * @function
+ * @param {Number} order_id
+ * @param {Number} menu_item_id
+ * @returns {Promise|Error} a promise that either resolves to the new order item or null
+ */
 const addOrderItem = (order_id, menu_item_id) => {
 	let invalidReason = false;
 

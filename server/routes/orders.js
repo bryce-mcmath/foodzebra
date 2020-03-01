@@ -1,3 +1,13 @@
+/** Express router providing order related routes
+ * @module server/routes/orders
+ * @memberof server
+ * @requires express
+ * @requires twilioAPI
+ * @requires queries
+ * @requires inserts
+ * @requires routeHelpers
+ */
+
 const express = require('express');
 const router = express.Router();
 const twilioAPI = require('../api/twilio_api');
@@ -20,7 +30,14 @@ const {
 
 const { dbError, notOperator, twilioError } = require('../utils/routeHelpers');
 
-// Get all orders
+/**
+ * Route verifying user and fetching all orders
+ * @name get/orders
+ * @function
+ * @param {String} path Express path
+ * @param {Function} middleware Callback function used as middleware
+ * @returns {JSON} All orders
+ */
 router.get('/', (req, res) => {
 	getUserById(req.session.user_id)
 		.then((user) => {
@@ -35,6 +52,14 @@ router.get('/', (req, res) => {
 		.catch(() => dbError(res));
 });
 
+/**
+ * Route verifying user and fetching all yet-to-be-accepted orders
+ * @name get/orders/new
+ * @function
+ * @param {String} path Express path
+ * @param {Function} middleware Callback function used as middleware
+ * @returns {JSON} All yet-to-be-accepted orders
+ */
 router.get('/new', (req, res) => {
 	getUserById(req.session.user_id)
 		.then((user) => {
@@ -49,6 +74,14 @@ router.get('/new', (req, res) => {
 		.catch(() => dbError(res));
 });
 
+/**
+ * Route verifying user and fetching all accepted-but-not-yet-fulfilled orders
+ * @name get/orders/accepted
+ * @function
+ * @param {String} path Express path
+ * @param {Function} middleware Callback function used as middleware
+ * @returns {JSON} All accepted-but-not-yet-fulfilled orders
+ */
 router.get('/accepted', (req, res) => {
 	getUserById(req.session.user_id)
 		.then((user) => {
@@ -63,6 +96,14 @@ router.get('/accepted', (req, res) => {
 		.catch(() => dbError(res));
 });
 
+/**
+ * Route verifying user and fetching all fulfilled orders
+ * @name get/orders/fulfilled
+ * @function
+ * @param {String} path Express path
+ * @param {Function} middleware Callback function used as middleware
+ * @returns {JSON} All fulfilled orders
+ */
 router.get('/fulfilled', (req, res) => {
 	getUserById(req.session.user_id)
 		.then((user) => {
@@ -77,6 +118,13 @@ router.get('/fulfilled', (req, res) => {
 		.catch(() => dbError(res));
 });
 
+/**
+ * Route adding a new order
+ * @name post/orders
+ * @function
+ * @param {String} path Express path
+ * @param {Function} middleware Callback function used as middleware
+ */
 router.post('/', (req, res) => {
 	const user_id = req.session.user_id;
 	const { pickup_name, customer_note, total_price, mobile, items } = req.body;
@@ -116,6 +164,14 @@ router.post('/', (req, res) => {
 	}
 });
 
+/**
+ * Route verifying user and fetching order by id
+ * @name get/orders/:id
+ * @function
+ * @param {String} path Express path
+ * @param {Function} middleware Callback function used as middleware
+ * @returns {JSON} Order associated with id
+ */
 router.get('/:id', (req, res) => {
 	const user_id = req.session.user_id;
 	getUserById(user_id)
@@ -132,6 +188,14 @@ router.get('/:id', (req, res) => {
 		.catch(() => dbError(res));
 });
 
+/**
+ * Route verifying user, updating an order by id, and sending appropriate SMS
+ * @name put/orders/:id
+ * @function
+ * @param {String} path Express path
+ * @param {Function} middleware Callback function used as middleware
+ * @returns {JSON} Updated order associated with id
+ */
 router.put('/:id', (req, res) => {
 	const user_id = req.session.user_id;
 	getUserById(user_id)
@@ -170,6 +234,14 @@ router.put('/:id', (req, res) => {
 		.catch(() => dbError(res));
 });
 
+/**
+ * Route verifying user and deleting an order by id
+ * @name delete/orders/:id
+ * @function
+ * @param {String} path Express path
+ * @param {Function} middleware Callback function used as middleware
+ * @returns {JSON} Deleted order associated with id
+ */
 router.delete('/:id', (req, res) => {
 	const user_id = req.session.user_id;
 	getUserById(user_id)
@@ -186,6 +258,14 @@ router.delete('/:id', (req, res) => {
 		.catch(() => dbError(res));
 });
 
+/**
+ * Route verifying user and fetching items associated with order id
+ * @name get/orders/:id/items
+ * @function
+ * @param {String} path Express path
+ * @param {Function} middleware Callback function used as middleware
+ * @returns {JSON} Items associated with order id
+ */
 router.get('/:id/items', (req, res) => {
 	const user_id = req.session.user_id;
 	getUserById(user_id)

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: routes/menu.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: routes/menu.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** Express router providing menu related routes
+ * @module server/routes/menu
+ * @memberof server
+ * @requires express
+ * @requires queries
+ * @requires inserts
+ * @requires routeHelpers
+ */
+
+const express = require('express');
+const router = express.Router();
+const {
+	getAllMenuItem,
+	getMenuItemById,
+	getUserById
+} = require('../db/queries.js');
+const {
+	addMenuItem,
+	updateMenuItem,
+	deleteMenuItem
+} = require('../db/inserts.js');
+const { dbError, notOperator } = require('../utils/routeHelpers');
+
+/**
+ * Route fetching all menu items
+ * @name get/menu
+ * @function
+ * @param {String} path Express path
+ * @param {Function} middleware Callback function used as middleware
+ * @returns {JSON} All menu items
+ */
+router.get('/', (_, res) => {
+	getAllMenuItem()
+		.then((menu) => {
+			return menu ? res.send(menu) : new Error('No rows in menu items');
+		})
+		.catch(() => dbError(res));
+});
+
+/**
+ * Route verifying user and adding menu item to database
+ * @name post/menu
+ * @function
+ * @param {String} path Express path
+ * @param {Function} middleware Callback function used as middleware
+ * @returns {JSON} Newly created item
+ */
+router.post('/', (req, res) => {
+	getUserById(req.session.user_id)
+		.then((user) => {
+			if (user.role === 'operator') {
+				const { name, desc, price, img_url, category } = req.body;
+				if (name &amp;&amp; price &amp;&amp; typeof price === 'number') {
+					addMenuItem(name, price, desc, img_url, category)
+						.then((item) => res.status(200).json(item))
+						.catch(() => or(res));
+				} else {
+					res.status(400).send('Name and valid price required');
+				}
+			} else {
+				notOperator(res);
+			}
+		})
+		.catch(() => notOperator(res));
+});
+
+/**
+ * Route getting specific menu item database
+ * @name get/menu/:id
+ * @function
+ * @param {String} path Express path
+ * @param {Function} middleware Callback function used as middleware
+ * @returns {JSON} Menu item associated with id
+ */
+router.get('/:id', (req, res) => {
+	const id = req.params.id;
+
+	getMenuItemById(id)
+		.then((item) => (item ? res.json(item) : res.redirect('/')))
+		.catch(() => dbError(res));
+});
+
+/**
+ * Route verifying user and updating menu item in database
+ * @name put/menu/:id
+ * @function
+ * @param {String} path Express path
+ * @param {Function} middleware Callback function used as middleware
+ * @returns {JSON} Updated menu item associated with id
+ */
+router.put('/:id', (req, res) => {
+	getUserById(req.session.user_id)
+		.then((user) => {
+			if (user.role === 'operator') {
+				const { name, desc, price, img_url, category } = req.body;
+				const id = req.params.id;
+
+				if (id &amp;&amp; name &amp;&amp; price) {
+					updateMenuItem(id, name, price, desc, img_url, category)
+						.then((item) => (item ? res.json(item) : res.status))
+						.catch(() => dbError(res));
+				} else {
+					res.status(400).send('ID, name, and price required');
+				}
+			} else {
+				notOperator(res);
+			}
+		})
+		.catch(() => dbError(res));
+});
+
+/**
+ * Route verifying user and deleting menu item from database
+ * @name delete/menu/:id
+ * @function
+ * @param {String} path Express path
+ * @param {Function} middleware Callback function used as middleware
+ * @returns {JSON} Deleted menu item associated with id
+ */
+router.delete('/:id', (req, res) => {
+	getUserById(req.session.user_id)
+		.then((user) => {
+			if (user.role === 'operator') {
+				const id = req.params.id;
+				deleteMenuItem(id)
+					.then((item) => {
+						res.json(item.rows);
+					})
+					.catch(() => dbError(res));
+			} else {
+				notOperator(res);
+			}
+		})
+		.catch(() => dbError(res));
+});
+
+module.exports = router;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-constants.html">constants</a></li><li><a href="module-db.html">db</a></li><li><a href="module-inserts.html">inserts</a></li><li><a href="module-mobileFormatter.html">mobileFormatter</a></li><li><a href="module-queries.html">queries</a></li><li><a href="module-routeHelpers.html">routeHelpers</a></li><li><a href="module-server.html">server</a></li><li><a href="module-twilioAPI.html">twilioAPI</a></li><li><a href="module-validators.html">validators</a></li><li><a href="server.module_server_routes_login.html">server/routes/login</a></li><li><a href="server.module_server_routes_logout.html">server/routes/logout</a></li><li><a href="server.module_server_routes_menu.html">server/routes/menu</a></li><li><a href="server.module_server_routes_orders.html">server/routes/orders</a></li><li><a href="server.module_server_routes_sms.html">server/routes/sms</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Sat Feb 29 2020 21:24:39 GMT-0800 (Pacific Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

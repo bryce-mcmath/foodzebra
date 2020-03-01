@@ -7,7 +7,8 @@
     "serve": "node ./server/index.js",
     "build": "parcel build ./client/public/index.html",
     "dev": "nodemon ./server/index.js",
-    "parc": "parcel ./client/public/index.html"
+    "parc": "parcel ./client/public/index.html",
+    "jsdoc": "./node_modules/.bin/jsdoc . -c ./conf.json -R ./README.md"
   },
   "repository": {
     "type": "git",
@@ -46,6 +47,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "eslint-plugin-vue": "^6.1.2",
+    "jsdoc": "^3.6.3",
     "nodemon": "^2.0.2",
     "parcel-bundler": "^1.12.4",
     "sass": "^1.23.7",

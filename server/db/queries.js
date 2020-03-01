@@ -1,11 +1,29 @@
+/**
+ * Collection of database query functions
+ * @module queries
+ * @requires db
+ * @requires validators
+ */
+
 const db = require('../db');
 const { isValidInt, isValidVarChar } = require('./validators');
 
+/**
+ * Fetches all menu items
+ * @function
+ * @returns {Promise} a promise that either resolves to the menu items or null
+ */
 const getAllMenuItem = () => {
 	const query = `SELECT * FROM "MenuItem" ORDER BY "price";`;
 	return db.query(query).then((res) => res.rows || null);
 };
 
+/**
+ * Fetches menu item by id
+ * @param id
+ * @function
+ * @returns {Promise} a promise that either resolves to the menu item or null
+ */
 const getMenuItemById = (id) => {
 	if (!id || isValidInt(parseInt(id, 10)))
 		return new Error('Valid ID required');
@@ -17,12 +35,23 @@ const getMenuItemById = (id) => {
 	return db.query(query, [id]).then((res) => res.rows[0] || null);
 };
 
+/**
+ * Fetches all users
+ * @function
+ * @returns {Promise} a promise that either resolves to the users or null
+ */
 const getAllUser = () => {
 	const query = `SELECT * FROM "User" ORDER BY "role";`;
 
 	return db.query(query).then((res) => res.rows || null);
 };
 
+/**
+ * Fetches user by id
+ * @param id
+ * @function
+ * @returns {Promise} a promise that either resolves to the user or null
+ */
 const getUserById = (id = 0) => {
 	if (typeof parseInt(id, 10) !== 'number')
 		return new Error('Must be valid ID');
@@ -34,17 +63,28 @@ const getUserById = (id = 0) => {
 	return db.query(query, [id]).then((res) => res.rows[0] || null);
 };
 
-const getUserByEmail = (inputParam) => {
-	if (!inputParam || !isValidVarChar(inputParam))
+/**
+ * Fetches user by email
+ * @param {String} email
+ * @function
+ * @returns {Promise} a promise that either resolves to the user or null
+ */
+const getUserByEmail = (email) => {
+	if (!email || !isValidVarChar(email))
 		return new Error('Valid email required');
 
 	const query = `
   SELECT * FROM "User"
   WHERE email = $1;`;
 
-	return db.query(query, [inputParam]).then((res) => res.rows[0] || null);
+	return db.query(query, [email]).then((res) => res.rows[0] || null);
 };
 
+/**
+ * Fetches all orders
+ * @function
+ * @returns {Promise} a promise that either resolves to the orders or null
+ */
 const getAllOrder = () => {
 	const query = `
   SELECT * FROM "Order"
@@ -53,6 +93,11 @@ const getAllOrder = () => {
 	return db.query(query).then((res) => res.rows || null);
 };
 
+/**
+ * Fetches all new orders
+ * @function
+ * @returns {Promise} a promise that either resolves to the new orders or null
+ */
 const getAllOrderNew = () => {
 	const query = `
   SELECT * FROM "Order"
@@ -62,6 +107,11 @@ const getAllOrderNew = () => {
 	return db.query(query).then((res) => res.rows || null);
 };
 
+/**
+ * Fetches all accepted orders
+ * @function
+ * @returns {Promise} a promise that either resolves to the accepted orders or null
+ */
 const getAllOrderAccepted = () => {
 	const query = `
   SELECT * FROM "Order"
@@ -72,6 +122,11 @@ const getAllOrderAccepted = () => {
 	return db.query(query).then((res) => res.rows || null);
 };
 
+/**
+ * Fetches all fulfilled orders
+ * @function
+ * @returns {Promise} a promise that either resolves to the fulfilled orders or null
+ */
 const getAllOrderFulfilled = () => {
 	const query = `
   SELECT * FROM "Order"
@@ -81,6 +136,12 @@ const getAllOrderFulfilled = () => {
 	return db.query(query).then((res) => res.rows || null);
 };
 
+/**
+ * Fetches order by id
+ * @param {Number} id
+ * @function
+ * @returns {(Promise|Error)} a promise that either resolves to the order or null
+ */
 const getOrderById = (id) => {
 	if (!id || !isValidInt(parseInt(id, 10)))
 		return new Error('Valid ID required');
@@ -92,6 +153,12 @@ const getOrderById = (id) => {
 	return db.query(query, [id]).then((res) => res.rows[0] || null);
 };
 
+/**
+ * Fetches order item by id
+ * @param {Number} id
+ * @function
+ * @returns {(Promise|Error)} a promise that either resolves to the order item or null
+ */
 const getOrderItemByOrderId = (id) => {
 	if (!id || !isValidInt(parseInt(id, 10)))
 		return new Error('Valid order id required');
@@ -106,6 +173,12 @@ const getOrderItemByOrderId = (id) => {
 	return db.query(query, [id]).then((res) => res.rows || null);
 };
 
+/**
+ * Fetches mobile by order id
+ * @param {Number} order_id
+ * @function
+ * @returns {(Promise|Error)} a promise that either resolves to the order or null
+ */
 const getMobileByOrderId = (order_id) => {
 	if (!order_id || typeof parseInt(order_id, 10) !== 'number')
 		return new Error('Valid order_id required');

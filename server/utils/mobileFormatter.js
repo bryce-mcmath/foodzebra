@@ -1,7 +1,14 @@
 /**
+ * Mobile number formatting
+ * @module mobileFormatter
+ */
+
+/**
  * Applies validation and regex to phone number, returns usable number
  * if possible, otherwise returns an empty string
- * @param {Number, String} number - phone number
+ * @name mobileFormatter
+ * @function
+ * @param {(Number|String)} number Phone number
  */
 const mobileFormatter = (number) => {
 	if (typeof number !== 'string' && typeof number !== 'number') return '';

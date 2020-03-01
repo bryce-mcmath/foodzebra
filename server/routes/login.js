@@ -1,9 +1,12 @@
 /** Express router providing login related routes
- * @module server/routers/login
+ * @module server/routes/login
+ * @memberof server
  * @requires express
+ * @requires bcryptjs
+ * @requires queries
+ * @requires routeHelpers
  */
 
-// Imports
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
@@ -14,9 +17,8 @@ const { invalidCredentials } = require('../utils/routeHelpers');
  * Route verifying login credentials
  * @name get/login
  * @function
- * @memberof server/routes/login
- * @param {string} path - Express path
- * @param {callback} middleware - Express middleware
+ * @param {String} path - Express path
+ * @param {Function} middleware - Callback function used as middleware
  */
 router.get('/', (req, res) => {
 	if (req.session.user_id) {
@@ -34,9 +36,8 @@ router.get('/', (req, res) => {
  * Route verifying login credentials
  * @name post/login
  * @function
- * @memberof server/routes/login
- * @param {string} path - Express path
- * @param {callback} middleware - Express middleware
+ * @param {String} path - Express path
+ * @param {Function} middleware - Callback function used as middleware
  */
 router.post('/', (req, res) => {
 	const { email, password } = req.body;

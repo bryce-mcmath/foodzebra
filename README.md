@@ -2,11 +2,10 @@
 
 > Order-for-pickup app that uses SMS to keep customers notified of progress
 
-<!-- Test -->
-
 <!-- Badges -->
 
 [![Build Status](https://travis-ci.com/bryce-mcmath/foodzebra.svg?branch=master)](https://travis-ci.com/bryce-mcmath/foodzebra)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 FoodZebra is a responsive fullstack application made to model a restaurants online ordering process, from both the user's view and the restaurant's. It uses the Twilio API to notify both parties of changes in the order's status via SMS.
 
@@ -76,6 +75,10 @@ npm run dev
 
 And navigate to localhost:8080 in your browser.
 
+### Viewing Docs
+
+Open /docs/jsdoc/index.html in your browser
+
 ## Deployment
 
 After forking the project and setting up the cloud database and .env file as per the above steps, add your forked repo to Travis CI [here.](https://travis-ci.com/getting_started) After that, setup a Heroku instance following the guide [here,](https://devcenter.heroku.com/articles/getting-started-with-nodejs) add your environment variables with the Heroku dashboard, and add your api-key and app name to the .travis.yml file.
@@ -99,9 +102,10 @@ Congrats! Now everytime you push to master, you'll automatically check that inst
 
 1. Fork it (<https://github.com/bryce-mcmath/foodzebra/fork>)
 2. Create your feature branch (`git checkout -b feature/fooBar`) or issue branch (`git checkout -b issue/brokenThing`)
-3. Commit your changes (`git commit -m 'Add some fooBar'`)
-4. Push to the branch (`git push origin feature/fooBar`)
-5. Create a new PR
+3. Add your changes with JSDoc comments (`npm run jsdoc`)
+4. Commit your changes (`git commit -m 'Add some fooBar'`)
+5. Push to the branch (`git push origin feature/fooBar`)
+6. Create a new PR
 
 ## Meta
 

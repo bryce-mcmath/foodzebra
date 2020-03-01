@@ -6,7 +6,6 @@
 require('dotenv').config();
 const { BUILD_ENV, SECRET } = process.env;
 
-// Imports
 const express = require('express');
 const helmet = require('helmet');
 const xss = require('xss-clean');
@@ -37,17 +36,14 @@ app.use(
  * Route serving base application
  * @name get/
  * @function
- * @memberof server
- * @param {string} path - Express path
- * @param {callback} middleware - Express middleware
+ * @param {String} path Express path
+ * @param {Function} middleware Callback function used as middleware
  */
 app.get('/', (_, res) => {
 	res.render('../dist/index.html');
 });
 
-/**
- * Routers
- */
+// Routers
 app.use('/menu', require('./routes/menu'));
 app.use('/login', require('./routes/login'));
 app.use('/logout', require('./routes/logout'));
@@ -58,9 +54,8 @@ app.use('/sms', require('./routes/sms'));
  * Catch route to deal with unhandled GETs
  * @name get/*
  * @function
- * @memberof server
- * @param {string} path - Express path
- * @param {callback} middleware - Express middleware
+ * @param {String} path Express path
+ * @param {Function} middleware Callback function used as middleware
  */
 app.get('/*', (_, res) => {
 	res.redirect('/');

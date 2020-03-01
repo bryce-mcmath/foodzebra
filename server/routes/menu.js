@@ -1,9 +1,12 @@
 /** Express router providing menu related routes
- * @module server/routers/menu
+ * @module server/routes/menu
+ * @memberof server
  * @requires express
+ * @requires queries
+ * @requires inserts
+ * @requires routeHelpers
  */
 
-// Imports
 const express = require('express');
 const router = express.Router();
 const {
@@ -22,9 +25,9 @@ const { dbError, notOperator } = require('../utils/routeHelpers');
  * Route fetching all menu items
  * @name get/menu
  * @function
- * @memberof server/routes/menu
- * @param {string} path - Express path
- * @param {callback} middleware - Express middleware
+ * @param {String} path Express path
+ * @param {Function} middleware Callback function used as middleware
+ * @returns {JSON} All menu items
  */
 router.get('/', (_, res) => {
 	getAllMenuItem()
@@ -34,7 +37,14 @@ router.get('/', (_, res) => {
 		.catch(() => dbError(res));
 });
 
-// If logged in as operator and valid info is sent, adds item to db and returns json object of newly created item
+/**
+ * Route verifying user and adding menu item to database
+ * @name post/menu
+ * @function
+ * @param {String} path Express path
+ * @param {Function} middleware Callback function used as middleware
+ * @returns {JSON} Newly created item
+ */
 router.post('/', (req, res) => {
 	getUserById(req.session.user_id)
 		.then((user) => {
@@ -54,8 +64,14 @@ router.post('/', (req, res) => {
 		.catch(() => notOperator(res));
 });
 
-// Routes: /menu/:id params
-// Queries DB for a menu item. Takes one id arg, returns JSON of menu item
+/**
+ * Route getting specific menu item database
+ * @name get/menu/:id
+ * @function
+ * @param {String} path Express path
+ * @param {Function} middleware Callback function used as middleware
+ * @returns {JSON} Menu item associated with id
+ */
 router.get('/:id', (req, res) => {
 	const id = req.params.id;
 
@@ -64,7 +80,14 @@ router.get('/:id', (req, res) => {
 		.catch(() => dbError(res));
 });
 
-// update menu item
+/**
+ * Route verifying user and updating menu item in database
+ * @name put/menu/:id
+ * @function
+ * @param {String} path Express path
+ * @param {Function} middleware Callback function used as middleware
+ * @returns {JSON} Updated menu item associated with id
+ */
 router.put('/:id', (req, res) => {
 	getUserById(req.session.user_id)
 		.then((user) => {
@@ -86,6 +109,14 @@ router.put('/:id', (req, res) => {
 		.catch(() => dbError(res));
 });
 
+/**
+ * Route verifying user and deleting menu item from database
+ * @name delete/menu/:id
+ * @function
+ * @param {String} path Express path
+ * @param {Function} middleware Callback function used as middleware
+ * @returns {JSON} Deleted menu item associated with id
+ */
 router.delete('/:id', (req, res) => {
 	getUserById(req.session.user_id)
 		.then((user) => {

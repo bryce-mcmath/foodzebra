@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>FoodZebra</h1>
+<blockquote>
+<p>Order-for-pickup app that uses SMS to keep customers notified of progress</p>
+</blockquote>
+<!-- Test -->
+<!-- Badges -->
+<p><a href="https://travis-ci.com/bryce-mcmath/foodzebra"><img src="https://travis-ci.com/bryce-mcmath/foodzebra.svg?branch=master" alt="Build Status"></a></p>
+<p>FoodZebra is a responsive fullstack application made to model a restaurants online ordering process, from both the user's view and the restaurant's. It uses the Twilio API to notify both parties of changes in the order's status via SMS.</p>
+<p>To learn more and see it in action, read further. Or visit it <a href="https://ancient-woodland-75923.herokuapp.com/">live</a> and try making an order (of five items or less please.) You don't have to give us your phone number but receiving the notifications is sort of the fun part.</p>
+<h2>Table of contents</h2>
+<ul>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#getting-started">Getting started</a>
+<ul>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#installing-and-running">Installing and running</a></li>
+</ul>
+</li>
+<li><a href="#deployment">Deployment</a></li>
+<li><a href="#built-with">Built with</a></li>
+<li><a href="#contributing">Contributing</a></li>
+<li><a href="#meta">Meta</a></li>
+<li><a href="#known-issues-/-bugs">Known issues / bugs</a></li>
+<li><a href="#feature-roadmap">Feature roadmap</a>
+<ul>
+<li><a href="#in-the-works">In the works</a></li>
+<li><a href="#planned">Planned</a></li>
+</ul>
+</li>
+<li><a href="#acknowledgements">Acknowledgements</a></li>
+</ul>
+<h2>Usage</h2>
+<!-- Gifs -->
+<h3>Customer Demo:</h3>
+<p><img src="https://github.com/bryce-mcmath/foodzebra/blob/master/docs/demo_customer.gif?raw=true" alt="Customer Demo"></p>
+<h3>Operator Demo:</h3>
+<p><img src="https://github.com/bryce-mcmath/foodzebra/blob/master/docs/demo_operator.gif?raw=true" alt="Operator Demo"></p>
+<p>The above gifs demonstrate basic usage. For more gifs, screenshots, and the ERD we created at the start of this project, please navigate to the /docs directory from the root of this repo.</p>
+<h2>Getting started</h2>
+<p>These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See <a href="#deployment">Deployment</a> for notes on how to deploy the project on a live system.</p>
+<h3>Prerequisites</h3>
+<p>If you don't have Nodejs and npm installed, install them from <a href="https://nodejs.org/en/">here.</a></p>
+<h3>Installing and Running</h3>
+<p>Clone this repository to your local machine, and in the root directory:</p>
+<pre class="prettyprint source lang-sh"><code>npm install
+</code></pre>
+<p>Set up a free ElephantSQL cloud database <a href="https://customer.elephantsql.com/instance/create?plan=turtle">here</a> using the migration and seed files in /queries.</p>
+<p>Then add a .env file in the root directory that follows the .env.example file.</p>
+<p>After that, run parcel to build the project with:</p>
+<pre class="prettyprint source lang-sh"><code>npm run build
+</code></pre>
+<p>And finally:</p>
+<pre class="prettyprint source lang-sh"><code>npm run dev
+</code></pre>
+<p>And navigate to localhost:8080 in your browser.</p>
+<h2>Deployment</h2>
+<p>After forking the project and setting up the cloud database and .env file as per the above steps, add your forked repo to Travis CI <a href="https://travis-ci.com/getting_started">here.</a> After that, setup a Heroku instance following the guide <a href="https://devcenter.heroku.com/articles/getting-started-with-nodejs">here,</a> add your environment variables with the Heroku dashboard, and add your api-key and app name to the .travis.yml file.</p>
+<p>Congrats! Now everytime you push to master, you'll automatically check that installing and building works and then deploy if it does.</p>
+<h2>Built with</h2>
+<ul>
+<li><a href="https://vuejs.org/">Vue</a> - Front-end framework</li>
+<li><a href="https://semantic-ui-vue.github.io/">semantic-ui-vue</a></li>
+<li><a href="https://github.com/axios/axios">axios</a> - Promise-based HTTP client</li>
+<li><a href="https://sass-lang.com/">Sass</a> - CSS pre-compiler to make styling easier</li>
+<li><a href="https://nodejs.org/en/">Nodejs</a> - Javascript runtime</li>
+<li><a href="https://expressjs.com/">Express</a> - Framework used for API in Node</li>
+<li><a href="https://www.postgresql.org/">PostgreSQL</a> - Open source object-relational database</li>
+<li><a href="https://www.elephantsql.com/">ElephantSQL/AWS</a> - Cloud database management</li>
+<li><a href="https://travis-ci.com/">Travis CI</a> - Continuous integration platform</li>
+<li><a href="https://www.twilio.com/">Twilio</a> - Comms API</li>
+</ul>
+<h2>Contributing</h2>
+<ol>
+<li>Fork it (<a href="https:%5C/%5C/github.com/bryce-mcmath/foodzebra/fork">https://github.com/bryce-mcmath/foodzebra/fork</a>)</li>
+<li>Create your feature branch (<code>git checkout -b feature/fooBar</code>) or issue branch (<code>git checkout -b issue/brokenThing</code>)</li>
+<li>Commit your changes (<code>git commit -m 'Add some fooBar'</code>)</li>
+<li>Push to the branch (<code>git push origin feature/fooBar</code>)</li>
+<li>Create a new PR</li>
+</ol>
+<h2>Meta</h2>
+<p>Wilson Wong – <a href="https://github.com/wilwong89">wilwong89</a> – wilwong89@gmail.com</p>
+<p>Bryce McMath – <a href="https://github.com/bryce-mcmath">bryce-mcmath</a> – bryce.j.mcmath@gmail.com</p>
+<h2>Known issues / bugs</h2>
+<ul>
+<li>You can only order five items at a time due to our free (rate-limited) usage of ElephantSQL</li>
+<li>Bugs? What bugs?</li>
+</ul>
+<p><em>To add an issue, start a new one <a href="https://github.com/bryce-mcmath/foodzebra/issues">here.</a></em></p>
+<h2>Feature roadmap</h2>
+<h3>In the works</h3>
+<ul>
+<li>Hook up add, update, delete menu routes to UI</li>
+<li>Hook up delete order routes to UI</li>
+<li>Hook up customer login, logout, register routes to UI</li>
+</ul>
+<h3>Planned</h3>
+<ul>
+<li>Switch from semantic-vue to vuetify</li>
+<li>Autofill forms if customer is logged in</li>
+<li>Add a dashboard with basic analytics for operators</li>
+<li>Add ability to send custom SMS to any unfulfilled order</li>
+</ul>
+<p><em>If you'd like to add a feature yourself, please see the <a href="#contributing">Contributing</a> guidelines.</em></p>
+<h2>Acknowledgements</h2>
+<ul>
+<li>We only had a week to do this and we used some tools we were interested in but not yet familiar with</li>
+<li>It was a blast</li>
+<li>I'm very tired</li>
+</ul>
+<h2><img src="https://github.com/bryce-mcmath/foodzebra/blob/master/docs/large_foodzebra.png?raw=true" alt="FoodZebra"></h2></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-constants.html">constants</a></li><li><a href="module-db.html">db</a></li><li><a href="module-inserts.html">inserts</a></li><li><a href="module-mobileFormatter.html">mobileFormatter</a></li><li><a href="module-queries.html">queries</a></li><li><a href="module-routeHelpers.html">routeHelpers</a></li><li><a href="module-server.html">server</a></li><li><a href="module-twilioAPI.html">twilioAPI</a></li><li><a href="module-validators.html">validators</a></li><li><a href="server.module_server_routes_login.html">server/routes/login</a></li><li><a href="server.module_server_routes_logout.html">server/routes/logout</a></li><li><a href="server.module_server_routes_menu.html">server/routes/menu</a></li><li><a href="server.module_server_routes_orders.html">server/routes/orders</a></li><li><a href="server.module_server_routes_sms.html">server/routes/sms</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Sat Feb 29 2020 21:24:39 GMT-0800 (Pacific Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
