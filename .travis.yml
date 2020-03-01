@@ -5,16 +5,16 @@ cache:
   bundler: true
 jobs:
   include:
-    - stage: install
-      script: npm i
-    - stage: build
-      script: npx parcel build ./client/public/index.html
-    - stage: deploy
-      script: skip
-      deploy:
-        provider: heroku
-        api_key:
-          secure: R9Vbmc5zQ8Aijsje/DQeif3CIlVXN4Xs/lUrhCRlZqXohjmdf8jcp9Pc+FKdVN6TeW5qJjinUdBShPCLpxuConFR7kOcfdp2VDn4AuAJ/9Mvg+ZpjGTu3psKqiCcMLBXe3Lvz35ziOrMF6CZupTjtGHQKkqqQzMzRdixi9NLP96QaKge8FWhnDAN6nnlGZT9b96RlGzEiSkdt+VM6ZbdjVxoGdEkD+zueJd8s+CrN5SJtrWD4HW/mChiGh/P5TKF8twZt5vdH35ojku3ngbZwmfICswkEMkVXVFflGrSg7hpXh7gfP+ut8k7NvtPVKyjLKdyUvUtbEJ6oUHnPMARK/cIJSlvatIoPT27zU1GVi6mahd3RLuyYJ6KHaRu3ylLtWtuH5e7bDd2cJufqdkHjZ8GMSiOYQ8MI786M4B5pGHLuSSSkDawLVPji//ZILh2hiub53Qqt3tyNZtdkYNo5CkoMKMGZKhCxXJKGdVGr8uuG5og+VIlno4blItyWzLmQdX4DgzisphVCq5FGbPVpI83vNKB00dhgbeQ9EDGnUN6ItNutgq6lVon5rX9FfH+Tq4C7EjlAiuAS45NfKS17IHawp3FVIk6YhzUE3l3fzHSb5aRd0lsHY0pVVcKLp7+mj3Gbju9K14RrjJFzhm74hBYq4qiFVVmWosc+/6yQf4=
-        app: ancient-woodland-75923
-        on:
-          branch: master
+  - stage: install
+    script: npm i
+  - stage: build
+    script: npx parcel build ./client/public/index.html
+  - stage: deploy
+    script: skip
+    deploy:
+      provider: heroku
+      api_key:
+        secure: eCd7pkQtQwr/7E3zzgkjrVzWLeDCMRyIsxHbys6pDe+L67wQBkHI/nbTbMfhUwBiSWTiJgpEEmzB+S0qxJeNyehQJypS6eIYpWwoVpjJ7dFVxathReVs8SQkZC+on6zETPahI3ooS2Rs/ttP6HWeFf5zlXjNqJ4tOgSrSICR3d2ZAE4GRo2+YpRhtEw/pJRMXO3c0iySK5t+/2t35VJA4e3UltjhKfcpF0sKMihch5oAx8MGORGZzZPv6OSpd9Z7/l/0Wz2mVngMAb1CJRX4vaJNtA4KTpixyc8t6LOqsEGUt81gzgCXnVgzKN86lSvoGHl5jppp0c8KX0/Ij0gLAqFcng5GNsiXDlUjTPjoUu+X6S2h0tT6UU87FUxpfmLLo5QBUPTor8SmLbDjz3cEOi1Gt5zIUrO9hHEVqIefLhzBt8BymwsW138vXK47F5zzTntZrHozcpNE0dnqUmuLksWSjB3D9wACH58bnXinJM391Q6wFfeU8INGEmKfz4a29Myh4p1kchNtwmX+lBVRUO5UmR7qq1O8pM3Aso+pBxTJB8BgRqZSDjeRdLFnZr1MdeqESQiWeLvdUZ4RUypy1uvZ0Ax4Zsxl8XU2sUG/lobc/7LxXHp9RdXT/hlV2nHv0rj0c/ZJdtJr9BGlzvtMpYw4v9GmjuWOVgN/nz+WST8=
+      app: ancient-woodland-75923
+      on:
+        branch: master
