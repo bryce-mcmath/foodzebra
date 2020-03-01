@@ -1,6 +1,16 @@
 /** Express server index file
  * @module server
  * @requires express
+ * @requires dotenv
+ * @requires helmet
+ * @requires xss-clean
+ * @requires body-parser
+ * @requires cookie-session
+ * @requires server/routes/login
+ * @requires server/routes/logout
+ * @requires server/routes/menu
+ * @requires server/routes/orders
+ * @requires server/routes/sms
  */
 
 require('dotenv').config();
