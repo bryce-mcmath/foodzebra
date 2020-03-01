@@ -70,7 +70,7 @@ npm run build
 And finally:
 
 ```sh
-npm run dev
+npm run serve
 ```
 
 And navigate to localhost:8080 in your browser.
