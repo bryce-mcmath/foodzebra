@@ -2,6 +2,12 @@
 	<sui-modal class="login-modal-container" v-model="open">
 		<sui-modal-header>Register As Operator</sui-modal-header>
 		<sui-modal-content>
+			<sui-message>
+      <sui-message-header>SMS Notifications</sui-message-header>
+      <p>
+        As of now, all operator SMS notifications will go to the developers cell, regardless of the number you input here. You will only recieve SMS notifications from the customer point of view at the number you input when checking out your cart.
+      </p>
+    </sui-message>
 			<sui-modal-description class="error" v-show="registerFailed"
 				>{{registerFailed}}</sui-modal-description
 			>

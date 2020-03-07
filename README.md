@@ -7,7 +7,7 @@
 [![Build Status](https://travis-ci.com/bryce-mcmath/foodzebra.svg?branch=master)](https://travis-ci.com/bryce-mcmath/foodzebra)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-FoodZebra is a responsive fullstack application made to model a restaurants online ordering process, from both the user's view and the restaurant's. It uses the Twilio API to notify both parties of changes in the order's status via SMS.
+FoodZebra is a (mostly) responsive fullstack application made to model a restaurants online ordering process, from both the user's view and the restaurant's. It uses the Twilio API to notify both parties of changes in the order's status via SMS.
 
 To learn more and see it in action, read further. Or visit it [live](https://ancient-woodland-75923.herokuapp.com/) and try making an order (of five items or less please.) You don't have to give us your phone number but receiving the notifications is sort of the fun part.
 
@@ -40,6 +40,8 @@ To learn more and see it in action, read further. Or visit it [live](https://anc
 ![Operator Demo](https://github.com/bryce-mcmath/foodzebra/blob/master/docs/demo_operator.gif?raw=true)
 
 The above gifs demonstrate basic usage. For more gifs, screenshots, and the ERD we created at the start of this project, please navigate to the /docs directory from the root of this repo.
+
+**NOTE: The above gifs are a bit outdated, the UI is slightly nicer now and there are more features. Visit the live site linked above to view.**
 
 ## Getting started
 
@@ -103,7 +105,7 @@ Congrats! Now everytime you push to master, you'll automatically check that inst
 1. Fork it (<https://github.com/bryce-mcmath/foodzebra/fork>)
 2. Create your feature branch (`git checkout -b feature/fooBar`) or issue branch (`git checkout -b issue/brokenThing`)
 3. Add your changes with JSDoc comments (`npm run jsdoc`)
-4. Commit your changes (`git commit -m 'Add some fooBar'`)
+4. Commit your changes (`git add . && git commit -m 'Add some fooBar'`)
 5. Push to the branch (`git push origin feature/fooBar`)
 6. Create a new PR
 
@@ -124,14 +126,17 @@ _To add an issue, start a new one [here.](https://github.com/bryce-mcmath/foodze
 
 ### In the works
 
-- Hook up add, update, delete menu routes to UI
-- Hook up delete order routes to UI
-- Hook up customer login, logout, register routes to UI
+- Way too busy
 
 ### Planned
 
+- on registering, operators get their own 'restaurant' where they can add and remove the menu items
+- users can select a created 'restaurant' from a dropdown
+- operators numbers are used rather than just my number hardcoded in
+- add functionality to /sms route so responses to automated SMS are forwarded to operator
+- spinner or display nothing while data loading
+- make modals more responsive (difficult to read on large screens, some clipping on tablet size)
 - Switch from semantic-vue to vuetify
-- Autofill forms if customer is logged in
 - Add a dashboard with basic analytics for operators
 - Add ability to send custom SMS to any unfulfilled order
 
