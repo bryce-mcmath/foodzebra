@@ -1,6 +1,20 @@
 import axios from 'axios';
 
 module.exports = {
+	registerAjaxCall: (name, email, mobile, password) => {
+		return axios
+			.post(`/register`, { name, email, mobile, password })
+			.then((response) => {
+				console.log('Response in register ajax: ', response);
+				return response;
+			})
+			.catch((err) => {
+				if (err.response.status !== 401) {
+					console.error('AJAX error registering:', err);
+				}
+				return err.response;
+			});
+	},
 	loginAjaxCall: (email, password) => {
 		return axios
 			.post(`/login`, { email, password })
@@ -10,6 +24,19 @@ module.exports = {
 			.catch((err) => {
 				if (err.response.status !== 401) {
 					console.error('AJAX error logging in:', err);
+				}
+				return err.response;
+			});
+	},
+	logoutAjaxCall: () => {
+		return axios
+			.delete(`/logout`)
+			.then((response) => {
+				return response;
+			})
+			.catch((err) => {
+				if (err.response.status !== 401) {
+					console.error('AJAX error logging out:', err);
 				}
 				return err.response;
 			});
@@ -121,13 +148,4 @@ module.exports = {
 				return [];
 			});
 	}
-
-	/* STRETCH
-    - delete order
-    - add menu item
-    - update menu item
-    - delete menu item
-    - register user
-    - logout user
-  */
 };

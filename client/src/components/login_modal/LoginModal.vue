@@ -40,58 +40,54 @@
 </template>
 
 <script>
-	import { loginAjaxCall } from '../../api/ajaxCalls';
+import { loginAjaxCall } from '../../api/ajaxCalls';
 
-	export default {
-		name: 'LoginModal',
-		props: {
-			modalOpen: {
-				type: Boolean,
-				default: false
-			}
-		},
-		data() {
-			return {
-				email: '',
-				password: '',
-				loginFailed: false
-			};
-		},
-		computed: {
-			open: {
-				get: function() {
-					return this.modalOpen;
-				},
-				set: function(newValue) {
-					if (!newValue) this.emitClose();
-				}
-			}
-		},
-		methods: {
-			submitCredentials() {
-				this.loginFailed = false;
-				loginAjaxCall(this.email, this.password)
-					.then((response) => {
-						if (response.status > 199 && response.status < 300) {
-							this.emitClose();
-							this.emitLogin();
-						} else {
-							this.loginFailed = true;
-							setTimeout(() => {
-								this.loginFailed = false;
-							}, 4000);
-						}
-					})
-					.catch((err) => {
-						console.log("Component 'LoginModal' error:", err);
-					});
+export default {
+	name: 'LoginModal',
+	props: {
+		modalOpen: {
+			type: Boolean,
+			default: false
+		}
+	},
+	data() {
+		return {
+			email: '',
+			password: '',
+			loginFailed: false
+		};
+	},
+	computed: {
+		open: {
+			get: function() {
+				return this.modalOpen;
 			},
-			emitClose() {
-				this.$emit('closeModal');
-			},
-			emitLogin() {
-				this.$emit('loggedIn');
+			set: function(newValue) {
+				if (!newValue) this.emitClose();
 			}
 		}
-	};
+	},
+	methods: {
+		submitCredentials() {
+			this.loginFailed = false;
+			loginAjaxCall(this.email, this.password).then((response) => {
+				if (response.status > 199 && response.status < 300) {
+					this.emitClose();
+					this.emitLogin();
+				} else {
+					this.loginFailed = true;
+					setTimeout(() => {
+						this.loginFailed = false;
+					}, 4000);
+				}
+			});
+		},
+		emitClose() {
+			this.$emit('closeModal');
+		},
+		emitLogin() {
+			this.$emit('loggedIn');
+		}
+	}
+};
 </script>

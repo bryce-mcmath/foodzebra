@@ -22,16 +22,24 @@ const addUser = (
 	name,
 	password,
 	email = '',
-	role = 'customer',
+	role = 'operator',
 	mobile = ''
 ) => {
 	let invalidReason = false;
-
+	console.log(
+		'name, password, email, role, mobile: ',
+		name,
+		password,
+		email,
+		role,
+		mobile
+	);
 	if (!isValidVarChar(name)) invalidReason = 'name';
 	if (!isValidVarChar(email)) invalidReason = 'email';
 	if (!isValidVarChar(role)) invalidReason = 'role';
 	if (!isValidVarChar(mobile)) invalidReason = 'mobile';
 	if (!isValidVarChar(password)) invalidReason = 'password';
+	console.log('invalidReason: ', invalidReason);
 	if (invalidReason) return new Error(`${invalidReason} is not valid`);
 
 	const values = [name, email, role, mobile, password];
@@ -41,10 +49,11 @@ const addUser = (
     "email",
     "role",
     "mobile",
-    "password")
+		"password"
+	)
   VALUES
-  ($1, $2, $3, $4, $5),
-  RETURNING *;`;
+  ($1, $2, $3, $4, $5)
+	RETURNING *;`;
 
 	return db.query(query, values).then((res) => res.rows[0] || null);
 };

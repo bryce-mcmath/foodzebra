@@ -45,7 +45,7 @@
         <a href="https://github.com/bryce-mcmath/foodzebra">Github</a>
       </span>
       |
-      <span @click="emitLogin()" class="cp">Log In As Operator</span>
+      <!-- <span @click="emitLogin()" class="cp">Log In As Operator</span> -->
     </div>
   </footer>
 </template>

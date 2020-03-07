@@ -11,7 +11,7 @@
   color: $secondary-color;
   min-height: 88px;
   transition: all 0.5s;
-  border-bottom: 4px solid$primary-color;
+  border-bottom: 4px solid $primary-color;
 
   .nav-left,
   .nav-right {
@@ -36,6 +36,7 @@
   }
 
   .brand {
+    position: relative;
     align-items: center;
     justify-content: center;
     font-size: 48px;
@@ -44,6 +45,14 @@
     color: $secondary-color;
     > span {
       color: $primary-color;
+    }
+    > span.demo {
+      color: #333;
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translateX(20px) rotate(10deg);
+      font-size: 16px;
     }
     > img {
       height: 56px;

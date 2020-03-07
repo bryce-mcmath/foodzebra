@@ -109,7 +109,6 @@ export default {
             }
           })
           .catch(err => {
-            console.log("Component 'OrderModal' error:", err);
             this.clearItems();
           });
       }

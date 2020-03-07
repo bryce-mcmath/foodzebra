@@ -12,6 +12,7 @@
     align-items: flex-start;
     justify-content: space-between;
     padding: 0;
+    background: white;
 
     .brand {
       margin: 16px 8px;
@@ -116,15 +117,15 @@
       }
 
       #showmenu.transparent {
-        background-color: transparent;
+        background-color: white;
         border: none;
       }
     }
   }
 
   .nav.transparent {
-    background: transparent;
-    min-height: 120px;
+    background: white;
+    min-height: 88px;
     transition: all 0.5s;
     border: none;
   }
@@ -265,6 +266,15 @@
 
   .content-container {
     margin-top: 100vh;
+  }
+  .nav {
+    .brand {
+      font-size: 24px;
+      > span.demo {
+        font-size: 12px;
+      }
+
+    }
   }
 }
 

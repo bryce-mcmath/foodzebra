@@ -15,8 +15,9 @@ const router = express.Router();
  * @param {Function} middleware Callback function used as middleware
  */
 router.delete('/', (req, res) => {
+	console.log('logout route hit');
 	req.session = null;
-	res.redirect('/');
+	res.status(200).send('Successfully logged out!');
 });
 
 module.exports = router;

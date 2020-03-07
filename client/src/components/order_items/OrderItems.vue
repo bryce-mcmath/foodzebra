@@ -113,7 +113,6 @@ export default {
           this.items = response;
         })
         .catch(err => {
-          console.log("Component 'LoginModal' error:", err);
           this.items = [];
         });
     },
@@ -123,7 +122,6 @@ export default {
           this.items = response;
         })
         .catch(err => {
-          console.log("Component 'OrderItems' error:", err);
           this.items = [];
         });
     },
@@ -133,7 +131,6 @@ export default {
           this.items = response;
         })
         .catch(err => {
-          console.log("Component 'OrderItems' error:", err);
           this.items = [];
         });
     },
@@ -143,7 +140,6 @@ export default {
           this.items = response;
         })
         .catch(err => {
-          console.log("Component 'OrderItems' error:", err);
           this.items = [];
         });
     },
@@ -153,9 +149,6 @@ export default {
         .then(response => {
           this.menuItems = response;
         })
-        .catch(err => {
-          console.log('err', err);
-        });
     },
     selectTab: function(tabClicked) {
       this.tabSelected = tabClicked;

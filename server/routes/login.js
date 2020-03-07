@@ -41,15 +41,15 @@ router.get('/', (req, res) => {
  */
 router.post('/', (req, res) => {
 	const { email, password } = req.body;
-
 	getUserByEmail(email)
 		.then((user) => {
 			if (user) {
 				const { password: hash, id } = user;
 				bcrypt.compare(password, hash, (err, result) => {
 					if (!err && result) {
+						console.log('All good');
 						req.session.user_id = id;
-						res.status(200);
+						res.status(200).send('Successfully logged in!');
 					} else {
 						invalidCredentials(res);
 					}

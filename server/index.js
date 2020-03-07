@@ -55,6 +55,7 @@ app.get('/', (_, res) => {
 
 // Routers
 app.use('/menu', require('./routes/menu'));
+app.use('/register', require('./routes/register'));
 app.use('/login', require('./routes/login'));
 app.use('/logout', require('./routes/logout'));
 app.use('/orders', require('./routes/orders'));
